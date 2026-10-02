@@ -80,6 +80,24 @@ const INITIAL_TEXTILE_CUSTOMERS = [
         amount: 13600,
         invoiceNo: "IRS-2026-0120",
         description: "Göğüs nakış logolu, özel ribana yakalı"
+      },
+      {
+        id: "tx_z6",
+        type: "PAYMENT",
+        productName: "",
+        date: "2026-08-15",
+        amount: 9000,
+        currency: "EUR",
+        method: "Müşteri Çeki",
+        ref: "ÇK-88102 (İş Bankası Maslak)",
+        isCheck: true,
+        checkNo: "ÇK-88102",
+        checkBank: "İş Bankası Maslak",
+        dueDate: "2026-11-20",
+        entryRate: 53.40,
+        autoFx: true,
+        fxApplied: false,
+        description: "Vadeli Müşteri Çeki (Vade: 20.11.2026 - Vadesi Bekleniyor)"
       }
     ]
   },
@@ -139,6 +157,24 @@ const INITIAL_TEXTILE_CUSTOMERS = [
         method: "Banka Havalesi (Swift)",
         ref: "Deutsche Bank Swift #D9102",
         description: "Kargo pantolon hakediş ödemesi"
+      },
+      {
+        id: "tx_s5",
+        type: "PAYMENT",
+        productName: "",
+        date: "2026-07-20",
+        amount: 9600,
+        currency: "USD",
+        method: "Müşteri Çeki",
+        ref: "ÇK-44910 (Commerzbank Frankfurt)",
+        isCheck: true,
+        checkNo: "ÇK-44910",
+        checkBank: "Commerzbank AG",
+        dueDate: "2026-10-01",
+        entryRate: 46.80,
+        autoFx: true,
+        fxApplied: false,
+        description: "Vadeli Müşteri Çeki (Vade: 01.10.2026 - Vadesi Geldi, Kur Farkı Hesaplanacak)"
       }
     ]
   },
@@ -151,6 +187,30 @@ const INITIAL_TEXTILE_CUSTOMERS = [
     address: "Merter Tekstil Merkezi No:42 Güngören / İstanbul",
     notes: "Haftalık Cuma günleri vadeli çek/nakit teslim",
     transactions: [
+      {
+        id: "tx_o0",
+        type: "SHIPMENT",
+        productName: "2025 Kış Koleksiyonu İtalyan Yün Kaban",
+        date: "2025-11-20",
+        quantity: 800,
+        unit: "Adet",
+        unitPrice: 650.00,
+        currency: "TL",
+        amount: 520000,
+        invoiceNo: "IRS-2025-882",
+        description: "2025 Yılı Kışlık Yün Kaban Partisi Sevkiyatı"
+      },
+      {
+        id: "tx_o0_pay",
+        type: "PAYMENT",
+        productName: "",
+        date: "2025-12-15",
+        amount: 520000,
+        currency: "TL",
+        method: "Banka Havalesi / EFT",
+        ref: "Vakıfbank #1092",
+        description: "2025 Yılı Kaban bedeli hakediş tahsilatı"
+      },
       {
         id: "tx_o1",
         type: "SHIPMENT",
@@ -270,10 +330,13 @@ let appState = {
   customers: [],
   activeCustomerId: 'ALL',       // 'ALL' or specific customerId (for tabs filter)
   activeDetailCustomerId: null,  // null (dashboard) or customerId (detailed ledger view)
+  selectedYear: 'ALL',           // 'ALL' or '2026', '2025', etc. (Yıl bazlı mali filtre)
+  ledgerFilterYear: 'ALL',       // 'ALL' or '2026', etc. (Müşteri ekstresi yıl filtresi)
+  checkPortfolioFilter: 'ALL',   // 'ALL', 'PENDING', 'MATURED', 'APPLIED'
   filterSearch: '',
   filterStatus: 'ALL',           // 'ALL', 'UNPAID', 'PAID'
   filterCurrency: 'ALL',         // 'ALL', 'TL', 'USD', 'EUR'
-  txnFilterType: 'ALL',          // 'ALL', 'SHIPMENT', 'PAYMENT'
+  txnFilterType: 'ALL',          // 'ALL', 'SHIPMENT', 'PAYMENT', 'CHECK', 'KUR_FARKI'
   lastModified: 0,
   isServerOnline: false,
   lanUrl: 'http://192.168.1.105:8085',
@@ -344,18 +407,29 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-// Calculate customer's financial balance & totals
-function calculateCustomerTotals(customer) {
+// Calculate customer's financial balance & totals (Desteklenen Yıl Filtresi ve Otomatik Kur Farkı ile)
+function calculateCustomerTotals(customer, filterYear = appState.selectedYear) {
   let totalShipment = 0;
   let totalPaid = 0;
 
   if (customer && Array.isArray(customer.transactions)) {
-    customer.transactions.forEach(t => {
+    let txns = customer.transactions;
+    if (filterYear && filterYear !== 'ALL') {
+      txns = txns.filter(t => t.date && t.date.substring(0, 4) === String(filterYear));
+    }
+    txns.forEach(t => {
       const amt = Number(t.amount || 0);
       if (t.type === 'SHIPMENT') {
         totalShipment += amt;
       } else if (t.type === 'PAYMENT') {
         totalPaid += amt;
+      } else if (t.type === 'KUR_FARKI') {
+        // Kur farkı alacak ise tahsilata eklenir, borç ise satışa eklenir
+        if (t.direction === 'ALACAK' || t.isCredit !== false) {
+          totalPaid += amt;
+        } else {
+          totalShipment += amt;
+        }
       }
     });
   }
@@ -747,8 +821,150 @@ function showLedgerDetailView(customerId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// =========================================================
+// YIL BAZLI İŞLEM FİLTRESİ MOTORU (YEAR-BASED FILTER ENGINE)
+// =========================================================
+
+function getAvailableYears() {
+  const yearsSet = new Set();
+  const currentYear = new Date().getFullYear().toString();
+  yearsSet.add(currentYear);
+
+  if (Array.isArray(appState.customers)) {
+    appState.customers.forEach(c => {
+      if (Array.isArray(c.transactions)) {
+        c.transactions.forEach(t => {
+          if (t.date && t.date.length >= 4) {
+            const yr = t.date.substring(0, 4);
+            if (/^\d{4}$/.test(yr)) yearsSet.add(yr);
+          }
+        });
+      }
+    });
+  }
+
+  return Array.from(yearsSet).sort().reverse();
+}
+
+function renderYearFilterPills() {
+  const container = document.getElementById('yearPillsList');
+  if (!container) return;
+
+  const years = getAvailableYears();
+  const activeYear = appState.selectedYear || 'ALL';
+
+  let html = `
+    <button type="button" class="year-pill ${activeYear === 'ALL' ? 'active' : ''}" onclick="setDashboardYearFilter('ALL')">
+      <i class="fa-solid fa-infinity"></i> Tüm Yıllar
+    </button>
+  `;
+
+  years.forEach(yr => {
+    const isAct = activeYear === yr;
+    html += `
+      <button type="button" class="year-pill ${isAct ? 'active' : ''}" onclick="setDashboardYearFilter('${yr}')">
+        <i class="fa-solid fa-calendar-check"></i> ${yr} Yılı
+      </button>
+    `;
+  });
+
+  container.innerHTML = html;
+
+  const labelEl = document.getElementById('lblActiveYearText');
+  if (labelEl) {
+    labelEl.textContent = activeYear === 'ALL' ? 'Tüm Yıllar (Genel Toplam)' : `${activeYear} Mali Yılı İşlemleri`;
+  }
+
+  // Müşteri cari detay sayfasındaki yıl filtresi açılır kutusunu senkronize et
+  const ledgerSelect = document.getElementById('ledgerYearFilter');
+  if (ledgerSelect) {
+    let selHtml = `<option value="ALL" ${appState.ledgerFilterYear === 'ALL' ? 'selected' : ''}>Tüm Yıllar (Genel)</option>`;
+    years.forEach(yr => {
+      selHtml += `<option value="${yr}" ${appState.ledgerFilterYear === yr ? 'selected' : ''}>${yr} Mali Yılı</option>`;
+    });
+    ledgerSelect.innerHTML = selHtml;
+  }
+}
+
+function setDashboardYearFilter(year) {
+  appState.selectedYear = year;
+  appState.ledgerFilterYear = year;
+  renderDashboard();
+  if (appState.activeDetailCustomerId) {
+    renderLedgerDetail();
+  }
+}
+
+// Render Mobile Customer Cards (Mobilde Tablo Yerine Touch-Friendly Kartlar)
+function renderMobileCustomerCards(customerList) {
+  const container = document.getElementById('mobileCustomerCardsContainer');
+  if (!container) return;
+
+  if (!customerList || customerList.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state" style="padding: 1.5rem 1rem;">
+        <i class="fa-solid fa-magnifying-glass" style="font-size: 1.8rem; color: var(--text-dim);"></i>
+        <h4 style="margin: 0.5rem 0 0.25rem;">Kayıtlı Müşteri Bulunamadı</h4>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Arama veya filtre kriterlerinize uygun firma yok.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = customerList.map(c => {
+    const totals = calculateCustomerTotals(c);
+    const curr = c.currency || 'TL';
+    const sym = getCurrencySymbol(curr);
+    const txnCount = (c.transactions || []).length;
+    const isPaid = totals.remaining <= 0;
+
+    return `
+      <div class="mobile-customer-card">
+        <div class="mob-cust-head">
+          <div>
+            <div class="mob-cust-name">${escapeHtml(c.name)}</div>
+            ${c.contactPerson ? `<div class="mob-cust-contact"><i class="fa-solid fa-user-tie text-gold"></i> ${escapeHtml(c.contactPerson)}</div>` : ''}
+            ${c.phone ? `<a href="tel:${escapeHtml(c.phone)}" class="mob-cust-phone"><i class="fa-solid fa-phone"></i> ${escapeHtml(c.phone)}</a>` : ''}
+          </div>
+          <div>
+            <span class="badge-curr badge-curr-${curr.toLowerCase()}">${curr} (${sym})</span>
+          </div>
+        </div>
+
+        <div class="mob-fin-bar">
+          <div class="mob-fin-col">
+            <span class="mob-fin-lbl">Toplam Sevk</span>
+            <span class="mob-fin-val text-gold">${formatCurrency(totals.totalShipment, curr)}</span>
+          </div>
+          <div class="mob-fin-col">
+            <span class="mob-fin-lbl">Tahsilat</span>
+            <span class="mob-fin-val text-green">${formatCurrency(totals.totalPaid, curr)}</span>
+          </div>
+          <div class="mob-fin-col">
+            <span class="mob-fin-lbl">Kalan Alacak</span>
+            <span class="mob-fin-val ${isPaid ? 'text-green' : 'text-red'}">${formatCurrency(totals.remaining, curr)}</span>
+          </div>
+        </div>
+
+        <div class="mob-actions-row">
+          <button type="button" class="btn btn-outline" onclick="showLedgerDetailView('${c.id}')" title="Ekstre ve Ürünler">
+            <i class="fa-solid fa-book-open"></i> Ekstre (${txnCount})
+          </button>
+          <button type="button" class="btn btn-primary" onclick="openProductSaleModal('${c.id}')" title="Mal Sevk Et">
+            <i class="fa-solid fa-truck-fast"></i> Sevk Et
+          </button>
+          <button type="button" class="btn btn-success" onclick="openPaymentModal('${c.id}')" title="Tahsilat Al">
+            <i class="fa-solid fa-hand-holding-dollar"></i> Tahsilat
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
 // Render Dashboard View
 function renderDashboard() {
+  renderYearFilterPills();
   renderCustomerTabs();
   renderActiveCustomerBanner();
 
@@ -841,6 +1057,7 @@ function renderDashboard() {
   });
 
   renderCustomerCards(displayList);
+  renderMobileCustomerCards(displayList);
   renderCustomerTable(displayList);
 }
 
@@ -1149,13 +1366,20 @@ function renderTransactionsList(customer) {
   const txns = customer.transactions || [];
   let filteredTxns = txns;
 
+  // Filter by transaction type
   if (appState.txnFilterType !== 'ALL') {
-    filteredTxns = txns.filter(t => t.type === appState.txnFilterType);
+    if (appState.txnFilterType === 'CHECK') {
+      filteredTxns = txns.filter(t => t.isCheck || t.method === 'Müşteri Çeki');
+    } else if (appState.txnFilterType === 'KUR_FARKI') {
+      filteredTxns = txns.filter(t => t.type === 'KUR_FARKI');
+    } else {
+      filteredTxns = txns.filter(t => t.type === appState.txnFilterType);
+    }
   }
 
-  if (filteredTxns.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="10" class="text-center" style="padding: 2.5rem;">Bu alanda henüz kayıtlı hareket bulunmuyor. Yukarıdaki butonlardan yeni ürün sevkiyatı veya tahsilat ekleyebilirsiniz.</td></tr>`;
-    return;
+  // Filter by year if selected
+  if (appState.ledgerFilterYear && appState.ledgerFilterYear !== 'ALL') {
+    filteredTxns = filteredTxns.filter(t => t.date && t.date.substring(0, 4) === appState.ledgerFilterYear);
   }
 
   // Sort chronological for running balance calculation
@@ -1168,6 +1392,12 @@ function renderTransactionsList(customer) {
     const amt = Number(t.amount || 0);
     if (t.type === 'SHIPMENT') {
       running += amt;
+    } else if (t.type === 'KUR_FARKI') {
+      if (t.direction === 'ALACAK' || t.isCredit !== false) {
+        running -= amt;
+      } else {
+        running += amt;
+      }
     } else {
       running -= amt;
     }
@@ -1177,18 +1407,38 @@ function renderTransactionsList(customer) {
   // Display in descending date order (newest on top)
   const displayTxns = [...filteredTxns].sort((a, b) => new Date(b.date) - new Date(a.date));
 
+  // Render Mobile Cards View
+  renderMobileTransactionsList(customer, displayTxns, balanceMap);
+
+  if (displayTxns.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="10" class="text-center" style="padding: 2.5rem;">Bu alanda seçilen filtrede kayıtlı hareket bulunmuyor.</td></tr>`;
+    return;
+  }
+
   tbody.innerHTML = displayTxns.map(t => {
     const amt = Number(t.amount || 0);
     const itemCurr = t.currency || customer.currency || 'TL';
     const isShipment = t.type === 'SHIPMENT';
+    const isFx = t.type === 'KUR_FARKI';
+    const isCheck = t.isCheck || t.method === 'Müşteri Çeki';
 
-    const typeBadge = isShipment 
-      ? `<span class="badge-type-shipment"><i class="fa-solid fa-truck-fast"></i> Mal Satışı</span>` 
-      : `<span class="badge-type-payment"><i class="fa-solid fa-hand-holding-dollar"></i> Tahsilat</span>`;
+    let typeBadge = `<span class="badge-type-payment"><i class="fa-solid fa-hand-holding-dollar"></i> Tahsilat</span>`;
+    if (isShipment) {
+      typeBadge = `<span class="badge-type-shipment"><i class="fa-solid fa-truck-fast"></i> Mal Satışı</span>`;
+    } else if (isFx) {
+      typeBadge = `<span class="badge-type-kur-farki"><i class="fa-solid fa-scale-balanced"></i> Kur Farkı</span>`;
+    } else if (isCheck) {
+      typeBadge = `<span class="badge-type-payment"><i class="fa-solid fa-money-check-dollar text-gold"></i> Müşteri Çeki</span>`;
+    }
 
-    const titleText = isShipment 
-      ? `<strong>${escapeHtml(t.productName || 'Ürün Satışı')}</strong> ${t.description ? `<div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.2rem;">${escapeHtml(t.description)}</div>` : ''}`
-      : `<strong>${escapeHtml(t.description || 'Ödeme')}</strong> ${t.method ? `<div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.2rem;"><i class="fa-solid fa-credit-card"></i> ${escapeHtml(t.method)} ${t.ref ? `(${escapeHtml(t.ref)})` : ''}</div>` : ''}`;
+    let titleText = '';
+    if (isShipment) {
+      titleText = `<strong>${escapeHtml(t.productName || 'Ürün Satışı')}</strong> ${t.description ? `<div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.2rem;">${escapeHtml(t.description)}</div>` : ''}`;
+    } else if (isFx) {
+      titleText = `<strong>${escapeHtml(t.description || 'Vade Kur Farkı')}</strong> <div style="font-size: 0.75rem; color: var(--primary); margin-top: 0.2rem;">Giriş: ${t.entryRate ? t.entryRate.toFixed(4) + ' ₺' : '-'} ➔ Vade: ${t.exitRate ? Number(t.exitRate).toFixed(4) + ' ₺' : '-'}</div>`;
+    } else {
+      titleText = `<strong>${escapeHtml(t.description || 'Ödeme')}</strong> ${t.method ? `<div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.2rem;"><i class="fa-solid fa-credit-card"></i> ${escapeHtml(t.method)} ${t.ref ? `(${escapeHtml(t.ref)})` : ''}</div>` : ''}`;
+    }
 
     const qtyText = isShipment && t.quantity 
       ? `<strong>${Number(t.quantity).toLocaleString('tr-TR')}</strong> ${escapeHtml(t.unit || 'Adet')}` 
@@ -1198,8 +1448,21 @@ function renderTransactionsList(customer) {
       ? formatCurrency(t.unitPrice, itemCurr) 
       : `<span class="text-dim">-</span>`;
 
-    const shipmentVal = isShipment ? `<strong class="text-gold">${formatCurrency(amt, itemCurr)}</strong>` : `<span class="text-dim">-</span>`;
-    const paymentVal = !isShipment ? `<strong class="text-green">${formatCurrency(amt, itemCurr)}</strong>` : `<span class="text-dim">-</span>`;
+    let shipmentVal = '<span class="text-dim">-</span>';
+    let paymentVal = '<span class="text-dim">-</span>';
+
+    if (isShipment) {
+      shipmentVal = `<strong class="text-gold">${formatCurrency(amt, itemCurr)}</strong>`;
+    } else if (isFx) {
+      if (t.direction === 'ALACAK' || t.isCredit !== false) {
+        paymentVal = `<strong class="text-green">${formatCurrency(amt, itemCurr)}</strong>`;
+      } else {
+        shipmentVal = `<strong class="text-gold">${formatCurrency(amt, itemCurr)}</strong>`;
+      }
+    } else {
+      paymentVal = `<strong class="text-green">${formatCurrency(amt, itemCurr)}</strong>`;
+    }
+
     const cumBalance = balanceMap[t.id] !== undefined ? balanceMap[t.id] : 0;
 
     return `
@@ -1212,7 +1475,7 @@ function renderTransactionsList(customer) {
         <td class="text-right">${shipmentVal}</td>
         <td class="text-right">${paymentVal}</td>
         <td class="text-right ${cumBalance > 0 ? 'text-red font-bold' : 'text-green font-bold'}">${formatCurrency(cumBalance, itemCurr)}</td>
-        <td>${escapeHtml(t.invoiceNo || t.ref || '-')}</td>
+        <td>${escapeHtml(t.invoiceNo || t.checkNo || t.ref || '-')}</td>
         <td class="text-right">
           <button class="btn btn-sm btn-secondary" onclick="editTransaction('${customer.id}', '${t.id}')" title="Bu işlemi düzenle">
             <i class="fa-solid fa-pen text-gold"></i> Düzenle
@@ -1222,6 +1485,82 @@ function renderTransactionsList(customer) {
           </button>
         </td>
       </tr>
+    `;
+  }).join('');
+}
+
+// Render Mobile Ledger Transactions List (Dokunmatik İşlem Kartları)
+function renderMobileTransactionsList(customer, displayTxns, balanceMap) {
+  const container = document.getElementById('mobileLedgerTxnList');
+  if (!container) return;
+
+  if (!displayTxns || displayTxns.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state" style="padding: 1.5rem 1rem;">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Bu dönemde kayıtlı hareket bulunamadı.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = displayTxns.map(t => {
+    const amt = Number(t.amount || 0);
+    const itemCurr = t.currency || customer.currency || 'TL';
+    const isShipment = t.type === 'SHIPMENT';
+    const isCheck = t.isCheck || t.method === 'Müşteri Çeki';
+    const isFx = t.type === 'KUR_FARKI';
+
+    let badge = `<span class="badge-type-payment"><i class="fa-solid fa-hand-holding-dollar"></i> Tahsilat</span>`;
+    if (isShipment) {
+      badge = `<span class="badge-type-shipment"><i class="fa-solid fa-truck-fast"></i> Mal Satışı</span>`;
+    } else if (isFx) {
+      badge = `<span class="badge-type-kur-farki"><i class="fa-solid fa-scale-balanced"></i> Kur Farkı</span>`;
+    } else if (isCheck) {
+      badge = `<span class="badge-type-payment"><i class="fa-solid fa-money-check-dollar text-gold"></i> Çek</span>`;
+    }
+
+    let title = isShipment ? (t.productName || 'Mal Sevkiyatı') : (t.description || 'Tahsilat');
+    let sub = '';
+    if (isShipment && t.quantity) {
+      sub = `${Number(t.quantity).toLocaleString('tr-TR')} ${t.unit || 'Adet'} × ${formatCurrency(t.unitPrice, itemCurr)}`;
+    } else if (isCheck) {
+      sub = `Vade: ${formatDate(t.dueDate)} | Banka: ${t.checkBank || '-'}`;
+    } else if (isFx) {
+      sub = `Giriş: ${t.entryRate ? t.entryRate.toFixed(2) + ' ₺' : '-'} ➔ Vade: ${t.exitRate ? Number(t.exitRate).toFixed(2) + ' ₺' : '-'}`;
+    } else if (t.method) {
+      sub = `${t.method} ${t.ref ? `(${t.ref})` : ''}`;
+    }
+
+    const cumBal = balanceMap[t.id] !== undefined ? balanceMap[t.id] : 0;
+
+    return `
+      <div class="mobile-txn-card">
+        <div class="mob-txn-header">
+          <span class="mob-txn-date"><i class="fa-regular fa-calendar"></i> ${formatDate(t.date)}</span>
+          ${badge}
+        </div>
+        <div class="mob-txn-desc">${escapeHtml(title)}</div>
+        ${sub ? `<div class="mob-txn-sub">${escapeHtml(sub)}</div>` : ''}
+        <div class="mob-txn-amount-row">
+          <div>
+            <span class="mob-txn-sub">Kalan Bakiye: </span>
+            <strong class="${cumBal > 0 ? 'text-red' : 'text-green'}">${formatCurrency(cumBal, itemCurr)}</strong>
+          </div>
+          <div>
+            <span class="mob-txn-amt ${isShipment ? 'text-gold' : 'text-green'}">
+              ${isShipment ? '+' : '-'}${formatCurrency(amt, itemCurr)}
+            </span>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.35rem;">
+          <button class="btn btn-sm btn-secondary" onclick="editTransaction('${customer.id}', '${t.id}')">
+            <i class="fa-solid fa-pen text-gold"></i> Düzenle
+          </button>
+          <button class="btn btn-sm btn-outline text-red" onclick="deleteTransaction('${customer.id}', '${t.id}')">
+            <i class="fa-solid fa-trash-can"></i> Sil
+          </button>
+        </div>
+      </div>
     `;
   }).join('');
 }
@@ -1357,6 +1696,8 @@ function openPaymentModal(customerId = null, editTxnId = null) {
   document.getElementById('payCurrency').value = curr;
 
   const modalTitle = document.getElementById('modalPaymentTitle');
+  const checkDetailsBox = document.getElementById('checkDetailsBox');
+  if (checkDetailsBox) checkDetailsBox.style.display = 'none';
 
   if (editTxnId) {
     const txn = (customer.transactions || []).find(t => t.id === editTxnId);
@@ -1367,9 +1708,29 @@ function openPaymentModal(customerId = null, editTxnId = null) {
       document.getElementById('payMethod').value = txn.method || 'Banka Havalesi / EFT';
       document.getElementById('payRef').value = txn.ref || '';
       document.getElementById('payDescription').value = txn.description || '';
+
+      if (txn.method === 'Müşteri Çeki' || txn.isCheck) {
+        if (checkDetailsBox) checkDetailsBox.style.display = 'block';
+        document.getElementById('payCheckNo').value = txn.checkNo || '';
+        document.getElementById('payCheckBank').value = txn.checkBank || '';
+        document.getElementById('payCheckDueDate').value = txn.dueDate || '';
+        document.getElementById('payCheckEntryRate').value = txn.entryRate || '';
+        document.getElementById('payCheckAutoFx').checked = txn.autoFx !== false;
+      }
       if (modalTitle) modalTitle.innerHTML = '<i class="fa-solid fa-pen-to-square text-green"></i> Tahsilat / Ödeme Kaydını Düzenle';
     }
   } else {
+    // Yeni tahsilat: Çek alanlarını temizle ve güncel TCMB kurunu hazırla
+    document.getElementById('payCheckNo').value = '';
+    document.getElementById('payCheckBank').value = '';
+    document.getElementById('payCheckDueDate').value = '';
+    const entryRateEl = document.getElementById('payCheckEntryRate');
+    if (entryRateEl) {
+      if (curr === 'USD') entryRateEl.value = (latestTcmbRates?.USD?.forexSelling || 49.0348).toFixed(4);
+      else if (curr === 'EUR') entryRateEl.value = (latestTcmbRates?.EUR?.forexSelling || 55.3963).toFixed(4);
+      else entryRateEl.value = '';
+    }
+    document.getElementById('payCheckAutoFx').checked = true;
     if (modalTitle) modalTitle.innerHTML = '<i class="fa-solid fa-hand-holding-dollar text-green"></i> Müşteriden Tahsilat / Ödeme Al';
   }
 
@@ -1467,94 +1828,400 @@ function exportToExcelCSV() {
 }
 
 // =========================================================
-// PRINT / PDF EKSTRE HAZIRLIĞI
+// MÜŞTERİ CARİ EKSTRE YAZDIR & 100% ÇALIŞAN PDF İNDİRME MOTORU
 // =========================================================
 
-function prepareAndPrintStatement() {
-  const customer = appState.customers.find(c => c.id === appState.activeDetailCustomerId);
-  if (!customer) return;
+function openStatementPreviewModal() {
+  const customerId = appState.activeDetailCustomerId || (appState.activeCustomerId !== 'ALL' ? appState.activeCustomerId : null) || (appState.customers[0] ? appState.customers[0].id : null);
+  const customer = appState.customers.find(c => c.id === customerId);
+  if (!customer) {
+    alert("Lütfen önce bir müşteri seçin!");
+    return;
+  }
 
-  const totals = calculateCustomerTotals(customer);
+  const totals = calculateCustomerTotals(customer, appState.selectedYear);
   const curr = customer.currency || 'TL';
+  const brandTitle = appState.settings.brandTitle || 'TEKSTİL SANAYİ & İHRACAT';
+  const brandSubtitle = appState.settings.brandSubtitle || 'MÜŞTERİ CARİ HESAP & SEVKİYAT EKSTRESİ';
 
-  document.getElementById('printReportDate').textContent = `Rapor Tarihi: ${new Date().toLocaleDateString('tr-TR')} ${new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}`;
+  // Fill Header
+  document.getElementById('printPaperCompanyTitle').textContent = brandTitle.toUpperCase();
+  document.getElementById('printPaperCompanySubtitle').textContent = brandSubtitle.toUpperCase();
+  document.getElementById('printPaperReportDate').textContent = `${new Date().toLocaleDateString('tr-TR')} ${new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}`;
+  document.getElementById('printPaperYearPeriod').textContent = appState.selectedYear === 'ALL' ? 'Tüm Yıllar (Genel Toplam)' : `${appState.selectedYear} Mali Yılı`;
+  document.getElementById('previewCustomerNameSubtitle').textContent = `${customer.name} (${curr})`;
 
-  document.getElementById('printContractorDetails').innerHTML = `
-    <div>
-      <div><strong>Müşteri / Firma:</strong> ${escapeHtml(customer.name)}</div>
-      <div><strong>Yetkili:</strong> ${escapeHtml(customer.contactPerson || '-')}</div>
-      <div><strong>Telefon:</strong> ${escapeHtml(customer.phone || '-')}</div>
-    </div>
-    <div>
-      <div><strong>Adres:</strong> ${escapeHtml(customer.address || '-')}</div>
-      <div><strong>Çalışma Para Birimi:</strong> ${curr} (${getCurrencySymbol(curr)})</div>
-      <div><strong>Hesap Durumu:</strong> ${totals.remaining <= 0 ? 'HESAP KAPANDI (BORÇ YOK)' : 'ÖDEME BEKLİYOR'}</div>
-    </div>
+  // Fill Customer Info
+  document.getElementById('printPaperCustomerInfo').innerHTML = `
+    <div class="cust-title"><i class="fa-solid fa-building"></i> ${escapeHtml(customer.name)}</div>
+    <div><strong>Yetkili / Temsilci:</strong> ${escapeHtml(customer.contactPerson || '-')}</div>
+    <div><strong>Telefon:</strong> ${escapeHtml(customer.phone || '-')}</div>
+    <div><strong>Firma Adresi:</strong> ${escapeHtml(customer.address || '-')}</div>
+    <div><strong>Çalışma Para Birimi:</strong> ${curr} (${getCurrencySymbol(curr)})</div>
+    <div><strong>Vade & Koşullar:</strong> ${escapeHtml(customer.notes || 'Standart cari vade')}</div>
+    <div><strong>Hesap Durumu:</strong> <strong class="${totals.remaining <= 0 ? 'text-green' : 'text-red'}">${totals.remaining <= 0 ? 'HESAP KAPALI (BORÇ YOK)' : 'AÇIK HESAP (ÖDEME BEKLİYOR)'}</strong></div>
   `;
 
-  document.getElementById('printSigContractorName').textContent = customer.name;
+  // Filter & sort transactions
+  let txns = customer.transactions || [];
+  if (appState.selectedYear !== 'ALL') {
+    txns = txns.filter(t => t.date && t.date.substring(0, 4) === appState.selectedYear);
+  }
+  if (appState.txnFilterType !== 'ALL') {
+    if (appState.txnFilterType === 'CHECK') {
+      txns = txns.filter(t => t.isCheck || t.method === 'Müşteri Çeki');
+    } else if (appState.txnFilterType === 'KUR_FARKI') {
+      txns = txns.filter(t => t.type === 'KUR_FARKI');
+    } else {
+      txns = txns.filter(t => t.type === appState.txnFilterType);
+    }
+  }
 
-  const txns = customer.transactions || [];
   const sortedTxns = [...txns].sort((a, b) => new Date(a.date) - new Date(b.date));
 
   let runningBalance = 0;
   let rowsHtml = '';
 
-  sortedTxns.forEach(t => {
-    const amt = Number(t.amount || 0);
-    const isShipment = t.type === 'SHIPMENT';
-    let sVal = '-';
-    let pVal = '-';
+  if (sortedTxns.length === 0) {
+    rowsHtml = `<tr><td colspan="7" style="text-align: center; padding: 25px; color: #64748b;">Bu dönemde kayıtlı hareket bulunmuyor.</td></tr>`;
+  } else {
+    sortedTxns.forEach(t => {
+      const amt = Number(t.amount || 0);
+      const isShipment = t.type === 'SHIPMENT';
+      const isFx = t.type === 'KUR_FARKI';
+      let sVal = '-';
+      let pVal = '-';
 
-    if (isShipment) {
-      sVal = formatCurrency(amt, curr);
-      runningBalance += amt;
-    } else {
-      pVal = formatCurrency(amt, curr);
-      runningBalance -= amt;
-    }
+      if (isShipment) {
+        sVal = formatCurrency(amt, curr);
+        runningBalance += amt;
+      } else if (isFx) {
+        if (t.direction === 'ALACAK' || t.isCredit !== false) {
+          pVal = formatCurrency(amt, curr);
+          runningBalance -= amt;
+        } else {
+          sVal = formatCurrency(amt, curr);
+          runningBalance += amt;
+        }
+      } else {
+        pVal = formatCurrency(amt, curr);
+        runningBalance -= amt;
+      }
 
-    const itemDesc = isShipment 
-      ? `${escapeHtml(t.productName || 'Ürün Satışı')}` 
-      : `${escapeHtml(t.description || 'Tahsilat')} ${t.ref ? `(${escapeHtml(t.ref)})` : ''}`;
+      let typeName = isShipment ? 'Mal Satışı' : (isFx ? 'Kur Farkı' : 'Tahsilat');
+      let itemDesc = isShipment 
+        ? `${escapeHtml(t.productName || 'Ürün Satışı')}` 
+        : `${escapeHtml(t.description || 'Ödeme')} ${t.ref ? `(${escapeHtml(t.ref)})` : ''}`;
 
-    const qtyInfo = isShipment && t.quantity ? `${Number(t.quantity).toLocaleString('tr-TR')} ${escapeHtml(t.unit || 'Adet')}` : '-';
-    const priceInfo = isShipment && t.unitPrice ? formatCurrency(t.unitPrice, curr) : '-';
+      const qtyInfo = isShipment && t.quantity ? `${Number(t.quantity).toLocaleString('tr-TR')} ${escapeHtml(t.unit || 'Adet')}` : '-';
+      const priceInfo = isShipment && t.unitPrice ? formatCurrency(t.unitPrice, curr) : '-';
 
-    rowsHtml += `
-      <tr>
-        <td>${formatDate(t.date)}</td>
-        <td>${isShipment ? 'Mal Sevkiyatı' : 'Tahsilat'}</td>
-        <td>${itemDesc}</td>
-        <td>${qtyInfo}</td>
-        <td>${priceInfo}</td>
-        <td class="text-right">${sVal}</td>
-        <td class="text-right">${pVal}</td>
-        <td class="text-right"><strong>${formatCurrency(runningBalance, curr)}</strong></td>
-      </tr>
-    `;
-  });
+      rowsHtml += `
+        <tr>
+          <td>${formatDate(t.date)}</td>
+          <td><strong>${typeName}</strong></td>
+          <td>${itemDesc}</td>
+          <td>${qtyInfo}</td>
+          <td>${priceInfo}</td>
+          <td style="text-align: right; font-weight: 600;">${sVal}</td>
+          <td style="text-align: right; font-weight: 600; color: #16a34a;">${pVal}</td>
+        </tr>
+      `;
+    });
+  }
 
-  document.getElementById('printTableBody').innerHTML = rowsHtml;
+  document.getElementById('printPaperTableBody').innerHTML = rowsHtml;
 
-  document.getElementById('printSummaryBox').innerHTML = `
-    <table>
-      <tr>
-        <td>Toplam Sevk Edilen Mal Bedeli:</td>
-        <td class="text-right"><strong>${formatCurrency(totals.totalShipment, curr)}</strong></td>
-      </tr>
-      <tr>
-        <td>Toplam Alınan Tahsilat:</td>
-        <td class="text-right"><strong>${formatCurrency(totals.totalPaid, curr)}</strong></td>
-      </tr>
-      <tr style="background: #f0f0f0; font-size: 11pt;">
-        <td><strong>Kalan Net Alacak / Bakiye:</strong></td>
-        <td class="text-right"><strong>${formatCurrency(totals.remaining, curr)}</strong></td>
-      </tr>
-    </table>
+  // Summary box
+  document.getElementById('printPaperSummaryBox').innerHTML = `
+    <div class="print-sum-box">
+      <div class="print-sum-row">
+        <span>Toplam Sevk Edilen Mal Bedeli:</span>
+        <strong>${formatCurrency(totals.totalShipment, curr)}</strong>
+      </div>
+      <div class="print-sum-row">
+        <span>Toplam Yapılan Tahsilat:</span>
+        <strong style="color: #16a34a;">${formatCurrency(totals.totalPaid, curr)}</strong>
+      </div>
+      <div class="print-sum-row total-balance">
+        <span>Kalan Net Bakiye (Alacak):</span>
+        <span>${formatCurrency(totals.remaining, curr)}</span>
+      </div>
+    </div>
   `;
 
+  document.getElementById('printPaperSigCustName').textContent = customer.name;
+
+  openModal('modalPrintPreview');
+}
+
+function downloadStatementPDF() {
+  const element = document.getElementById('printSheetPaper');
+  if (!element) {
+    showToast("Ekstre şablonu bulunamadı!", "danger");
+    return;
+  }
+
+  const custNameEl = document.getElementById('previewCustomerNameSubtitle');
+  const rawName = custNameEl ? custNameEl.textContent.split('(')[0].trim() : 'Musteri';
+  const cleanName = rawName.replace(/[^a-zA-Z0-9_\u00C0-\u017F]/g, '_');
+  const dateStr = getTodayDateStr();
+
+  const opt = {
+    margin: [8, 8, 8, 8],
+    filename: `Cari_Ekstre_${cleanName}_${dateStr}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, logging: false },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  showToast("📄 PDF hazırlanıyor ve indiriliyor...", "info");
+
+  if (typeof html2pdf !== 'undefined') {
+    html2pdf().set(opt).from(element).save().then(() => {
+      showToast("✅ Ekstre PDF dosyası başarıyla indirildi!", "success");
+    }).catch(err => {
+      console.error("html2pdf hatası:", err);
+      showToast("PDF indirilemedi. Yazdır butonundan PDF seçeneğini kullanabilirsiniz.", "danger");
+    });
+  } else {
+    window.print();
+  }
+}
+
+function printStatementDirectly() {
   window.print();
+}
+
+// =========================================================
+// VADELİ ÇEK VE OTOMATİK KUR FARKI MOTORU (CHECK & FX ENGINE)
+// =========================================================
+
+function processMaturedChecks(notifyUser = false) {
+  const today = getTodayDateStr();
+  let processedCount = 0;
+  let totalFxAdded = 0;
+
+  if (!Array.isArray(appState.customers)) return;
+
+  appState.customers.forEach(customer => {
+    if (!Array.isArray(customer.transactions)) return;
+
+    customer.transactions.forEach(t => {
+      const isCheck = t.isCheck || t.method === 'Müşteri Çeki' || !!t.dueDate;
+      if (!isCheck) return;
+
+      // Condition: Due date has arrived/passed, autoFx is enabled, and FX not yet applied
+      if (t.dueDate && t.dueDate <= today && t.autoFx && !t.fxApplied) {
+        const checkCurr = (t.currency || customer.currency || 'TL').toUpperCase();
+        let currentRate = 0;
+
+        // Güncel TCMB kuru belirleme
+        if (checkCurr === 'USD') {
+          currentRate = latestTcmbRates?.USD?.forexSelling || latestTcmbRates?.USD?.banknoteSelling || 49.0348;
+        } else if (checkCurr === 'EUR') {
+          currentRate = latestTcmbRates?.EUR?.forexSelling || latestTcmbRates?.EUR?.banknoteSelling || 55.3963;
+        } else {
+          currentRate = latestTcmbRates?.USD?.forexSelling || 49.0348;
+        }
+
+        const entryRate = Number(t.entryRate || 0);
+
+        if (entryRate > 0 && currentRate > 0) {
+          const rateDiff = currentRate - entryRate;
+
+          // Kur farkı mevcut ise
+          if (Math.abs(rateDiff) >= 0.001) {
+            const checkAmount = Number(t.amount || 0);
+            const fxDifferenceTL = Number((rateDiff * checkAmount).toFixed(2));
+            const fxAmount = Math.abs(fxDifferenceTL);
+
+            const fxTxn = {
+              id: 'tx_fx_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+              type: 'KUR_FARKI',
+              direction: fxDifferenceTL >= 0 ? 'ALACAK' : 'BORC',
+              isCredit: fxDifferenceTL >= 0,
+              date: today,
+              amount: fxAmount,
+              currency: customer.currency || 'TL',
+              checkId: t.id,
+              checkNo: t.checkNo || t.ref || 'Çek',
+              entryRate: entryRate,
+              exitRate: currentRate,
+              rateDiff: rateDiff,
+              description: `Vade Sonu TCMB Kur Farkı (#${t.checkNo || 'Çek'} Vadesi: ${formatDate(t.dueDate)}). Alındığı Gün Kuru: ${entryRate.toFixed(4)} ₺ ➔ Vade Kuru: ${currentRate.toFixed(4)} ₺ (Fark: ${rateDiff >= 0 ? '+' : ''}${rateDiff.toFixed(4)} ₺)`
+            };
+
+            customer.transactions.push(fxTxn);
+            t.fxApplied = true;
+            t.fxTxId = fxTxn.id;
+            t.fxAmount = fxDifferenceTL;
+            t.maturedRate = currentRate;
+            t.fxAppliedDate = today;
+
+            processedCount++;
+            totalFxAdded += fxAmount;
+          } else {
+            t.fxApplied = true;
+            t.fxAmount = 0;
+            t.maturedRate = currentRate;
+            t.fxAppliedDate = today;
+          }
+        }
+      }
+    });
+  });
+
+  if (processedCount > 0) {
+    saveData();
+    renderDashboard();
+    if (appState.activeDetailCustomerId) renderLedgerDetail();
+    if (notifyUser) {
+      showToast(`${processedCount} adet vadeli çekin güncel TCMB kur farkı hesaplanarak müşteri carilerine eklendi!`, 'success');
+    }
+  } else if (notifyUser) {
+    showToast("Vadesi gelmiş ve kur farkı hesaplanmamış çek bulunmuyor.", "info");
+  }
+}
+
+function processAllMaturedChecks(notifyUser = true) {
+  processMaturedChecks(notifyUser);
+  renderCheckPortfolio();
+}
+
+function openCheckPortfolioModal() {
+  renderCheckPortfolio();
+  openModal('modalCheckPortfolio');
+}
+
+function filterCheckPortfolio(filterType) {
+  appState.checkPortfolioFilter = filterType;
+  document.querySelectorAll('.chk-tab').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === filterType);
+  });
+  renderCheckPortfolio();
+}
+
+function renderCheckPortfolio() {
+  const tbody = document.getElementById('checkPortfolioTableBody');
+  const mobList = document.getElementById('mobileCheckCardsList');
+  if (!tbody) return;
+
+  const today = getTodayDateStr();
+  let allChecks = [];
+  let totalPortfolioCount = 0;
+  let totalPendingCount = 0;
+  let totalMaturedCount = 0;
+  let totalFxDiffSum = 0;
+
+  (appState.customers || []).forEach(cust => {
+    (cust.transactions || []).forEach(t => {
+      const isCheck = t.isCheck || t.method === 'Müşteri Çeki' || !!t.dueDate;
+      if (isCheck) {
+        totalPortfolioCount++;
+        const isMatured = t.dueDate ? t.dueDate <= today : false;
+        if (isMatured) totalMaturedCount++; else totalPendingCount++;
+        if (t.fxAmount) totalFxDiffSum += Math.abs(Number(t.fxAmount));
+
+        allChecks.push({
+          customer: cust,
+          txn: t,
+          isMatured
+        });
+      }
+    });
+  });
+
+  const elTotalCount = document.getElementById('chkTotalCount');
+  if (elTotalCount) elTotalCount.textContent = `${totalPortfolioCount} Adet`;
+  const elPendingCount = document.getElementById('chkPendingCount');
+  if (elPendingCount) elPendingCount.textContent = `${totalPendingCount} Adet`;
+  const elMaturedCount = document.getElementById('chkMaturedCount');
+  if (elMaturedCount) elMaturedCount.textContent = `${totalMaturedCount} Adet`;
+  const elTotalFx = document.getElementById('chkTotalFxDiffVal');
+  if (elTotalFx) elTotalFx.textContent = `${totalFxDiffSum.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺`;
+
+  const filter = appState.checkPortfolioFilter || 'ALL';
+  let filtered = allChecks;
+  if (filter === 'PENDING') {
+    filtered = allChecks.filter(x => !x.isMatured);
+  } else if (filter === 'MATURED') {
+    filtered = allChecks.filter(x => x.isMatured);
+  } else if (filter === 'APPLIED') {
+    filtered = allChecks.filter(x => x.txn.fxApplied);
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9" class="text-center" style="padding: 2rem;">Bu filtrede vadeli çek kaydı bulunamadı.</td></tr>`;
+    if (mobList) mobList.innerHTML = `<div class="empty-state" style="padding: 1.5rem;"><p style="color:var(--text-muted); margin:0;">Kayıtlı çek bulunamadı.</p></div>`;
+    return;
+  }
+
+  filtered.sort((a, b) => (a.txn.dueDate || '').localeCompare(b.txn.dueDate || ''));
+
+  tbody.innerHTML = filtered.map(item => {
+    const cust = item.customer;
+    const t = item.txn;
+    const curr = t.currency || cust.currency || 'TL';
+    const isMatured = item.isMatured;
+    const fxApplied = t.fxApplied;
+
+    let liveRate = 0;
+    if (curr === 'USD') liveRate = latestTcmbRates?.USD?.forexSelling || 49.0348;
+    else if (curr === 'EUR') liveRate = latestTcmbRates?.EUR?.forexSelling || 55.3963;
+    else liveRate = 1.0000;
+
+    const entryRate = Number(t.entryRate || 0);
+    const rateDiff = entryRate > 0 && liveRate > 0 ? (liveRate - entryRate) : 0;
+    const estFxTL = entryRate > 0 ? Number((rateDiff * Number(t.amount || 0)).toFixed(2)) : 0;
+
+    let statusBadge = `<span class="badge-chk-pending"><i class="fa-solid fa-clock"></i> Vadesi Bekleniyor</span>`;
+    if (fxApplied) {
+      statusBadge = `<span class="badge-chk-applied"><i class="fa-solid fa-check-double"></i> Kur Farkı Eklendi</span>`;
+    } else if (isMatured) {
+      statusBadge = `<span class="badge-chk-matured"><i class="fa-solid fa-triangle-exclamation"></i> Vadesi Geldi</span>`;
+    }
+
+    return `
+      <tr>
+        <td><strong>${escapeHtml(cust.name)}</strong></td>
+        <td>
+          <strong>${escapeHtml(t.checkNo || t.ref || 'Çek')}</strong>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">${escapeHtml(t.checkBank || '-')}</div>
+        </td>
+        <td><strong>${formatDate(t.dueDate)}</strong></td>
+        <td>${statusBadge}</td>
+        <td><strong class="text-gold">${formatCurrency(t.amount, curr)}</strong></td>
+        <td>${entryRate > 0 ? entryRate.toFixed(4) + ' ₺' : '<span class="text-muted">-</span>'}</td>
+        <td>${liveRate > 0 && curr !== 'TL' ? liveRate.toFixed(4) + ' ₺' : '<span class="text-muted">-</span>'}</td>
+        <td>
+          ${estFxTL !== 0 ? `<strong class="${estFxTL >= 0 ? 'text-green' : 'text-red'}">${estFxTL >= 0 ? '+' : ''}${estFxTL.toLocaleString('tr-TR', { minimumFractionDigits: 2 })} ₺</strong>` : '<span class="text-muted">0,00 ₺</span>'}
+        </td>
+        <td class="text-right">
+          ${!fxApplied && isMatured ? `
+            <button class="btn btn-sm btn-success" onclick="processMaturedChecks(true); renderCheckPortfolio();" title="Kur farkını hesaplayıp cariye ekle">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Farkı İşle
+            </button>
+          ` : `
+            <button class="btn btn-sm btn-outline" onclick="closeModal('modalCheckPortfolio'); showLedgerDetailView('${cust.id}');" title="Müşteri ekstresini aç">
+              <i class="fa-solid fa-arrow-right"></i> Carisi
+            </button>
+          `}
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// Mobil Menü Aç/Kapat
+function toggleMobileDrawer() {
+  const overlay = document.getElementById('mobileDrawerOverlay');
+  if (overlay) overlay.classList.toggle('active');
+}
+
+function closeMobileDrawer() {
+  const overlay = document.getElementById('mobileDrawerOverlay');
+  if (overlay) overlay.classList.remove('active');
 }
 
 // Backup & Restore
@@ -1669,7 +2336,66 @@ function initEventListeners() {
   document.getElementById('btnDeleteActiveContractor').addEventListener('click', () => {
     if (appState.activeDetailCustomerId) deleteCustomer(appState.activeDetailCustomerId);
   });
-  document.getElementById('btnPrintStatement').addEventListener('click', prepareAndPrintStatement);
+  document.getElementById('btnPrintStatement').addEventListener('click', openStatementPreviewModal);
+
+  // Müşteri Ekstresi Yıl Filtresi Değişimi
+  const ledgerYearSelect = document.getElementById('ledgerYearFilter');
+  if (ledgerYearSelect) {
+    ledgerYearSelect.addEventListener('change', (e) => {
+      appState.ledgerFilterYear = e.target.value;
+      const cust = appState.customers.find(c => c.id === appState.activeDetailCustomerId);
+      if (cust) renderTransactionsList(cust);
+    });
+  }
+
+  // Vadeli Çek Portföyü Butonu
+  const btnCheckPort = document.getElementById('btnOpenCheckPortfolio');
+  if (btnCheckPort) {
+    btnCheckPort.addEventListener('click', openCheckPortfolioModal);
+  }
+
+  // Mobil Hamburger Menü Butonu
+  const btnMobileToggle = document.getElementById('btnToggleMobileMenu');
+  if (btnMobileToggle) {
+    btnMobileToggle.addEventListener('click', toggleMobileDrawer);
+  }
+
+  // Tahsilat Modalında Ödeme Şekli Seçildiğinde Çek Alanlarını Aç/Kapat
+  const payMethodSelect = document.getElementById('payMethod');
+  if (payMethodSelect) {
+    payMethodSelect.addEventListener('change', (e) => {
+      const box = document.getElementById('checkDetailsBox');
+      if (!box) return;
+      if (e.target.value === 'Müşteri Çeki') {
+        box.style.display = 'block';
+        const curr = document.getElementById('payCurrency')?.value || 'TL';
+        const rateInput = document.getElementById('payCheckEntryRate');
+        if (rateInput && (!rateInput.value || Number(rateInput.value) <= 0)) {
+          if (curr === 'USD') rateInput.value = (latestTcmbRates?.USD?.forexSelling || 49.0348).toFixed(4);
+          else if (curr === 'EUR') rateInput.value = (latestTcmbRates?.EUR?.forexSelling || 55.3963).toFixed(4);
+        }
+      } else {
+        box.style.display = 'none';
+      }
+    });
+  }
+
+  // Para Birimi Değiştiğinde Canlı Kuru Otomatik Yenile
+  const payCurrencySelect = document.getElementById('payCurrency');
+  if (payCurrencySelect) {
+    payCurrencySelect.addEventListener('change', (e) => {
+      const isCheck = document.getElementById('payMethod')?.value === 'Müşteri Çeki';
+      if (isCheck) {
+        const curr = e.target.value;
+        const rateInput = document.getElementById('payCheckEntryRate');
+        if (rateInput) {
+          if (curr === 'USD') rateInput.value = (latestTcmbRates?.USD?.forexSelling || 49.0348).toFixed(4);
+          else if (curr === 'EUR') rateInput.value = (latestTcmbRates?.EUR?.forexSelling || 55.3963).toFixed(4);
+          else rateInput.value = '';
+        }
+      }
+    });
+  }
 
   // Top Nav Actions
   document.getElementById('btnExportExcel').addEventListener('click', exportToExcelCSV);
@@ -1933,7 +2659,7 @@ function initEventListeners() {
     }
   });
 
-  // Form Submit: Payment / Collection
+  // Form Submit: Payment / Collection (Vadeli Çek ve Otomatik Kur Farkı Entegrasyonu ile)
   document.getElementById('formPayment').addEventListener('submit', (e) => {
     e.preventDefault();
     const customerId = document.getElementById('payCustomerId').value;
@@ -1942,8 +2668,20 @@ function initEventListeners() {
     const currency = document.getElementById('payCurrency').value;
     const date = document.getElementById('payDate').value;
     const method = document.getElementById('payMethod').value;
-    const ref = document.getElementById('payRef').value.trim();
+    let ref = document.getElementById('payRef').value.trim();
     const description = document.getElementById('payDescription').value.trim();
+
+    // Check specific fields
+    const isCheck = (method === 'Müşteri Çeki');
+    const checkNo = document.getElementById('payCheckNo')?.value.trim() || '';
+    const checkBank = document.getElementById('payCheckBank')?.value.trim() || '';
+    const dueDate = document.getElementById('payCheckDueDate')?.value || '';
+    const entryRate = parseFloat(document.getElementById('payCheckEntryRate')?.value) || 0;
+    const autoFx = document.getElementById('payCheckAutoFx')?.checked ?? true;
+
+    if (isCheck && checkNo && !ref) {
+      ref = `#${checkNo} (${checkBank || 'Çek'}) - Vade: ${formatDate(dueDate)}`;
+    }
 
     const customer = appState.customers.find(c => c.id === customerId);
     if (!customer) return;
@@ -1959,6 +2697,14 @@ function initEventListeners() {
         txn.method = method;
         txn.ref = ref;
         txn.description = description;
+        if (isCheck) {
+          txn.isCheck = true;
+          txn.checkNo = checkNo;
+          txn.checkBank = checkBank;
+          txn.dueDate = dueDate;
+          txn.entryRate = entryRate;
+          txn.autoFx = autoFx;
+        }
         showToast("Tahsilat kaydı güncellendi!", 'success');
       }
     } else {
@@ -1971,7 +2717,14 @@ function initEventListeners() {
         currency,
         method,
         ref,
-        description
+        description,
+        isCheck,
+        checkNo: isCheck ? checkNo : undefined,
+        checkBank: isCheck ? checkBank : undefined,
+        dueDate: isCheck ? dueDate : undefined,
+        entryRate: isCheck ? entryRate : undefined,
+        autoFx: isCheck ? autoFx : false,
+        fxApplied: false
       };
       customer.transactions.push(newTxn);
       showToast(`${formatCurrency(amount, currency)} tutarındaki tahsilat kaydedildi!`, 'success');
@@ -1979,6 +2732,12 @@ function initEventListeners() {
 
     saveData();
     closeModal('modalPayment');
+
+    // Eğer vadesi bugün veya geçmiş vadeli çek girildiyse kur farkını anında hesapla
+    if (isCheck && dueDate && autoFx) {
+      processMaturedChecks(true);
+    }
+
     if (appState.activeDetailCustomerId === customerId) {
       renderLedgerDetail();
     } else {
@@ -2500,7 +3259,17 @@ window.openCustomerModal = openCustomerModal;
 window.deleteCustomer = deleteCustomer;
 window.editTransaction = editTransaction;
 window.deleteTransaction = deleteTransaction;
-window.prepareAndPrintStatement = prepareAndPrintStatement;
+window.openStatementPreviewModal = openStatementPreviewModal;
+window.downloadStatementPDF = downloadStatementPDF;
+window.printStatementDirectly = printStatementDirectly;
+window.prepareAndPrintStatement = openStatementPreviewModal; // Geriye dönük uyumluluk
+window.openCheckPortfolioModal = openCheckPortfolioModal;
+window.filterCheckPortfolio = filterCheckPortfolio;
+window.processMaturedChecks = processMaturedChecks;
+window.processAllMaturedChecks = processAllMaturedChecks;
+window.setDashboardYearFilter = setDashboardYearFilter;
+window.toggleMobileDrawer = toggleMobileDrawer;
+window.closeMobileDrawer = closeMobileDrawer;
 window.exportToExcelCSV = exportToExcelCSV;
 window.openModal = openModal;
 window.closeModal = closeModal;
@@ -2520,9 +3289,17 @@ window.showLoginScreen = showLoginScreen;
 window.hideLoginScreen = hideLoginScreen;
 
 // Initial Boot
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   initEventListeners();
   checkAuthAndInit();
-  // 5 dakikada bir kurları otomatik kontrol et
-  setInterval(fetchTCMBRates, 300000);
+  
+  // TCMB canlı kurlarını al ve vadesi gelen çeklerin kur farkını otomatik tara
+  await fetchTCMBRates(false);
+  processMaturedChecks(false);
+
+  // 5 dakikada bir kurları otomatik kontrol et ve vadesi gelen çekleri tara
+  setInterval(async () => {
+    await fetchTCMBRates(false);
+    processMaturedChecks(false);
+  }, 300000);
 });
