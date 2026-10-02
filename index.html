@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="htmlPageTitle">TekstilCari - Müşteri Sipariş, Mal Satışı & Dövizli Cari Takip</title>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-amber">
+  <!-- ==================== GÜVENLİ GİRİŞ EKRANI (LOGIN OVERLAY) ==================== -->
+  <div id="loginScreenOverlay" class="login-overlay active">
+    <div class="login-card-container">
+      <div class="login-brand-header">
+        <div class="login-icon-wrap">
+          <i class="fa-solid fa-shirt"></i>
+        </div>
+        <h2 class="login-title">Tekstil<span>Cari</span></h2>
+        <p class="login-subtitle">Müşteri Sipariş & Dövizli Cari Yönetim Sistemi</p>
+      </div>
+
+      <div class="login-security-tag">
+        <i class="fa-solid fa-shield-halved"></i> Güvenli Yönetim Girişi
+      </div>
+
+      <div id="loginErrorMsg" class="login-error-alert" style="display: none;">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="loginErrorText">Kullanıcı adı veya şifre hatalı!</span>
+      </div>
+
+      <form id="loginForm" class="login-form" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label for="loginUsername"><i class="fa-solid fa-user"></i> Kullanıcı Adı</label>
+          <div class="input-with-icon">
+            <input type="text" id="loginUsername" placeholder="Kullanıcı adınızı girin" required autocomplete="username" value="admin">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword"><i class="fa-solid fa-lock"></i> Şifre</label>
+          <div class="password-input-wrapper">
+            <input type="password" id="loginPassword" placeholder="Şifrenizi girin" required autocomplete="current-password">
+            <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility('loginPassword', this)" title="Şifreyi Göster / Gizle">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-options-row">
+          <label class="remember-label">
+            <input type="checkbox" id="loginRememberMe" checked>
+            <span>Oturumu açık tut (Beni Hatırla)</span>
+          </label>
+        </div>
+
+        <button type="submit" id="btnLoginSubmit" class="btn btn-primary btn-block btn-login-submit">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Sisteme Güvenli Giriş Yap
+        </button>
+
+        <div class="login-hint-box">
+          <i class="fa-solid fa-key text-gold"></i>
+          <span>Varsayılan Giriş: <strong>admin</strong> / <strong>tekstil2026</strong></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <!-- Brand & Editable Title -->
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-shirt"></i>
+        </div>
+        <div class="brand-text-block">
+          <div class="brand-title-wrap">
+            <h1 class="brand-title" id="displayBrandTitle">Tekstil<span>Cari</span></h1>
+            <button class="btn-micro-edit" onclick="openQuickRename('displayBrandTitle', 'TekstilCari')" title="Firma / Sistem Başlığını Değiştir">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+          </div>
+          <div class="brand-subtitle-wrap">
+            <p class="brand-subtitle" id="displayBrandSubtitle">Müşteri Sipariş, Mal Satışı & Dövizli Cari Takip</p>
+            <button class="btn-micro-edit" onclick="openQuickRename('displayBrandSubtitle', 'Müşteri Sipariş, Mal Satışı & Dövizli Cari Takip')" title="Açıklamayı Değiştir">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- TCMB Canlı Döviz Kurları Widget (Header Sağ Üst) -->
+        <div class="tcmb-rates-widget" id="tcmbRatesWidget" title="TCMB Resmi Merkez Bankası Günlük Kurları - Tıklayarak detayları ve döviz çeviriciyi görün">
+          <div class="tcmb-header-badge">
+            <span class="tcmb-pulse-dot"></span>
+            <span>TCMB</span>
+          </div>
+          <div class="tcmb-rates-items">
+            <div class="tcmb-rate-item" id="widgetUsdBlock">
+              <span class="curr-flag">🇺🇸</span>
+              <span class="curr-code">USD:</span>
+              <span class="curr-val" id="widgetUsdVal">Yükleniyor...</span>
+            </div>
+            <div class="tcmb-rate-item" id="widgetEurBlock">
+              <span class="curr-flag">🇪🇺</span>
+              <span class="curr-code">EUR:</span>
+              <span class="curr-val" id="widgetEurVal">Yükleniyor...</span>
+            </div>
+          </div>
+          <button type="button" class="btn-tcmb-refresh" id="btnRefreshTcmbRates" title="TCMB Kurlarını Anında Yenile">
+            <i class="fa-solid fa-rotate"></i>
+          </button>
+        </div>
+
+        <!-- Live Sync Status Indicator -->
+        <div id="networkStatusBadge" class="network-badge online" title="Ağ ve Canlı Senkronizasyon Durumu">
+          <span class="dot-pulse"></span>
+          <span id="networkStatusText">Canlı Senkronize</span>
+        </div>
+
+        <!-- 7/24 Bulut Butonu -->
+        <button id="btnOpenCloudModal" class="btn btn-outline" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;" title="7/24 Ücretsiz Bulut Sunucu & Çevrimiçi Depolama">
+          <i class="fa-solid fa-cloud"></i> 7/24 Bulut
+        </button>
+
+        <!-- Share with Office Button -->
+        <button id="btnShareNetwork" class="btn btn-outline" title="Ofisteki diğer bilgisayarların bağlanması için bağlantı adresini görün">
+          <i class="fa-solid fa-network-wired text-gold"></i> Ofisle Paylaş
+        </button>
+
+        <!-- Ayarlar Modalı Butonu -->
+        <button id="btnOpenSettings" class="btn btn-secondary" title="Başlık, Temalar, Sütun İsimleri ve Bulut Ayarları">
+          <i class="fa-solid fa-sliders text-gold"></i> Ayarlar
+        </button>
+
+        <!-- Quick Action Buttons -->
+        <button id="btnNewCustomer" class="btn btn-primary" title="Yeni müşteri / firma cari hesabı açın">
+          <i class="fa-solid fa-user-plus"></i> Yeni Müşteri Ekle
+        </button>
+        <button id="btnExportExcel" class="btn btn-secondary" title="Tüm müşteri ve ekstre listesini Excel/CSV olarak indir">
+          <i class="fa-solid fa-file-excel text-green"></i> Excel
+        </button>
+        <button id="btnBackupData" class="btn btn-secondary" title="Verileri Yedekle / Geri Yükle">
+          <i class="fa-solid fa-database"></i> Yedek
+        </button>
+
+        <!-- User Badge & Logout Button -->
+        <div class="user-auth-bar" id="userAuthBar">
+          <span class="user-badge" id="navUsernameDisplay" title="Giriş Yapan Kullanıcı">
+            <i class="fa-solid fa-user-shield text-gold"></i> <span id="lblCurrentUsername">admin</span>
+          </span>
+          <button type="button" id="btnLogout" class="btn-logout" onclick="handleLogout()" title="Oturumu Güvenli Kapat">
+            <i class="fa-solid fa-right-from-bracket"></i> Çıkış
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    
+    <!-- View 1: Genel Bakış & Dashboard -->
+    <section id="dashboardView" class="view-section active">
+      
+      <!-- ==================== MÜŞTERİ SEKMELERİ (CUSTOMER TABS) ==================== -->
+      <div class="project-tabs-section">
+        <div class="project-tabs-bar">
+          <div class="tabs-label-wrap">
+            <span class="tabs-title" id="lblProjectTabsTitle"><i class="fa-solid fa-users-line text-gold"></i> Müşteriler / Firmalar:</span>
+            <button class="btn-micro-edit" onclick="openQuickRename('lblProjectTabsTitle', 'Müşteriler / Firmalar:')" title="Sekme Başlığını Değiştir"><i class="fa-solid fa-pen"></i></button>
+          </div>
+          <div class="project-tabs-list" id="projectTabsList">
+            <!-- Dynamic Customer Tabs injected here by app.js:
+                 [ Tüm Müşteriler ] [ ZARA (EUR) ] [ Schmidt (USD) ] [ Özkanlar (TL) ]
+            -->
+          </div>
+          <button id="btnTabAddCustomer" class="btn btn-sm btn-outline tab-add-btn" title="Yeni Müşteri / Firma Ekle">
+            <i class="fa-solid fa-plus"></i> Müşteri Ekle
+          </button>
+        </div>
+
+        <!-- Seçili Müşteri / Genel Bilgi Bandı -->
+        <div id="activeProjectBanner" class="active-project-banner">
+          <div class="project-banner-info">
+            <div class="banner-title-row">
+              <span class="banner-icon" id="bannerProjectIcon"><i class="fa-solid fa-building"></i></span>
+              <h2 id="bannerProjectTitle">Tüm Müşteriler (Genel Toplam)</h2>
+              <span id="bannerProjectCountBadge" class="badge-pill">4 Müşteri</span>
+            </div>
+            <p id="bannerProjectDesc" class="banner-desc">Tüm tekstil müşterilerinin sevkiyat, tahsilat ve dövizli bakiye genel toplam görünümü.</p>
+          </div>
+
+          <div class="project-banner-actions" id="activeProjectActions">
+            <!-- Dynamic actions injected based on selected tab -->
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Stats Cards (Selected Customer or Overall Breakdown) -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-info">
+            <div style="display: flex; align-items: center;">
+              <span class="kpi-label" id="lblKpiContract">Toplam Mal Satışı (Sevk)</span>
+              <button class="btn-micro-edit" onclick="openQuickRename('lblKpiContract', 'Toplam Mal Satışı (Sevk)')" title="İsmi Değiştir"><i class="fa-solid fa-pen"></i></button>
+            </div>
+            <h2 id="totalContractVal" class="kpi-value text-gold">0</h2>
+            <div id="totalContractBreakdown" class="kpi-currency-breakdown">
+              <span class="kpi-sub"><i class="fa-solid fa-truck-ramp-box"></i> Sevk edilen toplam ürün bedeli</span>
+            </div>
+          </div>
+          <div class="kpi-icon-wrap"><i class="fa-solid fa-box-open"></i></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-info">
+            <div style="display: flex; align-items: center;">
+              <span class="kpi-label" id="lblKpiPaid">Toplam Alınan Ödeme</span>
+              <button class="btn-micro-edit" onclick="openQuickRename('lblKpiPaid', 'Toplam Alınan Ödeme')" title="İsmi Değiştir"><i class="fa-solid fa-pen"></i></button>
+            </div>
+            <h2 id="totalPaidVal" class="kpi-value text-green">0</h2>
+            <div id="totalPaidBreakdown" class="kpi-currency-breakdown">
+              <span class="kpi-sub"><i class="fa-solid fa-circle-check"></i> Yapılan toplam tahsilat</span>
+            </div>
+          </div>
+          <div class="kpi-icon-wrap"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-info">
+            <div style="display: flex; align-items: center;">
+              <span class="kpi-label" id="lblKpiRemaining">Kalan Açık Bakiye (Alacak)</span>
+              <button class="btn-micro-edit" onclick="openQuickRename('lblKpiRemaining', 'Kalan Açık Bakiye (Alacak)')" title="İsmi Değiştir"><i class="fa-solid fa-pen"></i></button>
+            </div>
+            <h2 id="totalRemainingVal" class="kpi-value text-red">0</h2>
+            <div id="totalRemainingBreakdown" class="kpi-currency-breakdown">
+              <span class="kpi-sub"><i class="fa-solid fa-scale-unbalanced"></i> Tahsil edilecek net alacak</span>
+            </div>
+          </div>
+          <div class="kpi-icon-wrap"><i class="fa-solid fa-coins"></i></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-info">
+            <div style="display: flex; align-items: center;">
+              <span class="kpi-label" id="lblKpiCount">Aktif Müşteri / Firma</span>
+              <button class="btn-micro-edit" onclick="openQuickRename('lblKpiCount', 'Aktif Müşteri / Firma')" title="İsmi Değiştir"><i class="fa-solid fa-pen"></i></button>
+            </div>
+            <h2 id="contractorCountVal" class="kpi-value">4</h2>
+            <span class="kpi-sub"><i class="fa-solid fa-shirt"></i> Kayıtlı tekstil müşteri portföyü</span>
+          </div>
+          <div class="kpi-icon-wrap"><i class="fa-solid fa-users"></i></div>
+        </div>
+      </div>
+
+      <!-- Search & Filters Toolbar -->
+      <div class="toolbar-card">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Müşteri adı, yetkili, ürün (T-Shirt, Pantolon, Gömlek, Denim) ara...">
+        </div>
+        <div class="filter-group">
+          <select id="currencyFilter" class="form-select" title="Para Birimine Göre Filtrele">
+            <option value="ALL">Tüm Para Birimleri (TL/USD/EUR)</option>
+            <option value="TL">Yalnızca TL (₺)</option>
+            <option value="USD">Yalnızca USD ($)</option>
+            <option value="EUR">Yalnızca EUR (€)</option>
+          </select>
+          <select id="statusFilter" class="form-select" title="Bakiye Durumuna Göre Filtrele">
+            <option value="ALL">Tüm Bakiye Durumları</option>
+            <option value="UNPAID">Borcu Devam Edenler (Açık Hesap)</option>
+            <option value="PAID">Hesabı Kapananlar (Sıfır Bakiye)</option>
+          </select>
+          <button id="btnResetFilters" class="btn btn-sm btn-outline">
+            <i class="fa-solid fa-rotate-left"></i> Filtreyi Temizle
+          </button>
+        </div>
+      </div>
+
+      <!-- Section Title & View Switch -->
+      <div class="section-header">
+        <div style="display: flex; align-items: center;">
+          <h3 id="lblSectionTitle"><i class="fa-solid fa-address-book text-gold"></i> Tekstil Müşteri Cari Kartları</h3>
+          <button class="btn-micro-edit" onclick="openQuickRename('lblSectionTitle', 'Tekstil Müşteri Cari Kartları')" title="Bölüm Başlığını Değiştir"><i class="fa-solid fa-pen"></i></button>
+          <p class="section-desc" style="margin-left: 0.75rem;">Detaylı sipariş ve sevkiyat ekstresi için karta tıklayın.</p>
+        </div>
+        <div class="view-switch">
+          <button id="viewToggleCards" class="btn-toggle active" title="Kart Görünümü"><i class="fa-solid fa-grip"></i></button>
+          <button id="viewToggleTable" class="btn-toggle" title="Tablo Görünümü"><i class="fa-solid fa-table-list"></i></button>
+        </div>
+      </div>
+
+      <!-- Customer Cards Grid -->
+      <div id="contractorCardsContainer" class="contractor-grid">
+        <!-- Dynamic Cards Injected Here via JS -->
+      </div>
+
+      <!-- Table View -->
+      <div id="contractorTableWrapper" class="table-responsive hide">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th><span id="colHeader_contractor">Müşteri / Firma Adı</span> <button class="btn-micro-edit" onclick="openQuickRename('colHeader_contractor', 'Müşteri / Firma Adı')"><i class="fa-solid fa-pen"></i></button></th>
+              <th><span id="colHeader_project">Para Birimi</span> <button class="btn-micro-edit" onclick="openQuickRename('colHeader_project', 'Para Birimi')"><i class="fa-solid fa-pen"></i></button></th>
+              <th><span id="colHeader_role">Yetkili / Temsilci</span> <button class="btn-micro-edit" onclick="openQuickRename('colHeader_role', 'Yetkili / Temsilci')"><i class="fa-solid fa-pen"></i></button></th>
+              <th><span id="colHeader_phone">Telefon</span> <button class="btn-micro-edit" onclick="openQuickRename('colHeader_phone', 'Telefon')"><i class="fa-solid fa-pen"></i></button></th>
+              <th><span id="colHeader_contract">Toplam Mal Satışı</span> <button class="btn-micro-edit" onclick="openQuickRename('colHeader_contract', 'Toplam Mal Satışı')"><i class="fa-solid fa-pen"></i></button></th>
+              <th><span id="colHeader_paid">Alınan Ödeme</span> <button class="btn-micro-edit" onclick="openQuickRename('colHeader_paid', 'Alınan Ödeme')"><i class="fa-solid fa-pen"></i></button></th>
+              <th><span id="colHeader_remaining">Kalan Bakiye</span> <button class="btn-micro-edit" onclick="openQuickRename('colHeader_remaining', 'Kalan Bakiye')"><i class="fa-solid fa-pen"></i></button></th>
+              <th><span id="colHeader_status">Hesap Durumu</span> <button class="btn-micro-edit" onclick="openQuickRename('colHeader_status', 'Hesap Durumu')"><i class="fa-solid fa-pen"></i></button></th>
+              <th class="text-right">İşlemler</th>
+            </tr>
+          </thead>
+          <tbody id="contractorTableBody">
+            <!-- Dynamic Rows Injected Here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: MÜŞTERİ CARİ & SİPARİŞ DETAY SAYFASI ==================== -->
+    <section id="ledgerDetailView" class="view-section">
+      <!-- Breadcrumb & Detail Actions -->
+      <div class="ledger-header-nav">
+        <button id="btnBackToDashboard" class="btn btn-outline">
+          <i class="fa-solid fa-arrow-left"></i> Müşteri Listesine Dön
+        </button>
+        <div class="ledger-header-actions">
+          <button id="btnOpenNewProductSale" class="btn btn-primary" title="Bu müşteriye yeni ürün/mal sevkiyatı ekle">
+            <i class="fa-solid fa-truck-fast"></i> + Mal / Ürün Sevk Et
+          </button>
+          <button id="btnOpenNewPaymentModal" class="btn btn-success" title="Bu müşteriden ödeme/tahsilat kaydet">
+            <i class="fa-solid fa-money-bill-wave"></i> + Tahsilat / Ödeme Al
+          </button>
+          <button id="btnEditActiveContractor" class="btn btn-secondary">
+            <i class="fa-solid fa-pen-to-square text-gold"></i> Müşteri Bilgilerini Düzenle
+          </button>
+          <button id="btnPrintStatement" class="btn btn-secondary">
+            <i class="fa-solid fa-print"></i> Ekstre Yazdır (PDF)
+          </button>
+          <button id="btnDeleteActiveContractor" class="btn btn-outline text-red" title="Bu müşteriyi ve tüm kayıtlarını sil">
+            <i class="fa-solid fa-trash-can"></i> Müşteriyi Sil
+          </button>
+        </div>
+      </div>
+
+      <!-- Customer Profile Banner -->
+      <div class="contractor-profile-card">
+        <div class="profile-main">
+          <div class="profile-avatar">
+            <i class="fa-solid fa-building"></i>
+          </div>
+          <div class="profile-details">
+            <div class="profile-name-row">
+              <h2 id="detailContractorName">ZARA / Inditex Tedarik</h2>
+              <span id="detailContractorRole" class="badge-pill">Ahmet Bey (Satınalma)</span>
+              <span id="detailContractorCurrencyBadge" class="badge-curr badge-curr-eur">EUR (€)</span>
+              <span id="detailContractorStatus" class="badge-status unpaid">Ödeme Bekliyor</span>
+              <button class="btn-micro-edit" id="btnQuickEditCustomerName" title="Müşteri Adını Değiştir"><i class="fa-solid fa-pen"></i></button>
+            </div>
+            <div class="profile-meta-grid">
+              <div><i class="fa-solid fa-phone text-gold"></i> <span id="detailContractorPhone">0212 555 10 20</span></div>
+              <div><i class="fa-solid fa-location-dot text-gold"></i> <span id="detailContractorAddress">Güneşli / İstanbul</span></div>
+              <div><i class="fa-solid fa-coins text-gold"></i> Para Birimi: <strong id="detailContractorCurrency">EUR (€)</strong></div>
+            </div>
+            <div class="profile-notes-box" id="detailContractorNotesWrap">
+              <i class="fa-solid fa-note-sticky text-gold"></i>
+              <span id="detailContractorNotes">30 Gün Vade, İhracat Paketleme, Askılı Koli Teslimatı</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-stats">
+          <div class="profile-stat-box">
+            <span class="stat-lbl">Toplam Mal Satışı (Sevk)</span>
+            <span class="stat-val text-gold" id="detailTotalContract">€0</span>
+          </div>
+          <div class="profile-stat-box">
+            <span class="stat-lbl">Toplam Alınan Ödeme</span>
+            <span class="stat-val text-green" id="detailTotalPaid">€0</span>
+          </div>
+          <div class="profile-stat-box highlight">
+            <span class="stat-lbl">Kalan Açık Bakiye (Alacak)</span>
+            <span class="stat-val text-red" id="detailRemaining">€0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cari Hareketler & Sipariş Ekstresi Tablosu -->
+      <div class="ledger-transactions-section">
+        <div class="transactions-header">
+          <div class="txn-tabs">
+            <button class="txn-tab active" data-type="ALL">Tüm Hareketler (Satış & Tahsilat)</button>
+            <button class="txn-tab" data-type="SHIPMENT">Yalnızca Mal / Ürün Sevkiyatları</button>
+            <button class="txn-tab" data-type="PAYMENT">Yalnızca Alınan Ödemeler (Tahsilat)</button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tarih</th>
+                <th>İşlem Türü</th>
+                <th>Ürün Adı / Açıklama</th>
+                <th>Ürün Miktarı</th>
+                <th>Birim Fiyat</th>
+                <th class="text-right">Mal Bedeli (Borç)</th>
+                <th class="text-right">Alınan Ödeme (Tahsilat)</th>
+                <th class="text-right">Kalan Bakiye</th>
+                <th>İrsaliye / Belge No</th>
+                <th class="text-right">İşlemler</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsTableBody">
+              <!-- Dynamically populated transaction rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal 1: MÜŞTERİ EKLE / DÜZENLE (CUSTOMER MODAL) -->
+  <div id="modalCustomer" class="modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalCustomerTitle"><i class="fa-solid fa-user-plus text-gold"></i> Müşteri / Firma Tanımla</h3>
+        <button class="modal-close" data-close="modalCustomer">&times;</button>
+      </div>
+      <form id="formCustomer">
+        <input type="hidden" id="editCustomerId">
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label for="custName">Müşteri / Firma Adı *</label>
+            <input type="text" id="custName" required placeholder="Örn: ZARA / Inditex Tedarik, Schmidt Fashion, Özkanlar Tekstil...">
+          </div>
+          
+          <div class="form-group">
+            <label for="custCurrency">Çalışma Para Birimi *</label>
+            <select id="custCurrency" class="form-select" required>
+              <option value="TL">Türk Lirası (₺ - TRY)</option>
+              <option value="USD">Amerikan Doları ($ - USD)</option>
+              <option value="EUR">Euro (€ - EUR)</option>
+            </select>
+            <small class="form-hint">Bu müşteriyle çalışılan ana döviz cinsidir.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="custContactPerson">Yetkili / Temsilci Kişi</label>
+            <input type="text" id="custContactPerson" placeholder="Örn: Ahmet Bey (Satınalma Md.)">
+          </div>
+
+          <div class="form-group">
+            <label for="custPhone">Telefon Numarası</label>
+            <input type="tel" id="custPhone" placeholder="Örn: 0212 555 10 20 veya +49 30...">
+          </div>
+
+          <div class="form-group">
+            <label for="custAddress">Firma Adresi / Ülke / Şehir</label>
+            <input type="text" id="custAddress" placeholder="Örn: Güneşli / İstanbul veya Frankfurt / Almanya">
+          </div>
+
+          <div class="form-group full-width">
+            <label for="custNotes">Müşteri Notları / Vade & Teslimat Koşulları</label>
+            <textarea id="custNotes" rows="2" placeholder="Örn: 30 Gün vadeli çalışır, ihracat ambalajı askılı koli..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="modalCustomer">İptal</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Müşteriyi Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: MAL / ÜRÜN SATIŞI & SEVKİYAT EKLE / DÜZENLE (PRODUCT SALE MODAL) -->
+  <div id="modalProductSale" class="modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalProductSaleTitle"><i class="fa-solid fa-truck-fast text-gold"></i> Mal / Ürün Satışı & Sevkiyatı</h3>
+        <button class="modal-close" data-close="modalProductSale">&times;</button>
+      </div>
+      <form id="formProductSale">
+        <input type="hidden" id="saleCustomerId">
+        <input type="hidden" id="editSaleTxnId">
+
+        <div class="notice-box gold-notice">
+          <div>Müşteri: <strong id="saleCustomerNameDisplay">-</strong></div>
+          <small>Ürün miktarını ve birim fiyatını girdiğinizde toplam tutar otomatik hesaplanır.</small>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label for="saleProductName">Ürünün Adı / Kumaş / Model *</label>
+            <input type="text" id="saleProductName" required placeholder="Örn: Organik Pamuk Baskılı T-Shirt, Denim Pantolon 12oz, Polo Yaka Tişört...">
+          </div>
+
+          <div class="form-group">
+            <label for="saleDate">Gönderilme / Sevk Tarihi *</label>
+            <input type="date" id="saleDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="saleQuantity">Ürün Miktarı *</label>
+            <input type="number" id="saleQuantity" step="any" min="0.01" required placeholder="Örn: 3000">
+          </div>
+
+          <div class="form-group">
+            <label for="saleUnit">Miktar Birimi *</label>
+            <select id="saleUnit" class="form-select">
+              <option value="Adet">Adet</option>
+              <option value="Metre">Metre</option>
+              <option value="Kg">Kg</option>
+              <option value="Top">Top (Kumaş)</option>
+              <option value="Düzine">Düzine</option>
+              <option value="Koli">Koli</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="saleUnitPrice">Ürün Birim Fiyatı *</label>
+            <input type="number" id="saleUnitPrice" step="0.0001" min="0" required placeholder="Örn: 4.50">
+          </div>
+
+          <div class="form-group">
+            <label for="saleCurrency">Döviz / Para Birimi Cinsi *</label>
+            <select id="saleCurrency" class="form-select" required>
+              <option value="TL">Türk Lirası (₺ - TL)</option>
+              <option value="USD">Amerikan Doları ($ - USD)</option>
+              <option value="EUR">Euro (€ - EUR)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="saleInvoiceNo">İrsaliye / Fatura / Parti No</label>
+            <input type="text" id="saleInvoiceNo" placeholder="Örn: IRS-2026-0041, Parti #12">
+          </div>
+
+          <!-- Canlı Hesaplama Kutusu -->
+          <div class="form-group full-width">
+            <div class="calc-preview-box">
+              <span><i class="fa-solid fa-calculator text-gold"></i> Toplam Mal Bedeli:</span>
+              <span id="saleCalcResult" class="calc-val">0,00 ₺</span>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="saleDescription">Renk / Beden / İplik Notları</label>
+            <textarea id="saleDescription" rows="2" placeholder="Örn: S-M-L-XL Asortili, %100 Pamuk Süprem 180gr Kumaş..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="modalProductSale">Vazgeç</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Sevkiyatı Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: TAHSİLAT / ÖDEME AL (PAYMENT MODAL) -->
+  <div id="modalPayment" class="modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalPaymentTitle"><i class="fa-solid fa-hand-holding-dollar text-green"></i> Müşteriden Tahsilat / Ödeme Al</h3>
+        <button class="modal-close" data-close="modalPayment">&times;</button>
+      </div>
+      <form id="formPayment">
+        <input type="hidden" id="payCustomerId">
+        <input type="hidden" id="editPayTxnId">
+        
+        <div class="notice-box green-notice">
+          <div>Tahsilat Yapılan Müşteri: <strong id="payCustomerName">-</strong></div>
+          <div>Mevcut Açık Borç Bakiyesi: <strong id="payCurrentBalance" class="text-red">0</strong></div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="payAmount">Alınan Ödeme Tutarı *</label>
+            <input type="number" id="payAmount" step="0.01" min="0.01" required placeholder="0.00">
+          </div>
+
+          <div class="form-group">
+            <label for="payCurrency">Tahsilat Para Birimi *</label>
+            <select id="payCurrency" class="form-select" required>
+              <option value="TL">Türk Lirası (₺ - TL)</option>
+              <option value="USD">Amerikan Doları ($ - USD)</option>
+              <option value="EUR">Euro (€ - EUR)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="payDate">Ödeme / Tahsilat Tarihi *</label>
+            <input type="date" id="payDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="payMethod">Ödeme Şekli *</label>
+            <select id="payMethod" class="form-select">
+              <option value="Banka Havalesi / EFT">Banka Havalesi / EFT</option>
+              <option value="Banka Havalesi (Swift)">Banka Havalesi (Swift / İhracat)</option>
+              <option value="Müşteri Çeki">Müşteri Çeki</option>
+              <option value="Elden Nakit">Elden Nakit (Kasa)</option>
+              <option value="Kredi Kartı / Mail Order">Kredi Kartı / Mail Order</option>
+              <option value="Akreditif (L/C)">Akreditif (L/C)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="payRef">Dekont No / Çek Vadesi / Makbuz</label>
+            <input type="text" id="payRef" placeholder="Örn: Akbank Swift #99812, Çek: 30.06.2026...">
+          </div>
+
+          <div class="form-group full-width">
+            <label for="payDescription">Tahsilat Açıklaması *</label>
+            <input type="text" id="payDescription" required placeholder="Örn: 1. Parti T-Shirt peşinat ve mal bedeli transferi">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="modalPayment">Vazgeç</button>
+          <button type="submit" class="btn btn-success"><i class="fa-solid fa-check"></i> Tahsilatı Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 4: HIZLI İSİM DEĞİŞTİRME (QUICK RENAME MODAL) -->
+  <div id="modalQuickRename" class="modal">
+    <div class="modal-box" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 id="modalQuickRenameTitle"><i class="fa-solid fa-pen-to-square text-gold"></i> Alan İsmini Değiştir</h3>
+        <button class="modal-close" data-close="modalQuickRename">&times;</button>
+      </div>
+      <form id="formQuickRename">
+        <input type="hidden" id="quickRenameKey">
+        <div style="padding: 1.25rem 1.5rem;">
+          <label id="quickRenameLabelPrompt" style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.45rem;">Yeni Başlık / İsim:</label>
+          <input type="text" id="quickRenameInput" required style="width: 100%; font-size: 1rem; font-weight: 600; padding: 0.65rem 0.85rem;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="modalQuickRename">Vazgeç</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Değiştir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 5: AYARLAR PANELİ (SETTINGS MODAL) -->
+  <div id="modalSettings" class="modal">
+    <div class="modal-box" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-sliders text-gold"></i> Sistem & Görünüm Ayarları</h3>
+        <button class="modal-close" data-close="modalSettings">&times;</button>
+      </div>
+      
+      <!-- Settings Tabs -->
+      <div class="settings-tabs">
+        <button type="button" class="settings-tab-btn active" data-target="setPaneBrand">Firma & Başlık</button>
+        <button type="button" class="settings-tab-btn" data-target="setPaneThemes">Renk Temaları</button>
+        <button type="button" class="settings-tab-btn" data-target="setPaneLabels">Sütun & Alan İsimleri</button>
+        <button type="button" class="settings-tab-btn" data-target="setPaneCloud">Ofis Ağı & Bulut</button>
+        <button type="button" class="settings-tab-btn" data-target="setPaneSecurity">🔐 Şifre Değiştir</button>
+      </div>
+
+      <!-- Tab 1: Firma ve Başlık -->
+      <div id="setPaneBrand" class="settings-pane active">
+        <form id="formBrandSettings">
+          <div class="form-grid" style="padding: 0;">
+            <div class="form-group full-width">
+              <label for="cfgBrandTitle">Firma / Sistem Başlığı *</label>
+              <input type="text" id="cfgBrandTitle" required placeholder="Örn: TekstilCari, Özkan Tekstil...">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfgBrandSubtitle">Alt Başlık Açıklaması *</label>
+              <input type="text" id="cfgBrandSubtitle" required placeholder="Örn: Müşteri Sipariş, Mal Satışı & Dövizli Cari Takip">
+            </div>
+            <div class="form-group full-width">
+              <label for="cfgCurrency">Varsayılan Para Birimi</label>
+              <select id="cfgCurrency" class="form-select">
+                <option value="₺">₺ - Türk Lirası (TRY)</option>
+                <option value="$">$ - Amerikan Doları (USD)</option>
+                <option value="€">€ - Euro (EUR)</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; text-align: right;">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Başlıkları Kaydet</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 2: Renk Temaları -->
+      <div id="setPaneThemes" class="settings-pane">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Göz yormayan, sektörünüze özel tasarlanmış renk paletlerinden birini seçin:</p>
+        <div class="theme-picker-grid">
+          <!-- Tema 1: Kehribar & Tekstil -->
+          <div class="theme-card active" data-theme="theme-amber">
+            <div class="theme-preview-palette">
+              <div class="palette-swatch" style="background: #0b0f17;"></div>
+              <div class="palette-swatch" style="background: #151d2a;"></div>
+              <div class="palette-swatch" style="background: #f59e0b;"></div>
+            </div>
+            <div class="theme-card-title">
+              <span>Kehribar & İndigo (Varsayılan)</span>
+              <i class="fa-solid fa-check theme-check"></i>
+            </div>
+          </div>
+
+          <!-- Tema 2: Lacivert -->
+          <div class="theme-card" data-theme="theme-navy">
+            <div class="theme-preview-palette">
+              <div class="palette-swatch" style="background: #0f172a;"></div>
+              <div class="palette-swatch" style="background: #1e293b;"></div>
+              <div class="palette-swatch" style="background: #38bdf8;"></div>
+            </div>
+            <div class="theme-card-title">
+              <span>Kurumsal Lacivert & Mavi</span>
+              <i class="fa-solid fa-check theme-check hide"></i>
+            </div>
+          </div>
+
+          <!-- Tema 3: Zümrüt Yeşili -->
+          <div class="theme-card" data-theme="theme-emerald">
+            <div class="theme-preview-palette">
+              <div class="palette-swatch" style="background: #061c14;"></div>
+              <div class="palette-swatch" style="background: #0d281e;"></div>
+              <div class="palette-swatch" style="background: #10b981;"></div>
+            </div>
+            <div class="theme-card-title">
+              <span>Moda Zümrüt Yeşili</span>
+              <i class="fa-solid fa-check theme-check hide"></i>
+            </div>
+          </div>
+
+          <!-- Tema 4: Aydınlık Tema -->
+          <div class="theme-card" data-theme="theme-light">
+            <div class="theme-preview-palette">
+              <div class="palette-swatch" style="background: #f8fafc;"></div>
+              <div class="palette-swatch" style="background: #ffffff;"></div>
+              <div class="palette-swatch" style="background: #2563eb;"></div>
+            </div>
+            <div class="theme-card-title">
+              <span>Aydınlık Ofis Teması</span>
+              <i class="fa-solid fa-check theme-check hide"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Sütun & Alan İsimleri -->
+      <div id="setPaneLabels" class="settings-pane">
+        <form id="formCustomLabels">
+          <p style="font-size: 0.825rem; color: var(--text-muted); margin-bottom: 1rem;">Ekranda gördüğünüz tüm başlıkları firmanızın kendi jargonuyla özelleştirebilirsiniz:</p>
+          <div class="form-grid" style="padding: 0;">
+            <div class="form-group">
+              <label for="lblInp_kpiContract">1. İstatistik Kutusu İsmi:</label>
+              <input type="text" id="lblInp_kpiContract" value="Toplam Mal Satışı (Sevk)">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_kpiPaid">2. İstatistik Kutusu İsmi:</label>
+              <input type="text" id="lblInp_kpiPaid" value="Toplam Alınan Ödeme">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_kpiRemaining">3. İstatistik Kutusu İsmi:</label>
+              <input type="text" id="lblInp_kpiRemaining" value="Kalan Açık Bakiye (Alacak)">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_kpiCount">4. İstatistik Kutusu İsmi:</label>
+              <input type="text" id="lblInp_kpiCount" value="Aktif Müşteri / Firma">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_colContractor">Tablo Müşteri Sütunu:</label>
+              <input type="text" id="lblInp_colContractor" value="Müşteri / Firma Adı">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_colRole">Tablo Yetkili Sütunu:</label>
+              <input type="text" id="lblInp_colRole" value="Yetkili / Temsilci">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_colContract">Tablo Satış Sütunu:</label>
+              <input type="text" id="lblInp_colContract" value="Toplam Mal Satışı">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_colPaid">Tablo Tahsilat Sütunu:</label>
+              <input type="text" id="lblInp_colPaid" value="Alınan Ödeme">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_colRemaining">Tablo Bakiye Sütunu:</label>
+              <input type="text" id="lblInp_colRemaining" value="Kalan Bakiye">
+            </div>
+            <div class="form-group">
+              <label for="lblInp_colStatus">Tablo Durum Sütunu:</label>
+              <input type="text" id="lblInp_colStatus" value="Hesap Durumu">
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+            <button type="button" class="btn btn-outline text-red" id="btnResetDefaultLabels">Varsayılan İsimlere Dön</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> İsimleri Kaydet</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 4: Ofis Ağı & Bulut -->
+      <div id="setPaneCloud" class="settings-pane">
+        <div class="notice-box green-notice" style="margin-bottom: 1rem;">
+          <h4><i class="fa-solid fa-wifi"></i> Ofis İçi Canlı Ağ Paylaşımı</h4>
+          <p style="font-size: 0.85rem; margin-top: 0.35rem;">Aynı modeme / Wi-Fi ağına bağlı tüm bilgisayarlar ve telefonlar bu adresten anında bağlanabilir:</p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <input type="text" id="shareLanUrl" readonly value="http://192.168.1.105:8085" style="font-weight: 700; width: 100%;">
+            <button class="btn btn-sm btn-primary" id="btnCopyLanUrl"><i class="fa-solid fa-copy"></i> Kopyala</button>
+          </div>
+        </div>
+        <div class="notice-box gold-notice">
+          <h4><i class="fa-solid fa-cloud"></i> 7/24 İnternetten Ücretsiz Bulut Erişimi</h4>
+          <p style="font-size: 0.85rem; margin-top: 0.35rem;">Program klasörünüzde Render.com ve Railway için hazır <code>Dockerfile</code> ve yapılandırma dosyaları bulunmaktadır.</p>
+        </div>
+      </div>
+
+      <!-- Tab 5: Güvenlik & Şifre Değiştir -->
+      <div id="setPaneSecurity" class="settings-pane">
+        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: var(--radius-md); padding: 14px; margin-bottom: 1.25rem;">
+          <p style="font-size: 0.85rem; color: var(--text-main); margin: 0; line-height: 1.5;">
+            <i class="fa-solid fa-shield-halved text-gold"></i> Giriş şifrenizi buradan değiştirebilirsiniz. Değiştirilen yeni şifre hem bu bilgisayarda hem de internetten/ofis ağından giriş yapan tüm cihazlarda anında geçerli olur.
+          </p>
+        </div>
+        <form id="formChangePassword" onsubmit="handleChangePasswordSubmit(event)">
+          <div class="form-grid" style="padding: 0;">
+            <div class="form-group full-width">
+              <label for="pwdOld"><i class="fa-solid fa-key"></i> Mevcut Şifreniz *</label>
+              <input type="password" id="pwdOld" required placeholder="Şu anki aktif şifrenizi girin">
+            </div>
+            <div class="form-group full-width">
+              <label for="pwdNew"><i class="fa-solid fa-lock"></i> Yeni Şifreniz *</label>
+              <input type="password" id="pwdNew" required minlength="4" placeholder="Yeni şifrenizi belirleyin (en az 4 karakter)">
+            </div>
+            <div class="form-group full-width">
+              <label for="pwdNewConfirm"><i class="fa-solid fa-check-double"></i> Yeni Şifreniz (Tekrar) *</label>
+              <input type="password" id="pwdNewConfirm" required minlength="4" placeholder="Yeni şifrenizi teyit için tekrar yazın">
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; text-align: right;">
+            <button type="submit" class="btn btn-primary" id="btnSubmitChangePw">
+              <i class="fa-solid fa-save"></i> Şifreyi Güncelle
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-close="modalSettings">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: YEDEK AL & YÜKLE (BACKUP MODAL) -->
+  <div id="modalBackup" class="modal">
+    <div class="modal-box" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-database text-gold"></i> Veri Yedekleme & Geri Yükleme</h3>
+        <button class="modal-close" data-close="modalBackup">&times;</button>
+      </div>
+      <div style="padding: 1.5rem;">
+        <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Tüm müşteri cari hesaplarınızı, ürün sevkiyatlarınızı ve tahsilatlarınızı tek tıkla bilgisayarınıza güvenle indirebilir veya eski bir yedeği yükleyebilirsiniz.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <button id="btnDownloadBackup" class="btn btn-primary" style="justify-content: center;">
+            <i class="fa-solid fa-download"></i> Bilgisayarıma Tam Yedek İndir (JSON)
+          </button>
+          
+          <input type="file" id="fileImportBackup" accept=".json" style="display: none;">
+          <button id="btnTriggerFileImport" class="btn btn-secondary" style="justify-content: center;">
+            <i class="fa-solid fa-upload"></i> Yedek Dosyasından Geri Yükle
+          </button>
+
+          <button id="btnLoadSampleData" class="btn btn-outline" style="justify-content: center; margin-top: 0.5rem;">
+            <i class="fa-solid fa-rotate-right"></i> Örnek Tekstil Müşteri Verilerini Yükle
+          </button>
+
+          <button id="btnClearAllData" class="btn btn-outline text-red" style="justify-content: center;">
+            <i class="fa-solid fa-trash-can"></i> Tüm Müşteri Verilerini Sıfırla / Temizle
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-close="modalBackup">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 7: OFİSLE PAYLAŞ (SHARE MODAL) -->
+  <div id="modalShare" class="modal">
+    <div class="modal-box" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-network-wired text-gold"></i> Ofisteki Arkadaşlarınla Paylaş</h3>
+        <button class="modal-close" data-close="modalShare">&times;</button>
+      </div>
+      <div style="padding: 1.5rem;">
+        <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Aynı Wi-Fi / ofis ağına bağlı olan çalışma arkadaşlarınız tarayıcılarına bu adresi yazarak programa girebilir ve anlık ortak işlem yapabilirler:
+        </p>
+        <div style="background: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: center; margin-bottom: 1rem;">
+          <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary);" id="shareModalUrlText">http://192.168.1.105:8085</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-close="modalShare">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 8: TCMB CANLI DÖVİZ MASASI & ÇEVİRİCİ (TCMB RATES MODAL) -->
+  <div id="modalTcmbDetails" class="modal">
+    <div class="modal-box" style="max-width: 620px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-coins text-gold"></i> TCMB Canlı Döviz Masası & Kurlar</h3>
+        <button class="modal-close" data-close="modalTcmbDetails">&times;</button>
+      </div>
+      
+      <div style="padding: 1rem 1.5rem 0.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; border-bottom: 1px solid var(--border-color); background: rgba(0,0,0,0.1);">
+        <div>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Kaynak: <strong>TCMB Resmi Gösterge Kurları</strong></span>
+          <div style="font-size: 0.75rem; color: var(--text-dim);" id="tcmbModalMeta">Bülten Tarihi: Yükleniyor...</div>
+        </div>
+        <button class="btn btn-sm btn-secondary" id="btnModalRefreshRates" title="Merkez Bankasından Güncel Kurları Yeniden Çek">
+          <i class="fa-solid fa-rotate"></i> Kurları Yenile
+        </button>
+      </div>
+
+      <!-- Kurlar Kart Izgarası -->
+      <div class="tcmb-modal-grid">
+        <!-- USD Kartı -->
+        <div class="tcmb-rate-card">
+          <div class="tcmb-card-header">
+            <span>🇺🇸 ABD DOLARI (USD)</span>
+            <span class="badge-curr badge-curr-usd">USD / TRY</span>
+          </div>
+          <div class="tcmb-card-row highlight">
+            <span>Döviz Satış:</span>
+            <strong id="modalUsdForexSelling">- ₺</strong>
+          </div>
+          <div class="tcmb-card-row">
+            <span>Döviz Alış:</span>
+            <strong id="modalUsdForexBuying">- ₺</strong>
+          </div>
+          <div class="tcmb-card-row">
+            <span>Efektif Satış:</span>
+            <strong id="modalUsdBanknoteSelling">- ₺</strong>
+          </div>
+          <div class="tcmb-card-row">
+            <span>Efektif Alış:</span>
+            <strong id="modalUsdBanknoteBuying">- ₺</strong>
+          </div>
+        </div>
+
+        <!-- EUR Kartı -->
+        <div class="tcmb-rate-card">
+          <div class="tcmb-card-header">
+            <span>🇪🇺 EURO (EUR)</span>
+            <span class="badge-curr badge-curr-eur">EUR / TRY</span>
+          </div>
+          <div class="tcmb-card-row highlight">
+            <span>Döviz Satış:</span>
+            <strong id="modalEurForexSelling">- ₺</strong>
+          </div>
+          <div class="tcmb-card-row">
+            <span>Döviz Alış:</span>
+            <strong id="modalEurForexBuying">- ₺</strong>
+          </div>
+          <div class="tcmb-card-row">
+            <span>Efektif Satış:</span>
+            <strong id="modalEurBanknoteSelling">- ₺</strong>
+          </div>
+          <div class="tcmb-card-row">
+            <span>Efektif Alış:</span>
+            <strong id="modalEurBanknoteBuying">- ₺</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hızlı Tekstil Döviz Çevirici -->
+      <div class="converter-box">
+        <h4 style="font-size: 0.9rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
+          <i class="fa-solid fa-calculator text-gold"></i> Hızlı Tekstil Sipariş & Mal Bedeli Kur Çevirici
+        </h4>
+        <div class="form-grid" style="padding: 0; gap: 0.75rem;">
+          <div class="form-group">
+            <label for="convAmount">Çevrilecek Tutar</label>
+            <input type="number" id="convAmount" value="1000" min="0" step="any">
+          </div>
+          <div class="form-group">
+            <label for="convCurrency">Para Birimi & Yön</label>
+            <select id="convCurrency" class="form-select">
+              <option value="USD_TO_TL">Dolar (USD) ➔ Türk Lirası (TL)</option>
+              <option value="EUR_TO_TL">Euro (EUR) ➔ Türk Lirası (TL)</option>
+              <option value="TL_TO_USD">Türk Lirası (TL) ➔ Dolar (USD)</option>
+              <option value="TL_TO_EUR">Türk Lirası (TL) ➔ Euro (EUR)</option>
+            </select>
+          </div>
+        </div>
+        <div class="converter-result-banner" id="convResultText">
+          1.000,00 USD = Hesapla...
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-close="modalTcmbDetails">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 9: 7/24 BULUT KAYIT & ERİŞİM MERKEZİ (CLOUD MODAL) -->
+  <div id="modalCloudSync" class="modal">
+    <div class="modal-box" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-cloud text-gold"></i> 7/24 Ücretsiz Bulut Kayıt & Canlı Erişim</h3>
+        <button class="modal-close" data-close="modalCloudSync">&times;</button>
+      </div>
+      <div style="padding: 1.5rem;">
+        
+        <!-- Bulut Durumu Bilgilendirme -->
+        <div class="notice-box green-notice" style="margin: 0 0 1.25rem 0;">
+          <div>
+            <h4 style="font-weight: 700;"><i class="fa-solid fa-shield-halved"></i> Verileriniz Güvende</h4>
+            <p style="font-size: 0.825rem; margin-top: 0.25rem;">Verileriniz bilgisayarınızdaki yerel SQLite veritabanına anında yazılmakta ve 7/24 bulut dağıtımına hazır durumdadır.</p>
+          </div>
+        </div>
+
+        <!-- Seçenek 1: Bilgisayar Açıkken Canlı Ağ Paylaşımı -->
+        <div class="backup-tile" style="margin-bottom: 0.85rem;">
+          <div class="tile-icon"><i class="fa-solid fa-wifi text-gold"></i></div>
+          <div style="flex: 1;">
+            <h4>Ofis İçi Wi-Fi Canlı Ağ Bağlantısı</h4>
+            <p>Ofisteki iş arkadaşlarınızın bilgisayarlarından ve telefonlarından anında bağlanması için adres:</p>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem;">
+              <input type="text" id="cloudModalLanUrl" readonly value="http://192.168.1.105:8085" style="font-weight: 700; width: 100%; font-size: 0.85rem;">
+              <button class="btn btn-sm btn-primary" id="btnCopyCloudLanUrl"><i class="fa-solid fa-copy"></i> Kopyala</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seçenek 2: 7/24 Ücretsiz Render.com Bulut Sunucusu -->
+        <div class="backup-tile" style="margin-bottom: 0.85rem; border: 1px solid rgba(56, 189, 248, 0.4);">
+          <div class="tile-icon"><i class="fa-solid fa-cloud-arrow-up text-gold"></i></div>
+          <div style="flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <h4>7/24 İnternetten Ücretsiz Bulut Sunucu (Render.com)</h4>
+              <span class="badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">100% Ücretsiz</span>
+            </div>
+            <p style="margin-top: 0.25rem;">
+              Kendi bilgisayarınızı tamamen kapatsanız dahi, programın 7 gün 24 saat kesintisiz internette çalışmasını sağlar. Herkes <code>https://firmaniz.onrender.com</code> adresinden anında girip işlem yapabilir.
+            </p>
+            <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <a href="https://render.com" target="_blank" class="btn btn-sm btn-primary">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Render.com'u Aç
+              </a>
+              <button class="btn btn-sm btn-outline" id="btnOpenCloudGuideModal">
+                <i class="fa-solid fa-book"></i> 3 Dakikalık Kurulum Rehberi
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seçenek 3: Anında Bulut Yedek İndir / Yükle -->
+        <div class="backup-tile">
+          <div class="tile-icon"><i class="fa-solid fa-file-zipper text-gold"></i></div>
+          <div style="flex: 1;">
+            <h4>Tek Tıkla Bulut / Bilgisayar Yedeği</h4>
+            <p>Tüm müşteri cari hesaplarınızı, sevkiyatlarınızı ve tahsilatlarınızı tek tıkla dosya olarak yedekleyin veya başka bir cihaza yükleyin.</p>
+            <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">
+              <button class="btn btn-sm btn-secondary" id="btnQuickBackupDownload"><i class="fa-solid fa-download"></i> Hemen Tam Yedek İndir</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-close="modalCloudSync">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== YAZDIR / PDF ÇIKTI ALANI (EKRANDA GÖRÜNMEZ) ==================== -->
+  <div id="printArea" class="print-container print-only" style="display: none !important;">
+    <div class="print-header">
+      <div>
+        <h2 id="printCompanyTitle">TEKSTİL SANAYİ & İHRACAT HİZMETLERİ</h2>
+        <p id="printCompanySubtitle">MÜŞTERİ CARİ HESAP & SEVKİYAT EKSTRESİ</p>
+      </div>
+      <div class="print-date" id="printReportDate">
+        Tarih: 01.10.2026
+      </div>
+    </div>
+
+    <div class="print-contractor-box" id="printContractorDetails">
+      <!-- Injected before print -->
+    </div>
+
+    <div class="print-table-container">
+      <table class="print-table" id="printTable">
+        <thead>
+          <tr>
+            <th>Tarih</th>
+            <th>İşlem Türü</th>
+            <th>Ürün Adı / Açıklama</th>
+            <th>Miktar</th>
+            <th>Birim Fiyat</th>
+            <th class="text-right">Mal Bedeli</th>
+            <th class="text-right">Tahsilat</th>
+            <th class="text-right">Kalan Bakiye</th>
+          </tr>
+        </thead>
+        <tbody id="printTableBody">
+          <!-- Injected dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="print-summary-box" id="printSummaryBox">
+      <!-- Injected summary -->
+    </div>
+
+    <div class="print-signatures">
+      <div class="signature-box">
+        <p><strong>Müşteri / Alıcı Firma</strong></p>
+        <p class="sig-name" id="printSigContractorName">-</p>
+        <p class="sig-space">Yetkili İmza & Kaşe:</p>
+      </div>
+      <div class="signature-box">
+        <p><strong>Satıcı / Tekstil Firması</strong></p>
+        <p class="sig-name">Firma Yetkili Kaşe & İmza</p>
+        <p class="sig-space">İmza:</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

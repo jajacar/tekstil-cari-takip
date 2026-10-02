@@ -1,0 +1,2 @@
+# Python Standard Library is used (sqlite3, http.server, json, socket)
+# No heavy third-party packages required!
