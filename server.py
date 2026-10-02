@@ -239,146 +239,41 @@ def init_db():
         )
     """)
 
-    # Başlangıç verisi kontrolü
-    cursor.execute("SELECT value FROM system_store WHERE key = 'santiye_data'")
+    # Veri Yedekleri Geçmişi Tablosu (Otomatik Geri Yükleme Noktaları)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS data_backups (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            backup_name TEXT,
+            data_json TEXT,
+            created_at INTEGER
+        )
+    """)
+
+    # Eğer tekstil_data henüz yoksa otomatik yedek dosyasından veya varsayılandan yükle
+    cursor.execute("SELECT value FROM system_store WHERE key = 'tekstil_data'")
     row = cursor.fetchone()
     if not row:
-        initial_data = {
-            "projects": [
-                {
-                    "id": "proj_1",
-                    "name": "1. Proje - Kuzey Konakları A Blok",
-                    "notes": "4 Katlı Konut Projesi (Merkez Mah. 120 Ada 4 Parsel)"
-                },
-                {
-                    "id": "proj_2",
-                    "name": "2. Proje - Yıldız Plaza İş Merkezi",
-                    "notes": "Ticari İş Merkezi ve Dükkanlar (Sanayi Cad.)"
-                }
-            ],
-            "contractors": [
-                {
-                    "id": "c_kalipci_mahmut",
-                    "projectId": "proj_1",
-                    "name": "Kalıpçı Mahmut Usta",
-                    "role": "Kalıp & Demir",
-                    "phone": "0532 444 11 22",
-                    "startDate": "2026-04-15",
-                    "initialAgreement": 450000,
-                    "notes": "Temel ve 4 normal kat kalıp/demir işçiliği götürü anlaşma.",
-                    "transactions": [
-                        {
-                            "id": "tx_km_1",
-                            "type": "PAYMENT",
-                            "date": "2026-04-20",
-                            "amount": 80000,
-                            "method": "Banka Havalesi / EFT",
-                            "ref": "Garanti EFT #9281",
-                            "description": "Temel demir bağlama ve kalıp başlangıç avansı"
-                        },
-                        {
-                            "id": "tx_km_2",
-                            "type": "PAYMENT",
-                            "date": "2026-05-12",
-                            "amount": 100000,
-                            "method": "Banka Havalesi / EFT",
-                            "ref": "İş Bankası #4012",
-                            "description": "1. ve 2. Kat tabliye beton dökümü sonrası ara hakediş ödemesi"
-                        },
-                        {
-                            "id": "tx_km_3",
-                            "type": "HAKEDIS",
-                            "date": "2026-05-25",
-                            "amount": 35000,
-                            "method": "-",
-                            "ref": "Metraj Farkı",
-                            "description": "İlave bahçe istinat perdesi kalıp ve demir işçiliği (70 m²)"
-                        },
-                        {
-                            "id": "tx_km_4",
-                            "type": "PAYMENT",
-                            "date": "2026-06-05",
-                            "amount": 60000,
-                            "method": "Elden Nakit",
-                            "ref": "Kasa Makbuzu #114",
-                            "description": "3. Kat tavan kalıbı sökümü sonrası elden nakit ödeme"
-                        }
-                    ]
-                },
-                {
-                    "id": "c_boyaci_ahmet",
-                    "projectId": "proj_1",
-                    "name": "Boyacı Ahmet & Ekibi",
-                    "role": "Boya & Badana",
-                    "phone": "0535 777 88 99",
-                    "startDate": "2026-06-01",
-                    "initialAgreement": 180000,
-                    "notes": "Tüm daireler 2 kat alçı + 2 kat silikonlu iç cephe boyası.",
-                    "transactions": [
-                        {
-                            "id": "tx_ba_1",
-                            "type": "PAYMENT",
-                            "date": "2026-06-02",
-                            "amount": 40000,
-                            "method": "Banka Havalesi / EFT",
-                            "ref": "Ziraat EFT #1082",
-                            "description": "İş başlangıcı malzeme taşıma ve alçı astar avansı"
-                        },
-                        {
-                            "id": "tx_ba_2",
-                            "type": "PAYMENT",
-                            "date": "2026-06-20",
-                            "amount": 60000,
-                            "method": "Elden Nakit",
-                            "ref": "Kasa Fişi #203",
-                            "description": "1. ve 2. kat dairelerin astar teslim ödemesi"
-                        }
-                    ]
-                },
-                {
-                    "id": "c_duvarci_hasan",
-                    "projectId": "proj_2",
-                    "name": "Duvarcı Hasan Usta",
-                    "role": "Duvar & Gazbeton",
-                    "phone": "0542 333 22 11",
-                    "startDate": "2026-05-01",
-                    "initialAgreement": 220000,
-                    "notes": "Dış cephe bims ve iç bölme gazbeton duvar örme işçiliği.",
-                    "transactions": [
-                        {
-                            "id": "tx_dh_1",
-                            "type": "PAYMENT",
-                            "date": "2026-05-05",
-                            "amount": 50000,
-                            "method": "Banka Havalesi / EFT",
-                            "ref": "Akbank EFT #7741",
-                            "description": "Şantiye başlangıç avansı"
-                        },
-                        {
-                            "id": "tx_dh_2",
-                            "type": "PAYMENT",
-                            "date": "2026-05-28",
-                            "amount": 90000,
-                            "method": "Çek / Senet",
-                            "ref": "Çek No: 88491 (Vade: 30 Gün)",
-                            "description": "Kaba duvarların tamamlanması 2. etap ödemesi"
-                        },
-                        {
-                            "id": "tx_dh_3",
-                            "type": "PAYMENT",
-                            "date": "2026-06-15",
-                            "amount": 80000,
-                            "method": "Banka Havalesi / EFT",
-                            "ref": "Akbank EFT #8990",
-                            "description": "Duvar işçiliği kesin hesap kapanış ödemesi (Hesap kapandı)"
-                        }
-                    ]
-                }
-            ]
-        }
+        backup_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tekstil_cari_otomatik_yedek.json")
+        initial_data = None
+        if os.path.exists(backup_file):
+            try:
+                with open(backup_file, "r", encoding="utf-8") as f:
+                    initial_data = json.load(f)
+            except Exception:
+                pass
+        
+        if not initial_data:
+            initial_data = {"customers": [], "settings": {}, "projects": [], "contractors": []}
+
+        now_ms = int(time.time() * 1000)
+        init_str = json.dumps(initial_data, ensure_ascii=False)
         cursor.execute(
             "INSERT INTO system_store (key, value, updated_at) VALUES (?, ?, ?)",
-            ("santiye_data", json.dumps(initial_data, ensure_ascii=False), int(time.time() * 1000))
+            ("tekstil_data", init_str, now_ms)
+        )
+        cursor.execute(
+            "INSERT INTO system_store (key, value, updated_at) VALUES (?, ?, ?)",
+            ("santiye_data", init_str, now_ms)
         )
         conn.commit()
     conn.close()
@@ -403,13 +298,76 @@ def get_db_data():
             pass
     return {"customers": [], "projects": [], "contractors": [], "settings": {}, "lastModified": 0}
 
-# Veritabanına Veri Kaydetme (Atomik Güncelleme)
+BACKUP_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "yedekler")
+if not os.path.exists(BACKUP_DIR):
+    try:
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+    except Exception:
+        pass
+
+def create_auto_backup(data_dict, note="Otomatik Kayıt"):
+    """Veriyi hem SQLite data_backups tablosuna hem de yedekler/ klasörüne JSON olarak arşivler"""
+    try:
+        now_ms = int(time.time() * 1000)
+        date_str = time.strftime('%Y-%m-%d_%H-%M-%S')
+        cust_count = len(data_dict.get("customers", []))
+        b_name = f"{note} ({cust_count} Müşteri) - {time.strftime('%d.%m.%Y %H:%M:%S')}"
+        data_str = json.dumps(data_dict, ensure_ascii=False)
+
+        # 1. SQLite Arşivi
+        conn = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS data_backups (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                backup_name TEXT,
+                data_json TEXT,
+                created_at INTEGER
+            )
+        """)
+        cursor.execute("INSERT INTO data_backups (backup_name, data_json, created_at) VALUES (?, ?, ?)",
+                       (b_name, data_str, now_ms))
+        conn.commit()
+        conn.close()
+
+        # 2. Disk Klasörü Arşivi (yedekler/)
+        if os.path.exists(BACKUP_DIR):
+            fname = f"yedek_{date_str}_{cust_count}musteri.json"
+            fpath = os.path.join(BACKUP_DIR, fname)
+            with open(fpath, "w", encoding="utf-8") as f:
+                f.write(json.dumps(data_dict, ensure_ascii=False, indent=2))
+            
+            # Ana yedek dosyasını da güncelle (hızlı kurtarma için)
+            main_backup = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tekstil_cari_otomatik_yedek.json")
+            with open(main_backup, "w", encoding="utf-8") as f:
+                f.write(json.dumps(data_dict, ensure_ascii=False, indent=2))
+
+            # En son 50 yedek dosyasını tut, eskileri temizle
+            files = sorted([os.path.join(BACKUP_DIR, x) for x in os.listdir(BACKUP_DIR) if x.endswith('.json')], key=os.path.getmtime)
+            if len(files) > 50:
+                for old_f in files[:-50]:
+                    try:
+                        os.remove(old_f)
+                    except Exception:
+                        pass
+    except Exception as e:
+        print("Otomatik yedek alma hatası:", e)
+
+# Veritabanına Veri Kaydetme (Atomik Güncelleme & Çift Katmanlı Yedekleme)
 def save_db_data(payload):
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
-    now_ms = int(time.time() * 1000)
+    customers = payload.get("customers", [])
+    for cust in customers:
+        c_curr = (cust.get("currency") or "TL").upper()
+        if c_curr == "TL":
+            cust["transactions"] = [t for t in cust.get("transactions", []) if t.get("type") != "KUR_FARKI"]
+        else:
+            valid_check_ids = {t["id"] for t in cust.get("transactions", []) if (t.get("isCheck") or t.get("isSenet") or t.get("method") in ["Müşteri Çeki", "Müşteri Senedi"]) and not t.get("isCash")}
+            cust["transactions"] = [t for t in cust.get("transactions", []) if t.get("type") != "KUR_FARKI" or t.get("checkId") in valid_check_ids]
+
     data_dict = {
-        "customers": payload.get("customers", []),
+        "customers": customers,
         "projects": payload.get("projects", []),
         "contractors": payload.get("contractors", []),
         "settings": payload.get("settings", {})
@@ -430,6 +388,10 @@ def save_db_data(payload):
     """, (data_str, now_ms))
     conn.commit()
     conn.close()
+
+    # Otomatik çift katmanlı yedek oluştur (Asla veri kaybolmaz!)
+    create_auto_backup(data_dict, note="Canlı Senkronizasyon")
+
     return now_ms
 
 # HTTP İstek Yöneticisi
@@ -534,6 +496,49 @@ class TekstilHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             force = "force=1" in self.path
             rates_data = fetch_tcmb_rates(force=force)
             body = json.dumps(rates_data, ensure_ascii=False).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
+        # API: Otomatik Yedekler Listesi (Geçmiş Geri Yükleme Noktaları)
+        if parsed.path == "/api/backups":
+            token = self.get_auth_token()
+            user = verify_session(token)
+            if not user:
+                self.send_response(401)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(json.dumps({"error": "Yetkisiz erişim"}).encode("utf-8"))
+                return
+
+            backups = []
+            try:
+                conn = sqlite3.connect(DB_FILE)
+                cursor = conn.cursor()
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS data_backups (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        backup_name TEXT,
+                        data_json TEXT,
+                        created_at INTEGER
+                    )
+                """)
+                cursor.execute("SELECT id, backup_name, created_at, length(data_json) FROM data_backups ORDER BY created_at DESC LIMIT 30")
+                for r in cursor.fetchall():
+                    backups.append({
+                        "id": r[0],
+                        "name": r[1],
+                        "createdAt": r[2],
+                        "size": r[3]
+                    })
+                conn.close()
+            except Exception as e:
+                pass
+
+            body = json.dumps({"success": True, "backups": backups}, ensure_ascii=False).encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
@@ -695,6 +700,178 @@ class TekstilHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_header("Content-Length", str(len(err_body)))
                 self.end_headers()
                 self.wfile.write(err_body)
+            return
+
+        # API: Geçmiş Otomatik Yedekten Geri Yükle
+        if parsed.path == "/api/backups/restore":
+            token = self.get_auth_token()
+            user = verify_session(token)
+            if not user:
+                self.send_response(401)
+                self.end_headers()
+                return
+
+            content_length = int(self.headers.get("Content-Length", 0))
+            post_data = self.rfile.read(content_length)
+            try:
+                req = json.loads(post_data.decode("utf-8"))
+                backup_id = req.get("backupId")
+                conn = sqlite3.connect(DB_FILE)
+                cursor = conn.cursor()
+                cursor.execute("SELECT data_json, backup_name FROM data_backups WHERE id = ?", (backup_id,))
+                row = cursor.fetchone()
+                conn.close()
+
+                if row and row[0]:
+                    restored_payload = json.loads(row[0])
+                    new_ts = save_db_data(restored_payload)
+                    res = json.dumps({
+                        "success": True, 
+                        "lastModified": new_ts, 
+                        "message": f"'{row[1]}' yedeği başarıyla geri yüklendi!",
+                        "data": restored_payload
+                    }).encode("utf-8")
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/json; charset=utf-8")
+                    self.send_header("Content-Length", str(len(res)))
+                    self.end_headers()
+                    self.wfile.write(res)
+                else:
+                    self.send_response(404)
+                    self.send_header("Content-Type", "application/json; charset=utf-8")
+                    self.end_headers()
+                    self.wfile.write(json.dumps({"success": False, "error": "Belirtilen yedek bulunamadı"}).encode("utf-8"))
+            except Exception as e:
+                self.send_response(400)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(json.dumps({"success": False, "error": str(e)}).encode("utf-8"))
+            return
+
+        # API: Buluttan (Render) Verileri Çek ve Yerel Veritabanına Eşitle
+        if parsed.path == "/api/sync/cloud-pull":
+            token = self.get_auth_token()
+            user = verify_session(token)
+            if not user:
+                self.send_response(401)
+                self.end_headers()
+                return
+
+            content_length = int(self.headers.get("Content-Length", 0))
+            post_data = self.rfile.read(content_length)
+            try:
+                req = json.loads(post_data.decode("utf-8")) if content_length > 0 else {}
+                target_url = (req.get("cloudUrl") or "https://ere-tekstil.onrender.com").rstrip("/")
+                cloud_user = req.get("username") or "admin"
+                cloud_pass = req.get("password") or "tekstil2026"
+
+                import ssl
+                ctx = ssl.create_default_context()
+                ctx.check_hostname = False
+                ctx.verify_mode = ssl.CERT_NONE
+
+                # 1. Bulutta Giriş Yap
+                l_req = urllib.request.Request(
+                    f"{target_url}/api/auth/login",
+                    data=json.dumps({"username": cloud_user, "password": cloud_pass}).encode("utf-8"),
+                    headers={"Content-Type": "application/json", "User-Agent": "TekstilCari-Bridge/1.0"}
+                )
+                with urllib.request.urlopen(l_req, timeout=12, context=ctx) as r:
+                    l_res = json.loads(r.read().decode("utf-8"))
+                    c_token = l_res.get("token")
+
+                # 2. Buluttaki Güncel Veriyi Çek
+                d_req = urllib.request.Request(
+                    f"{target_url}/api/data",
+                    headers={"Authorization": f"Bearer {c_token}", "User-Agent": "TekstilCari-Bridge/1.0"}
+                )
+                with urllib.request.urlopen(d_req, timeout=12, context=ctx) as dr:
+                    c_data = json.loads(dr.read().decode("utf-8"))
+
+                # 3. Yerel SQLite'a kaydet ve yedek al
+                new_ts = save_db_data(c_data)
+                res = json.dumps({
+                    "success": True, 
+                    "lastModified": new_ts, 
+                    "customersCount": len(c_data.get("customers", [])),
+                    "message": f"Buluttan ({target_url}) {len(c_data.get('customers', []))} müşteri başarıyla çekildi ve eşitlendi!",
+                    "data": c_data
+                }).encode("utf-8")
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.send_header("Content-Length", str(len(res)))
+                self.end_headers()
+                self.wfile.write(res)
+            except Exception as e:
+                self.send_response(500)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(json.dumps({"success": False, "error": f"Buluttan veri çekilemedi: {str(e)}"}).encode("utf-8"))
+            return
+
+        # API: Yerel Veritabanını Buluta (Render) Gönder ve Eşitle
+        if parsed.path == "/api/sync/cloud-push":
+            token = self.get_auth_token()
+            user = verify_session(token)
+            if not user:
+                self.send_response(401)
+                self.end_headers()
+                return
+
+            content_length = int(self.headers.get("Content-Length", 0))
+            post_data = self.rfile.read(content_length)
+            try:
+                req = json.loads(post_data.decode("utf-8")) if content_length > 0 else {}
+                target_url = (req.get("cloudUrl") or "https://ere-tekstil.onrender.com").rstrip("/")
+                cloud_user = req.get("username") or "admin"
+                cloud_pass = req.get("password") or "tekstil2026"
+
+                import ssl
+                ctx = ssl.create_default_context()
+                ctx.check_hostname = False
+                ctx.verify_mode = ssl.CERT_NONE
+
+                # 1. Bulutta Giriş Yap
+                l_req = urllib.request.Request(
+                    f"{target_url}/api/auth/login",
+                    data=json.dumps({"username": cloud_user, "password": cloud_pass}).encode("utf-8"),
+                    headers={"Content-Type": "application/json", "User-Agent": "TekstilCari-Bridge/1.0"}
+                )
+                with urllib.request.urlopen(l_req, timeout=12, context=ctx) as r:
+                    l_res = json.loads(r.read().decode("utf-8"))
+                    c_token = l_res.get("token")
+
+                # 2. Yerel Veriyi Al
+                local_data = load_db_data()
+
+                # 3. Buluta Veriyi Gönder
+                p_req = urllib.request.Request(
+                    f"{target_url}/api/sync",
+                    data=json.dumps(local_data).encode("utf-8"),
+                    headers={
+                        "Content-Type": "application/json",
+                        "Authorization": f"Bearer {c_token}",
+                        "User-Agent": "TekstilCari-Bridge/1.0"
+                    }
+                )
+                with urllib.request.urlopen(p_req, timeout=15, context=ctx) as pr:
+                    resp_data = pr.read().decode("utf-8")
+
+                res = json.dumps({
+                    "success": True, 
+                    "customersCount": len(local_data.get("customers", [])),
+                    "message": f"Bu bilgisayardaki {len(local_data.get('customers', []))} müşteri ve tüm kayıtlar buluta ({target_url}) başarıyla gönderildi ve eşitlendi!"
+                }).encode("utf-8")
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.send_header("Content-Length", str(len(res)))
+                self.end_headers()
+                self.wfile.write(res)
+            except Exception as e:
+                self.send_response(500)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(json.dumps({"success": False, "error": f"Buluta veri gönderilemedi: {str(e)}"}).encode("utf-8"))
             return
 
         self.send_response(404)

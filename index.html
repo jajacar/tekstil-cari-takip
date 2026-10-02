@@ -74,7 +74,7 @@
 
   <!-- ==================== MOBİL MENÜ ÇEKMECESİ (DRAWER) ==================== -->
   <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" onclick="closeMobileDrawer()">
-    <div class="mobile-drawer-box" onclick="event.stopPropagation()">
+    <div class="mobile-drawer-box mobile-drawer" onclick="event.stopPropagation()">
       <div class="mobile-drawer-header">
         <div class="mobile-drawer-brand">
           <i class="fa-solid fa-shirt text-gold"></i>
@@ -700,37 +700,38 @@
           <div class="form-group">
             <label for="payMethod">Ödeme Şekli *</label>
             <select id="payMethod" class="form-select">
-              <option value="Banka Havalesi / EFT">Banka Havalesi / EFT</option>
-              <option value="Banka Havalesi (Swift)">Banka Havalesi (Swift / İhracat)</option>
-              <option value="Müşteri Çeki">Müşteri Çeki</option>
               <option value="Elden Nakit">Elden Nakit (Kasa)</option>
-              <option value="Kredi Kartı / Mail Order">Kredi Kartı / Mail Order</option>
+              <option value="Banka Havalesi / EFT">Banka Havalesi / EFT</option>
+              <option value="Kredi Kartı / POS">Kredi Kartı / POS</option>
+              <option value="Müşteri Çeki">Müşteri Çeki (Vadeli)</option>
+              <option value="Müşteri Senedi">Müşteri Senedi (Vadeli)</option>
+              <option value="Banka Havalesi (Swift)">Banka Havalesi (Swift / İhracat)</option>
               <option value="Akreditif (L/C)">Akreditif (L/C)</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="payRef">Dekont No / Çek Vadesi / Makbuz</label>
-            <input type="text" id="payRef" placeholder="Örn: Akbank Swift #99812, Çek: 30.06.2026...">
+            <label for="payRef">Dekont No / Makbuz / Referans</label>
+            <input type="text" id="payRef" placeholder="Örn: Akbank Dekont #99812, Kasa Fişi...">
           </div>
 
-          <!-- Vadeli Çek Özel Alanları (Ödeme Şekli 'Müşteri Çeki' Olduğunda Görünür) -->
+          <!-- Vadeli Çek / Senet Özel Alanları (SADECE Çek veya Senet Seçildiğinde Açılır) -->
           <div id="checkDetailsBox" class="check-details-box full-width" style="display: none;">
             <div class="check-box-header">
               <i class="fa-solid fa-money-check-dollar text-gold"></i>
-              <span>Vadeli Çek / Senet & Otomatik Kur Farkı Bilgileri</span>
+              <span>Vadeli Çek / Senet & Kur Farkı Bilgileri</span>
             </div>
             <div class="check-fields-grid">
               <div class="form-group">
-                <label for="payCheckNo">Çek Seri / Portföy No *</label>
-                <input type="text" id="payCheckNo" placeholder="Örn: ÇK-48190">
+                <label for="payCheckNo" id="lblPayCheckNo">Çek / Senet No *</label>
+                <input type="text" id="payCheckNo" placeholder="Örn: ÇK-48190 veya Senet No">
               </div>
               <div class="form-group">
-                <label for="payCheckBank">Keşideci Banka & Şube</label>
-                <input type="text" id="payCheckBank" placeholder="Örn: Garanti BBVA Güneşli">
+                <label for="payCheckBank" id="lblPayCheckBank">Keşideci Banka / Şahıs</label>
+                <input type="text" id="payCheckBank" placeholder="Örn: Garanti BBVA veya Keşideci Adı">
               </div>
               <div class="form-group">
-                <label for="payCheckDueDate">Çek Vade Tarihi *</label>
+                <label for="payCheckDueDate">Vade Tarihi *</label>
                 <input type="date" id="payCheckDueDate">
               </div>
               <div class="form-group">
@@ -991,31 +992,76 @@
 
   <!-- Modal 6: YEDEK AL & YÜKLE (BACKUP MODAL) -->
   <div id="modalBackup" class="modal">
-    <div class="modal-box" style="max-width: 500px;">
+    <div class="modal-box" style="max-width: 580px;">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-database text-gold"></i> Veri Yedekleme & Geri Yükleme</h3>
+        <h3><i class="fa-solid fa-shield-halved text-gold"></i> Veri Güvencesi, Bulut & Yedekleme</h3>
         <button class="modal-close" data-close="modalBackup">&times;</button>
       </div>
-      <div style="padding: 1.5rem;">
-        <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-          Tüm müşteri cari hesaplarınızı, ürün sevkiyatlarınızı ve tahsilatlarınızı tek tıkla bilgisayarınıza güvenle indirebilir veya eski bir yedeği yükleyebilirsiniz.
-        </p>
+      <div style="padding: 1.5rem; max-height: 80vh; overflow-y: auto;">
+        
+        <!-- Bulut Senkronizasyonu Kartı (Çift Yönlü Canlı Eşitleme) -->
+        <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 1.15rem; margin-bottom: 1.25rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-cloud-arrow-down" style="color: #10b981; font-size: 1.2rem;"></i>
+              <strong style="color: var(--text-main); font-size: 0.95rem;">Render Bulut Canlı Senkronizasyonu</strong>
+            </div>
+            <span class="badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 0.75rem;">Canlı Eşitleme</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            İnternette (Render) çalışan canlı siteniz ile bu bilgisayar arasındaki tüm müşteri, sipariş ve tahsilatları kayıpsız eşitler.
+          </p>
+          <div style="margin-bottom: 0.75rem;">
+            <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 0.25rem;">Bulut Canlı Site Adresiniz (Render URL):</label>
+            <input type="text" id="cloudSyncServerUrl" placeholder="https://ere-tekstil.onrender.com" value="https://ere-tekstil.onrender.com" style="width: 100%; font-size: 0.825rem; padding: 0.45rem 0.65rem;">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            <button id="btnPullCloudData" class="btn btn-primary btn-sm" style="justify-content: center; background: #059669; border-color: #059669;" onclick="pullDataFromCloud()" title="Buluttaki yeni müşteri ve hareketleri bu bilgisayara aktarır">
+              <i class="fa-solid fa-cloud-arrow-down"></i> Buluttan Verileri Çek
+            </button>
+            <button id="btnPushCloudData" class="btn btn-outline btn-sm" style="justify-content: center; border-color: #059669; color: #10b981;" onclick="pushDataToCloud()" title="Bu bilgisayardaki verileri canlı bulut sitesine yükler">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Yereli Buluta Yükle
+            </button>
+          </div>
+          <div id="cloudSyncStatusMsg" style="font-size: 0.75rem; color: #10b981; margin-top: 0.5rem; text-align: center; display: none;"></div>
+        </div>
 
-        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-          <button id="btnDownloadBackup" class="btn btn-primary" style="justify-content: center;">
-            <i class="fa-solid fa-download"></i> Bilgisayarıma Tam Yedek İndir (JSON)
+        <!-- Otomatik Kayıt Noktaları (Geri Yükleme) -->
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-clock-rotate-left text-gold"></i>
+              <strong style="font-size: 0.875rem;">Otomatik Sistem Kayıt Noktaları</strong>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline" onclick="loadBackupList()" title="Yenile">
+              <i class="fa-solid fa-rotate"></i> Yenile
+            </button>
+          </div>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            Program her işlemde otomatik olarak anlık güvenli yedek alır. İstediğiniz bir ana anında geri dönebilirsiniz:
+          </p>
+          <div id="backupListContainer">
+            <div style="padding: 0.5rem; text-align: center; color: var(--text-muted); font-size: 0.8rem;">Yedekler taranıyor...</div>
+          </div>
+        </div>
+
+        <!-- Manuel Dosya Yedekleme -->
+        <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Manuel Dosya İşlemleri</div>
+          <button id="btnDownloadBackup" class="btn btn-secondary" style="justify-content: center;">
+            <i class="fa-solid fa-download"></i> Bilgisayarıma Tam Yedek İndir (JSON Dosyası)
           </button>
           
           <input type="file" id="fileImportBackup" accept=".json" style="display: none;">
-          <button id="btnTriggerFileImport" class="btn btn-secondary" style="justify-content: center;">
-            <i class="fa-solid fa-upload"></i> Yedek Dosyasından Geri Yükle
+          <button id="btnTriggerFileImport" class="btn btn-outline" style="justify-content: center;">
+            <i class="fa-solid fa-upload"></i> Bilgisayarımdaki JSON Yedekten Geri Yükle
           </button>
 
-          <button id="btnLoadSampleData" class="btn btn-outline" style="justify-content: center; margin-top: 0.5rem;">
-            <i class="fa-solid fa-rotate-right"></i> Örnek Tekstil Müşteri Verilerini Yükle
+          <button id="btnLoadSampleData" class="btn btn-outline" style="justify-content: center; margin-top: 0.35rem; font-size: 0.8rem;">
+            <i class="fa-solid fa-rotate-right"></i> Örnek Demo Müşterileri Yükle
           </button>
 
-          <button id="btnClearAllData" class="btn btn-outline text-red" style="justify-content: center;">
+          <button id="btnClearAllData" class="btn btn-outline text-red" style="justify-content: center; font-size: 0.8rem;">
             <i class="fa-solid fa-trash-can"></i> Tüm Müşteri Verilerini Sıfırla / Temizle
           </button>
         </div>
@@ -1225,8 +1271,8 @@
         <div style="display: flex; align-items: center; gap: 0.65rem;">
           <i class="fa-solid fa-money-check-dollar text-gold" style="font-size: 1.35rem;"></i>
           <div>
-            <h3 style="margin: 0; font-size: 1.15rem;">Vadeli Çek / Senet Portföyü & Otomatik Kur Farkı</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.15rem 0 0;">Vadesi gelmemiş çekleri izleyin; günü geldiğinde TCMB kur farkını otomatik cariye ekleyin.</p>
+            <h3 style="margin: 0; font-size: 1.15rem;">Vadeli Çek & Senet Portföyü (Kur Farkı Takibi)</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.15rem 0 0;">Yalnızca vadeli çek ve senetler listelenir. Nakit, havale ve POS tahsilatları bu listeye dahil edilmez.</p>
           </div>
         </div>
         <button class="modal-close" data-close="modalCheckPortfolio">&times;</button>
@@ -1236,7 +1282,7 @@
         <!-- Çek Portföyü KPI Özet Kartları -->
         <div class="check-kpi-grid">
           <div class="check-kpi-card">
-            <span class="chk-lbl">Toplam Kayıtlı Çek</span>
+            <span class="chk-lbl">Toplam Çek / Senet</span>
             <strong class="chk-val text-gold" id="chkTotalCount">0 Adet</strong>
             <span class="chk-sub" id="chkTotalAmount">-</span>
           </div>
@@ -1251,32 +1297,32 @@
             <span class="chk-sub" id="chkMaturedAmount">Kur farkı işlenmeye hazır</span>
           </div>
           <div class="check-kpi-card">
-            <span class="chk-lbl">Otomatik Eklenen Kur Farkı</span>
+            <span class="chk-lbl">İşlenen Toplam Kur Farkı</span>
             <strong class="chk-val text-green" id="chkTotalFxDiffVal">0,00 ₺</strong>
-            <span class="chk-sub">Müşteri carisine işlenen</span>
+            <span class="chk-sub">Müşteri carisine eklenen</span>
           </div>
         </div>
 
         <!-- Çek Araç Çubuğu & Toplu Kur Farkı Çalıştırma Butonu -->
         <div class="check-toolbar">
           <div class="check-filter-tabs">
-            <button type="button" class="chk-tab active" data-filter="ALL" onclick="filterCheckPortfolio('ALL')">Tüm Çekler</button>
+            <button type="button" class="chk-tab active" data-filter="ALL" onclick="filterCheckPortfolio('ALL')">Tüm Çek & Senetler</button>
             <button type="button" class="chk-tab" data-filter="PENDING" onclick="filterCheckPortfolio('PENDING')">Vadesi Gelmemiş</button>
             <button type="button" class="chk-tab" data-filter="MATURED" onclick="filterCheckPortfolio('MATURED')">Vadesi Gelmiş</button>
             <button type="button" class="chk-tab" data-filter="APPLIED" onclick="filterCheckPortfolio('APPLIED')">Kur Farkı İşlenmiş</button>
           </div>
-          <button type="button" class="btn btn-success btn-sm" onclick="processAllMaturedChecks(true)" title="Vadesi gelen tüm çeklerin güncel TCMB kur farkını hesaplayıp carilere otomatik ekler">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> <strong>Vadesi Gelenlerin Kur Farkını Otomatik İşle</strong>
+          <button type="button" class="btn btn-outline btn-sm" onclick="processAllMaturedChecks(true)" title="Vadesi gelen çek ve senetlerin kur farkını onayınızla carilere işler">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> <strong>Vadesi Dolan Çek/Senet Kur Farklarını İşle</strong>
           </button>
         </div>
 
         <!-- Çekler Listesi Tablosu (Masaüstü) -->
-        <div class="table-responsive check-table-wrapper">
+        <div class="table-responsive check-table-wrapper desktop-table-wrapper desktop-only">
           <table class="data-table">
             <thead>
               <tr>
                 <th>Müşteri / Firma</th>
-                <th>Çek No & Keşideci</th>
+                <th>Evrak Türü & No</th>
                 <th>Vade Tarihi</th>
                 <th>Vade Durumu</th>
                 <th>Tutar & Para Birimi</th>
@@ -1300,6 +1346,108 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" data-close="modalCheckPortfolio">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 12: AKILLI ÇEK KUR FARKI HESAPLAMA & CARİYE İŞLEME ==================== -->
+  <div id="modalApplyFx" class="modal">
+    <div class="modal-box" style="max-width: 580px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(59, 130, 246, 0.15); display: flex; align-items: center; justify-content: center; color: #3b82f6; font-size: 1.25rem;">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem; font-weight: 700;">Çek Vade Kur Farkı Hesapla & İşle</h3>
+            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Vadesi gelen/geçen dövizli çekin kur artış veya azalış farkını cariye kaydeder</p>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-close="modalApplyFx">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding: 1.25rem 1.5rem;">
+        <input type="hidden" id="fxCustId" value="">
+        <input type="hidden" id="fxTxnId" value="">
+
+        <!-- Çek Özet Bilgi Kartı -->
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+            <div>
+              <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600;">MÜŞTERİ</span>
+              <h4 id="fxCustName" style="margin: 0.15rem 0 0; font-size: 1.05rem; color: #38bdf8; font-weight: 700;">-</h4>
+            </div>
+            <span id="fxStatusBadge" class="badge" style="background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); font-size: 0.8rem; padding: 0.25rem 0.6rem; border-radius: 6px;">Vadesi Doldu</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem;">
+            <div>
+              <span style="color: var(--text-muted);">Çek Detayı:</span>
+              <strong id="fxCheckInfo" style="display: block; color: #fff;">-</strong>
+            </div>
+            <div>
+              <span style="color: var(--text-muted);">Vade Tarihi:</span>
+              <strong id="fxDueDateDisplay" style="display: block; color: #fff;">-</strong>
+            </div>
+            <div>
+              <span style="color: var(--text-muted);">Döviz Tutarı:</span>
+              <strong id="fxCheckAmountDisplay" style="display: block; font-size: 1.1rem; color: #10b981; font-weight: 800;">-</strong>
+            </div>
+            <div>
+              <span style="color: var(--text-muted);">Mevcut Kur Farkı Durumu:</span>
+              <strong id="fxPriorStatusDisplay" style="display: block; color: #94a3b8;">Henüz İşlenmedi</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kur Giriş Alanları -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+          <div class="form-group" style="margin: 0;">
+            <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem;">
+              <span>Alındığı Gün Kuru (₺)</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted);">Giriş Kuru</span>
+            </label>
+            <div style="position: relative;">
+              <input type="number" step="0.0001" id="fxEntryRate" class="form-control" style="font-size: 1.05rem; font-weight: 700; padding-left: 2.2rem;" oninput="recalculateFxModal()">
+              <span style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;">₺</span>
+            </div>
+            <small style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 0.25rem;">Çekin sisteme işlendiği tarihteki kur</small>
+          </div>
+
+          <div class="form-group" style="margin: 0;">
+            <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem;">
+              <span>Vade / Güncel Kuru (₺)</span>
+              <span id="fxRateSourceTag" style="font-size: 0.7rem; color: #38bdf8; background: rgba(56,189,248,0.1); padding: 1px 6px; border-radius: 4px;">TCMB Canlı</span>
+            </label>
+            <div style="position: relative;">
+              <input type="number" step="0.0001" id="fxCurrentRate" class="form-control" style="font-size: 1.05rem; font-weight: 700; padding-left: 2.2rem;" oninput="recalculateFxModal()">
+              <span style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;">₺</span>
+            </div>
+            <small style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 0.25rem;">İşlenecek TCMB veya hedef kur</small>
+          </div>
+        </div>
+
+        <!-- Hesaplanan Fark Göstergesi (Canlı) -->
+        <div id="fxCalculationResultBox" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.05) 100%); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 12px; padding: 1.1rem; text-align: center; margin-bottom: 1.25rem;">
+          <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600;">HESAPLANAN KUR FARKI (TL)</div>
+          <div id="fxResultDisplay" style="font-size: 2rem; font-weight: 900; color: #10b981; margin: 0.25rem 0;">+0,00 ₺</div>
+          <div id="fxDirectionText" style="font-size: 0.85rem; color: #e2e8f0; font-weight: 500;">
+            Kur arttığı için müşterinin borcuna <strong>kur farkı borç kaydı</strong> olarak işlenecek.
+          </div>
+        </div>
+
+        <!-- Açıklama Alanı -->
+        <div class="form-group" style="margin: 0;">
+          <label style="font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem; display: block;">Cariye Kaydedilecek Açıklama</label>
+          <input type="text" id="fxCustomDesc" class="form-control" style="font-size: 0.85rem;" placeholder="Örn: Vade Kur Farkı - Akbank Çek No: 8847291">
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+        <button type="button" class="btn btn-outline" data-close="modalApplyFx">İptal</button>
+        <button type="button" class="btn btn-primary" id="btnCommitFx" onclick="commitFxToCustomer()" style="display: flex; align-items: center; gap: 0.5rem; background: #10b981; border-color: #10b981;">
+          <i class="fa-solid fa-check-double"></i>
+          <span>Kur Farkını Müşteri Carisine İşle</span>
+        </button>
       </div>
     </div>
   </div>

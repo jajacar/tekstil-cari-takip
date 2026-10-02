@@ -12,311 +12,5180 @@ const AUTH_USER_KEY = 'TEKSTIL_AUTH_USER';
 // Initial Textile Sample Data (Authentic Industry Portfolios)
 const INITIAL_TEXTILE_CUSTOMERS = [
   {
-    id: "cust_1",
-    name: "ZARA / Inditex Tedarik (Moda Konfeksiyon)",
-    currency: "EUR",
-    phone: "0212 555 10 20",
-    contactPerson: "Ahmet Bey (Satınalma Md.)",
-    address: "Güneşli Sanayi Cad. No:18 Bağcılar / İstanbul",
-    notes: "30 Gün Vade, İhracat Paketleme, Askılı Koli Teslimatı",
-    transactions: [
+    "id": "cust_1790928090799",
+    "name": "DENEME MÜŞTERİ",
+    "currency": "EUR",
+    "contactPerson": "",
+    "phone": "",
+    "address": "",
+    "notes": "",
+    "transactions": [
       {
-        id: "tx_z1",
-        type: "SHIPMENT",
-        productName: "Organik Pamuk Baskılı T-Shirt",
-        date: "2026-05-10",
-        quantity: 3000,
-        unit: "Adet",
-        unitPrice: 4.50,
-        currency: "EUR",
-        amount: 13500,
-        invoiceNo: "IRS-2026-0041",
-        description: "S-M-L-XL Asortili %100 Pamuk Süprem Kumaş"
+        "id": "tx_1790928114884",
+        "type": "SHIPMENT",
+        "productName": "DENEME SATIŞ",
+        "date": "2026-10-02",
+        "quantity": 1000,
+        "unit": "Adet",
+        "unitPrice": 50,
+        "currency": "EUR",
+        "amount": 50000,
+        "invoiceNo": "",
+        "description": ""
       },
       {
-        id: "tx_z2",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-05-20",
-        amount: 10000,
-        currency: "EUR",
-        method: "Banka Havalesi (Swift)",
-        ref: "Akbank Swift #99812",
-        description: "1. Parti T-Shirt avans ödemesi"
-      },
-      {
-        id: "tx_z3",
-        type: "SHIPMENT",
-        productName: "Oversize Fermuarlı Sweatshirt 3 İplik",
-        date: "2026-06-02",
-        quantity: 1200,
-        unit: "Adet",
-        unitPrice: 12.00,
-        currency: "EUR",
-        amount: 14400,
-        invoiceNo: "IRS-2026-0089",
-        description: "Şardonlu 320 gr Kumaş, Metal YKK Fermuarlı"
-      },
-      {
-        id: "tx_z4",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-06-15",
-        amount: 12500,
-        currency: "EUR",
-        method: "Banka Havalesi / EFT",
-        ref: "Garanti BBVA #7712",
-        description: "Ara hakediş / mal bedeli transferi"
-      },
-      {
-        id: "tx_z5",
-        type: "SHIPMENT",
-        productName: "Polo Yaka Pike Tişört Nakışlı",
-        date: "2026-06-25",
-        quantity: 2000,
-        unit: "Adet",
-        unitPrice: 6.80,
-        currency: "EUR",
-        amount: 13600,
-        invoiceNo: "IRS-2026-0120",
-        description: "Göğüs nakış logolu, özel ribana yakalı"
-      },
-      {
-        id: "tx_z6",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-08-15",
-        amount: 9000,
-        currency: "EUR",
-        method: "Müşteri Çeki",
-        ref: "ÇK-88102 (İş Bankası Maslak)",
-        isCheck: true,
-        checkNo: "ÇK-88102",
-        checkBank: "İş Bankası Maslak",
-        dueDate: "2026-11-20",
-        entryRate: 53.40,
-        autoFx: true,
-        fxApplied: false,
-        description: "Vadeli Müşteri Çeki (Vade: 20.11.2026 - Vadesi Bekleniyor)"
+        "id": "tx_1790928162018",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-01",
+        "amount": 10000,
+        "currency": "EUR",
+        "method": "Müşteri Çeki",
+        "ref": "#Z123456 (AKBANK) - Vade: 30.09.2026",
+        "description": "deneme",
+        "isCheck": true,
+        "checkNo": "Z123456",
+        "checkBank": "AKBANK",
+        "dueDate": "2026-09-30",
+        "entryRate": 54.152,
+        "autoFx": true,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": false
       }
     ]
   },
   {
-    id: "cust_2",
-    name: "Schmidt Fashion GmbH (Almanya İhracat)",
-    currency: "USD",
-    phone: "+49 30 901820",
-    contactPerson: "Hans Schmidt",
-    address: "Kaiserstraße 44, Frankfurt am Main, Germany",
-    notes: "Hava Kargo Sevkiyatı, Euro Dolar Kur Anlaşmalı",
-    transactions: [
+    "id": "cust_ex_ahmet_g_ler",
+    "name": "AHMET GÜLER",
+    "currency": "USD",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (AHMET GÜLER)",
+    "transactions": [
       {
-        id: "tx_s1",
-        type: "SHIPMENT",
-        productName: "Denim Kot Pantolon Taşlanmış 12oz",
-        date: "2026-04-18",
-        quantity: 2500,
-        unit: "Adet",
-        unitPrice: 11.00,
-        currency: "USD",
-        amount: 27500,
-        invoiceNo: "EXP-2026-101",
-        description: "Yıkamalı Vintage Taşlama Slim Fit Erkek Jean"
+        "id": "tx_cust_ex_ahmet_g_ler_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2025-10-30",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 6000,
+        "currency": "USD",
+        "amount": 6000,
+        "invoiceNo": "DEVIR-2025",
+        "description": "ESKİ BAKİYEDEN KALAN 250.000 / 41.9 $"
       },
       {
-        id: "tx_s2",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-05-05",
-        amount: 20000,
-        currency: "USD",
-        method: "Banka Havalesi (Swift)",
-        ref: "Deutsche Bank Swift #D8892",
-        description: "Denim siparişi 1. taksit ödemesi"
+        "id": "tx_cust_ex_ahmet_g_ler_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2025-10-30",
+        "amount": 6000,
+        "currency": "USD",
+        "method": "Müşteri Çeki",
+        "ref": "20.06.2026 TARİHLİ CEK  250.000 (KUR : 46,4593 TL) (6.000 $'dı)",
+        "description": "20.06.2026 TARİHLİ CEK  250.000 (KUR : 46,4593 TL) (6.000 $'dı)",
+        "isCheck": true,
+        "checkNo": "20.06.2026",
+        "dueDate": "2026-06-20",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": false
       },
       {
-        id: "tx_s3",
-        type: "SHIPMENT",
-        productName: "Gabardin Çok Cepli Kargo Pantolon",
-        date: "2026-05-22",
-        quantity: 1800,
-        unit: "Adet",
-        unitPrice: 9.50,
-        currency: "USD",
-        amount: 17100,
-        invoiceNo: "EXP-2026-135",
-        description: "%100 Pamuk Gabardin Haki ve Siyah Renk"
+        "id": "tx_cust_ex_ahmet_g_ler_5",
+        "type": "SHIPMENT",
+        "productName": "YENİ 3 LÜ ERK BOXER",
+        "date": "2025-10-30",
+        "quantity": 16,
+        "unit": "Adet",
+        "unitPrice": 3.67,
+        "currency": "USD",
+        "amount": 58.72,
+        "invoiceNo": "",
+        "description": "YENİ 3 LÜ ERK BOXER"
       },
       {
-        id: "tx_s4",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-06-10",
-        amount: 15000,
-        currency: "USD",
-        method: "Banka Havalesi (Swift)",
-        ref: "Deutsche Bank Swift #D9102",
-        description: "Kargo pantolon hakediş ödemesi"
+        "id": "tx_cust_ex_ahmet_g_ler_6",
+        "type": "SHIPMENT",
+        "productName": "YENİ 5 Lİ  ERK BOXER",
+        "date": "2025-10-30",
+        "quantity": 6,
+        "unit": "Adet",
+        "unitPrice": 6.5,
+        "currency": "USD",
+        "amount": 39,
+        "invoiceNo": "",
+        "description": "YENİ 5 Lİ  ERK BOXER"
       },
       {
-        id: "tx_s5",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-07-20",
-        amount: 9600,
-        currency: "USD",
-        method: "Müşteri Çeki",
-        ref: "ÇK-44910 (Commerzbank Frankfurt)",
-        isCheck: true,
-        checkNo: "ÇK-44910",
-        checkBank: "Commerzbank AG",
-        dueDate: "2026-10-01",
-        entryRate: 46.80,
-        autoFx: true,
-        fxApplied: false,
-        description: "Vadeli Müşteri Çeki (Vade: 01.10.2026 - Vadesi Geldi, Kur Farkı Hesaplanacak)"
+        "id": "tx_cust_ex_ahmet_g_ler_7",
+        "type": "SHIPMENT",
+        "productName": "3 lu yenı",
+        "date": "2025-11-10",
+        "quantity": 288,
+        "unit": "Adet",
+        "unitPrice": 3.67,
+        "currency": "USD",
+        "amount": 1056.96,
+        "invoiceNo": "",
+        "description": "3 lu yenı"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_8",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-02-16",
+        "amount": 12643.68,
+        "currency": "USD",
+        "method": "Müşteri Çeki",
+        "ref": "CEK  15.08.2026 tarıhlı cek     550.000/43.5",
+        "description": "CEK  15.08.2026 tarıhlı cek     550.000/43.5",
+        "isCheck": true,
+        "checkNo": "CEK",
+        "dueDate": "2026-08-15",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-01",
+        "amount": 5900,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "SENET  30.07.2026  5000*1.018",
+        "description": "SENET  30.07.2026  5000*1.018",
+        "isCheck": false,
+        "checkNo": "SENET",
+        "dueDate": "2026-07-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-01",
+        "amount": 4597.7,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "SENET   30.4.2026  200.000 / 43.5",
+        "description": "SENET   30.4.2026  200.000 / 43.5",
+        "isCheck": false,
+        "checkNo": "SENET",
+        "dueDate": "2026-04-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_11",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-01",
+        "amount": 4597.7,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "SENET   30.6.2026  200.000 / 43.5",
+        "description": "SENET   30.6.2026  200.000 / 43.5",
+        "isCheck": false,
+        "checkNo": "SENET",
+        "dueDate": "2026-06-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_12",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-01",
+        "amount": 4712.64,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "SENET   30.7.2026  205.000 / 43.5",
+        "description": "SENET   30.7.2026  205.000 / 43.5",
+        "isCheck": false,
+        "checkNo": "SENET",
+        "dueDate": "2026-07-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_13",
+        "type": "SHIPMENT",
+        "productName": "3 LU yenı",
+        "date": "2026-02-18",
+        "quantity": 9432,
+        "unit": "Adet",
+        "unitPrice": 3.67,
+        "currency": "USD",
+        "amount": 34615.44,
+        "invoiceNo": "",
+        "description": "3 LU yenı"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_14",
+        "type": "SHIPMENT",
+        "productName": "5 LI  YENI",
+        "date": "2026-06-01",
+        "quantity": 1316,
+        "unit": "Adet",
+        "unitPrice": 6.5,
+        "currency": "USD",
+        "amount": 8554,
+        "invoiceNo": "",
+        "description": "5 LI  YENI"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_15",
+        "type": "SHIPMENT",
+        "productName": "200.000  Mehmet Aydın Dönen Senet (PROTESTO MASRAFI)",
+        "date": "2026-05-05",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 51.111111111111114,
+        "currency": "USD",
+        "amount": 51.11,
+        "invoiceNo": "",
+        "description": "200.000  Mehmet Aydın Dönen Senet (PROTESTO MASRAFI)"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_16",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-04-27",
+        "quantity": 576,
+        "unit": "Adet",
+        "unitPrice": 3.67,
+        "currency": "USD",
+        "amount": 2113.92,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_17",
+        "type": "SHIPMENT",
+        "productName": "Tanga Bikini",
+        "date": "2026-05-19",
+        "quantity": 136,
+        "unit": "Adet",
+        "unitPrice": 5.8,
+        "currency": "USD",
+        "amount": 788.8,
+        "invoiceNo": "",
+        "description": "Tanga Bikini"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_18",
+        "type": "SHIPMENT",
+        "productName": "3 Tane Senet İade (605.000 TL)",
+        "date": "2026-05-19",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 13908.04,
+        "currency": "USD",
+        "amount": 13908.04,
+        "invoiceNo": "",
+        "description": "3 Tane Senet İade (605.000 TL)"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_19",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-08",
+        "amount": 8063.3,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Senet 20.07.2026 Hüseyin HIDIR  (PARİTE : 1,1519) -",
+        "description": "Senet 20.07.2026 Hüseyin HIDIR  (PARİTE : 1,1519) -",
+        "isCheck": false,
+        "checkNo": "Senet",
+        "dueDate": "2026-07-20",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_20",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-08",
+        "amount": 1727.85,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Senet 20.07.2026 İsmet REHANZİ (PARİTE : 1,1519) -",
+        "description": "Senet 20.07.2026 İsmet REHANZİ (PARİTE : 1,1519) -",
+        "isCheck": false,
+        "checkNo": "Senet",
+        "dueDate": "2026-07-20",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_21",
+        "type": "SHIPMENT",
+        "productName": "Tanga Bikini",
+        "date": "2026-06-08",
+        "quantity": 165,
+        "unit": "Adet",
+        "unitPrice": 5.8,
+        "currency": "USD",
+        "amount": 957,
+        "invoiceNo": "",
+        "description": "Tanga Bikini"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_22",
+        "type": "SHIPMENT",
+        "productName": "20.06.2026 TARİHLİ CEK  250.000 (KUR : 46,4593 TL) KUR FARKI",
+        "date": "2026-06-22",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 618.9460452482062,
+        "currency": "USD",
+        "amount": 618.95,
+        "invoiceNo": "",
+        "description": "20.06.2026 TARİHLİ CEK  250.000 (KUR : 46,4593 TL) KUR FARKI"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_23",
+        "type": "SHIPMENT",
+        "productName": "Micro",
+        "date": "2026-06-23",
+        "quantity": 60,
+        "unit": "Adet",
+        "unitPrice": 1.5,
+        "currency": "USD",
+        "amount": 90,
+        "invoiceNo": "",
+        "description": "Micro"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_24",
+        "type": "SHIPMENT",
+        "productName": "Tanga Bikini",
+        "date": "2026-06-23",
+        "quantity": 23,
+        "unit": "Adet",
+        "unitPrice": 5.8,
+        "currency": "USD",
+        "amount": 133.4,
+        "invoiceNo": "",
+        "description": "Tanga Bikini"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_25",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-07-27",
+        "quantity": 144,
+        "unit": "Adet",
+        "unitPrice": 3.67,
+        "currency": "USD",
+        "amount": 528.48,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_26",
+        "type": "SHIPMENT",
+        "productName": "Tanga Bikini",
+        "date": "2026-07-27",
+        "quantity": 160,
+        "unit": "Adet",
+        "unitPrice": 5.8,
+        "currency": "USD",
+        "amount": 928,
+        "invoiceNo": "",
+        "description": "Tanga Bikini"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_27",
+        "type": "SHIPMENT",
+        "productName": "20/07/2026 Tarihli Hüseyin HIDIR Seneti (PROTESTO MASRAFI)",
+        "date": "2026-06-01",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 48.838700635752474,
+        "currency": "USD",
+        "amount": 48.84,
+        "invoiceNo": "",
+        "description": "20/07/2026 Tarihli Hüseyin HIDIR Seneti (PROTESTO MASRAFI)"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_28",
+        "type": "SHIPMENT",
+        "productName": "20/07/2026 Tarihli İsmet REHANZI Seneti (PROTESTO MASRAFI)",
+        "date": "2026-06-01",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 48.838700635752474,
+        "currency": "USD",
+        "amount": 48.84,
+        "invoiceNo": "",
+        "description": "20/07/2026 Tarihli İsmet REHANZI Seneti (PROTESTO MASRAFI)"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_29",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-03",
+        "amount": 5,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Hüseyin HIDIR Senet ÖDEMESİ (PARİTE FARKI)",
+        "description": "Hüseyin HIDIR Senet ÖDEMESİ (PARİTE FARKI)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_30",
+        "type": "SHIPMENT",
+        "productName": "İsmet REHANZI Senet Ödemesi - Ahmet Güler Eyüp Tercana Gönderdi (KUR FARKI)",
+        "date": "2026-08-10",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 5.005756018427064,
+        "currency": "USD",
+        "amount": 5.01,
+        "invoiceNo": "",
+        "description": "İsmet REHANZI Senet Ödemesi - Ahmet Güler Eyüp Tercana Gönderdi (KUR FARKI)"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_31",
+        "type": "SHIPMENT",
+        "productName": "202 Vs Gömme Penye Tanga",
+        "date": "2026-08-13",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 4.5,
+        "currency": "USD",
+        "amount": 450,
+        "invoiceNo": "",
+        "description": "202 Vs Gömme Penye Tanga"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_32",
+        "type": "SHIPMENT",
+        "productName": "203 V.S Penye Gömme Bikini",
+        "date": "2026-08-13",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 4.5,
+        "currency": "USD",
+        "amount": 450,
+        "invoiceNo": "",
+        "description": "203 V.S Penye Gömme Bikini"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_33",
+        "type": "SHIPMENT",
+        "productName": "30/07/2026 5.000 € DÖNEN SENET PROTESTO",
+        "date": "2026-07-30",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 48.597641112759206,
+        "currency": "USD",
+        "amount": 48.6,
+        "invoiceNo": "",
+        "description": "30/07/2026 5.000 € DÖNEN SENET PROTESTO"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_34",
+        "type": "SHIPMENT",
+        "productName": "30/07/2026 5.000 € DÖNEN SENET",
+        "date": "2026-07-30",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 5900,
+        "currency": "USD",
+        "amount": 5900,
+        "invoiceNo": "",
+        "description": "30/07/2026 5.000 € DÖNEN SENET"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_35",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-09-11",
+        "quantity": 22,
+        "unit": "Adet",
+        "unitPrice": 6.5,
+        "currency": "USD",
+        "amount": 143,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ahmet_g_ler_36",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-09-11",
+        "quantity": 143,
+        "unit": "Adet",
+        "unitPrice": 3.67,
+        "currency": "USD",
+        "amount": 524.81,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
       }
     ]
   },
   {
-    id: "cust_3",
-    name: "Özkanlar Toptan Tekstil (Merter / İç Piyasa)",
-    currency: "TL",
-    phone: "0212 637 44 88",
-    contactPerson: "Murat Özkan",
-    address: "Merter Tekstil Merkezi No:42 Güngören / İstanbul",
-    notes: "Haftalık Cuma günleri vadeli çek/nakit teslim",
-    transactions: [
+    "id": "cust_ex_mehmet_eraslan",
+    "name": "MEHMET ERASLAN",
+    "currency": "USD",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (MEHMET ERASLAN)",
+    "transactions": [
       {
-        id: "tx_o0",
-        type: "SHIPMENT",
-        productName: "2025 Kış Koleksiyonu İtalyan Yün Kaban",
-        date: "2025-11-20",
-        quantity: 800,
-        unit: "Adet",
-        unitPrice: 650.00,
-        currency: "TL",
-        amount: 520000,
-        invoiceNo: "IRS-2025-882",
-        description: "2025 Yılı Kışlık Yün Kaban Partisi Sevkiyatı"
+        "id": "tx_cust_ex_mehmet_eraslan_3",
+        "type": "SHIPMENT",
+        "productName": "YENİ 5 Lİ  ERK BOXER",
+        "date": "2025-10-30",
+        "quantity": 752,
+        "unit": "Adet",
+        "unitPrice": 6.2,
+        "currency": "USD",
+        "amount": 4662.4,
+        "invoiceNo": "",
+        "description": "YENİ 5 Lİ  ERK BOXER"
       },
       {
-        id: "tx_o0_pay",
-        type: "PAYMENT",
-        productName: "",
-        date: "2025-12-15",
-        amount: 520000,
-        currency: "TL",
-        method: "Banka Havalesi / EFT",
-        ref: "Vakıfbank #1092",
-        description: "2025 Yılı Kaban bedeli hakediş tahsilatı"
+        "id": "tx_cust_ex_mehmet_eraslan_4",
+        "type": "SHIPMENT",
+        "productName": "DESENLI",
+        "date": "2025-11-10",
+        "quantity": 2000,
+        "unit": "Adet",
+        "unitPrice": 0.85,
+        "currency": "USD",
+        "amount": 1700,
+        "invoiceNo": "",
+        "description": "DESENLI"
       },
       {
-        id: "tx_o1",
-        type: "SHIPMENT",
-        productName: "2 İplik Şardonlu Eşofman Altı",
-        date: "2026-05-02",
-        quantity: 4000,
-        unit: "Adet",
-        unitPrice: 185.00,
-        currency: "TL",
-        amount: 740000,
-        invoiceNo: "IRS-2026-302",
-        description: "Paçası lastikli, cepli eşofman altı toptan parti"
+        "id": "tx_cust_ex_mehmet_eraslan_5",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-06-05",
+        "quantity": 141,
+        "unit": "Adet",
+        "unitPrice": 6.2,
+        "currency": "USD",
+        "amount": 874.2,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
       },
       {
-        id: "tx_o2",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-05-10",
-        amount: 400000,
-        currency: "TL",
-        method: "Banka Havalesi / EFT",
-        ref: "Vakıfbank #4401",
-        description: "Peşinat ve hammadde avansı"
+        "id": "tx_cust_ex_mehmet_eraslan_6",
+        "type": "SHIPMENT",
+        "productName": "3'Lü Paket Boxer",
+        "date": "2026-06-15",
+        "quantity": 4896,
+        "unit": "Adet",
+        "unitPrice": 3.4065934065934065,
+        "currency": "USD",
+        "amount": 16678.68,
+        "invoiceNo": "",
+        "description": "3'Lü Paket Boxer"
       },
       {
-        id: "tx_o3",
-        type: "SHIPMENT",
-        productName: "Likralı V Yaka Basic Tişört",
-        date: "2026-05-28",
-        quantity: 6000,
-        unit: "Adet",
-        unitPrice: 65.00,
-        currency: "TL",
-        amount: 390000,
-        invoiceNo: "IRS-2026-348",
-        description: "%95 Pamuk %5 Elastan 6 farklı renk"
+        "id": "tx_cust_ex_mehmet_eraslan_7",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-01",
+        "amount": 15405.84,
+        "currency": "USD",
+        "method": "Müşteri Çeki",
+        "ref": "30/10/2026 * 0068741 Seri No Kuveyt Çeki (GÜNÜNDE KUR)",
+        "description": "30/10/2026 * 0068741 Seri No Kuveyt Çeki (GÜNÜNDE KUR)",
+        "isCheck": true,
+        "checkNo": "30/10/2026",
+        "dueDate": "2026-10-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "isCash": false,
+        "fxAmount": 0,
+        "isSenet": false
       },
       {
-        id: "tx_o4",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-06-05",
-        amount: 350000,
-        currency: "TL",
-        method: "Müşteri Çeki",
-        ref: "Garanti Çek #00492 - Vade: 30.06.2026",
-        description: "Vadesi gelen çek tahsilatı"
+        "id": "tx_cust_ex_mehmet_eraslan_8",
+        "type": "SHIPMENT",
+        "productName": "5'Li Paket Boxer",
+        "date": "2026-07-07",
+        "quantity": 188,
+        "unit": "Adet",
+        "unitPrice": 6.2,
+        "currency": "USD",
+        "amount": 1165.6,
+        "invoiceNo": "",
+        "description": "5'Li Paket Boxer"
       },
       {
-        id: "tx_o5",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-06-28",
-        amount: 380000,
-        currency: "TL",
-        method: "Banka Havalesi / EFT",
-        ref: "Vakıfbank #5910",
-        description: "Hesap kesin kapanış bakiyesi (Bakiye sıfırlandı)"
+        "id": "tx_cust_ex_mehmet_eraslan_9",
+        "type": "SHIPMENT",
+        "productName": "5'li boer",
+        "date": "2026-07-14",
+        "quantity": 94,
+        "unit": "Adet",
+        "unitPrice": 6.2,
+        "currency": "USD",
+        "amount": 582.8,
+        "invoiceNo": "",
+        "description": "5'li boer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-20",
+        "amount": 1515.51,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Ödeme Pos (71.500 TL FATURA - 65.000 TL Ödeme)",
+        "description": "Ödeme Pos (71.500 TL FATURA - 65.000 TL Ödeme)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_11",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-20",
+        "amount": 423.92,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Ödeme Pos",
+        "description": "Ödeme Pos",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_12",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-23",
+        "amount": 982.08,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "3'lü Paket Boxer (SATAMADI RAMAZANA VERDİ İADE OLACAKTI)",
+        "description": "3'lü Paket Boxer (SATAMADI RAMAZANA VERDİ İADE OLACAKTI)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_13",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-23",
+        "amount": 177.85,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Ödeme Pos",
+        "description": "Ödeme Pos",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_14",
+        "type": "SHIPMENT",
+        "productName": "71.500 TL POSDAN ÖDEME YAPILDI - FATURASI KESİLDİ",
+        "date": "2026-07-31",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 137.7740378603056,
+        "currency": "USD",
+        "amount": 137.77,
+        "invoiceNo": "",
+        "description": "71.500 TL POSDAN ÖDEME YAPILDI - FATURASI KESİLDİ"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_15",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-09-11",
+        "quantity": 64,
+        "unit": "Adet",
+        "unitPrice": 6.2,
+        "currency": "USD",
+        "amount": 396.8,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_16",
+        "type": "SHIPMENT",
+        "productName": "Desenli Boxer",
+        "date": "2026-09-21",
+        "quantity": 500,
+        "unit": "Adet",
+        "unitPrice": 0.85,
+        "currency": "USD",
+        "amount": 425,
+        "invoiceNo": "",
+        "description": "Desenli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_17",
+        "type": "SHIPMENT",
+        "productName": "Desenli Boxer",
+        "date": "2026-09-22",
+        "quantity": 1000,
+        "unit": "Adet",
+        "unitPrice": 0.85,
+        "currency": "USD",
+        "amount": 850,
+        "invoiceNo": "",
+        "description": "Desenli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_eraslan_18",
+        "type": "SHIPMENT",
+        "productName": "Desenli Boxer",
+        "date": "2026-09-30",
+        "quantity": 1000,
+        "unit": "Adet",
+        "unitPrice": 0.85,
+        "currency": "USD",
+        "amount": 850,
+        "invoiceNo": "",
+        "description": "Desenli Boxer"
       }
     ]
   },
   {
-    id: "cust_4",
-    name: "Trend Butik Mağazacılık A.Ş.",
-    currency: "TL",
-    phone: "0532 999 44 11",
-    contactPerson: "Selin Hanım",
-    address: "Teşvikiye Cad. No:88 Nişantaşı / İstanbul",
-    notes: "Yeni Sezon Kapsül Koleksiyon Siparişleri",
-    transactions: [
+    "id": "cust_ex_kenpaul_kenan",
+    "name": "KENPAUL YEŞİLDİREK KENAN",
+    "currency": "USD",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (KENPAUL KENAN)",
+    "transactions": [
       {
-        id: "tx_t1",
-        type: "SHIPMENT",
-        productName: "Keten Karışımlı Oversize Blazer Ceket",
-        date: "2026-05-15",
-        quantity: 800,
-        unit: "Adet",
-        unitPrice: 450.00,
-        currency: "TL",
-        amount: 360000,
-        invoiceNo: "IRS-2026-512",
-        description: "Astar ve düğme detaylı lüks kadın blazer"
+        "id": "tx_cust_ex_kenpaul_kenan_3",
+        "type": "SHIPMENT",
+        "productName": "Desenli Boxer",
+        "date": "2026-01-20",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 0.9,
+        "currency": "USD",
+        "amount": 90,
+        "invoiceNo": "",
+        "description": "Desenli Boxer"
       },
       {
-        id: "tx_t2",
-        type: "PAYMENT",
-        productName: "",
-        date: "2026-05-25",
-        amount: 250000,
-        currency: "TL",
-        method: "Kredi Kartı / Mail Order",
-        ref: "POS Onay #49102",
-        description: "Blazer ceket 1. parti ödemesi"
+        "id": "tx_cust_ex_kenpaul_kenan_4",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-01-20",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 4,
+        "currency": "USD",
+        "amount": 400,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
       },
       {
-        id: "tx_t3",
-        type: "SHIPMENT",
-        productName: "Poplin Dokuma Yazlık Gömlek",
-        date: "2026-06-12",
-        quantity: 1500,
-        unit: "Adet",
-        unitPrice: 190.00,
-        currency: "TL",
-        amount: 285000,
-        invoiceNo: "IRS-2026-559",
-        description: "Çizgili ve düz renk poplin gömlek koleksiyonu"
+        "id": "tx_cust_ex_kenpaul_kenan_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-24",
+        "amount": 400,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_kenpaul_kenan_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-04",
+        "amount": 90,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Eyüp Tercan Sil Dedi",
+        "description": "Eyüp Tercan Sil Dedi",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_ramazan__zy_g_t",
+    "name": "RAMAZAN ÖZYİĞİT",
+    "currency": "TL",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (RAMAZAN ÖZYİGİT)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2026-01-01",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 88820,
+        "currency": "USD",
+        "amount": 88820,
+        "invoiceNo": "DEVIR-2025",
+        "description": "2025 DEVİR"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-02-18",
+        "amount": 40000,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Ödeme Pos",
+        "description": "Ödeme Pos",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-16",
+        "amount": 15000,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Ödeme Pos",
+        "description": "Ödeme Pos",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-23",
+        "amount": 60000,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Ödeme Pos",
+        "description": "Ödeme Pos",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_7",
+        "type": "SHIPMENT",
+        "productName": "Desenli Boxer",
+        "date": "2026-04-07",
+        "quantity": 20000,
+        "unit": "Adet",
+        "unitPrice": 32,
+        "currency": "USD",
+        "amount": 640000,
+        "invoiceNo": "",
+        "description": "Desenli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_8",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 500000,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Hakan Turun Senet - 25/06/2026",
+        "description": "Hakan Turun Senet - 25/06/2026",
+        "isCheck": false,
+        "checkNo": "Hakan",
+        "dueDate": "2026-06-25",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 100000,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Recep Çetiner Senet - 30/06/2026",
+        "description": "Recep Çetiner Senet - 30/06/2026",
+        "isCheck": false,
+        "checkNo": "Recep",
+        "dueDate": "2026-06-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 75000,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Fatih Çetiner Senet - 15/06/2026",
+        "description": "Fatih Çetiner Senet - 15/06/2026",
+        "isCheck": false,
+        "checkNo": "Fatih",
+        "dueDate": "2026-06-15",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_11",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 150000,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Neydim Menteş Senet - 30/06/2026",
+        "description": "Neydim Menteş Senet - 30/06/2026",
+        "isCheck": false,
+        "checkNo": "Neydim",
+        "dueDate": "2026-06-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_12",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 100000,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Recep Çetiner Senet - 30/05/2026",
+        "description": "Recep Çetiner Senet - 30/05/2026",
+        "isCheck": false,
+        "checkNo": "Recep",
+        "dueDate": "2026-05-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_13",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 150000,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Murat İşler Senet - 25/05/2026",
+        "description": "Murat İşler Senet - 25/05/2026",
+        "isCheck": false,
+        "checkNo": "Murat",
+        "dueDate": "2026-05-25",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_14",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 50000,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Mehmet Çalışkan Senet - 30/06/2026",
+        "description": "Mehmet Çalışkan Senet - 30/06/2026",
+        "isCheck": false,
+        "checkNo": "Mehmet",
+        "dueDate": "2026-06-30",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_15",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 5000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Eyüp Tercana Nakit Ödeme",
+        "description": "Eyüp Tercana Nakit Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_16",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-07",
+        "amount": 3000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Eyüp Tercana Nakit Ödeme",
+        "description": "Eyüp Tercana Nakit Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_17",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-15",
+        "amount": 1940172,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "SENETLERİ N KARŞILIĞI KUR 52",
+        "description": "SENETLERİ N KARŞILIĞI KUR 52",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_18",
+        "type": "SHIPMENT",
+        "productName": "Desenli Boxer",
+        "date": "2026-04-14",
+        "quantity": 10000,
+        "unit": "Adet",
+        "unitPrice": 32,
+        "currency": "USD",
+        "amount": 320000,
+        "invoiceNo": "",
+        "description": "Desenli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_19",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-04-16",
+        "quantity": 188,
+        "unit": "Adet",
+        "unitPrice": 270,
+        "currency": "USD",
+        "amount": 50760,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_20",
+        "type": "SHIPMENT",
+        "productName": "3'lü Slip",
+        "date": "2026-05-01",
+        "quantity": 2448,
+        "unit": "Adet",
+        "unitPrice": 170,
+        "currency": "USD",
+        "amount": 416160,
+        "invoiceNo": "",
+        "description": "3'lü Slip"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_21",
+        "type": "SHIPMENT",
+        "productName": "3'lü Slip",
+        "date": "2026-05-07",
+        "quantity": 936,
+        "unit": "Adet",
+        "unitPrice": 170,
+        "currency": "USD",
+        "amount": 159120,
+        "invoiceNo": "",
+        "description": "3'lü Slip"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_22",
+        "type": "SHIPMENT",
+        "productName": "Recep Çetiner Senet - 30/05/2026  (DÖNEN SENET) - İADE",
+        "date": "2026-05-30",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 100000,
+        "currency": "USD",
+        "amount": 100000,
+        "invoiceNo": "",
+        "description": "Recep Çetiner Senet - 30/05/2026  (DÖNEN SENET) - İADE"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_23",
+        "type": "SHIPMENT",
+        "productName": "Recep Çiftener Senet Ödemesi Protesto Masrafı (100.000 TL)",
+        "date": "2026-06-03",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 3000,
+        "currency": "USD",
+        "amount": 3000,
+        "invoiceNo": "",
+        "description": "Recep Çiftener Senet Ödemesi Protesto Masrafı (100.000 TL)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_24",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-06-04",
+        "quantity": 423,
+        "unit": "Adet",
+        "unitPrice": 270,
+        "currency": "USD",
+        "amount": 114210,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_25",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-11",
+        "amount": 50000,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Apdullah Kutmu POS Senet Ödemesi (DÖNEN SENET)",
+        "description": "Apdullah Kutmu POS Senet Ödemesi (DÖNEN SENET)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_26",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-11",
+        "amount": 50000,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Apdullah Kutmu POS Senet Ödemesi (DÖNEN SENET)",
+        "description": "Apdullah Kutmu POS Senet Ödemesi (DÖNEN SENET)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_27",
+        "type": "SHIPMENT",
+        "productName": "Fatih Çetiner Senet - 15/06/2026 (DÖNEN SENET)",
+        "date": "2026-06-15",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 75000,
+        "currency": "USD",
+        "amount": 75000,
+        "invoiceNo": "",
+        "description": "Fatih Çetiner Senet - 15/06/2026 (DÖNEN SENET)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_28",
+        "type": "SHIPMENT",
+        "productName": "Fatih Çetiner Senet - 15/06/2026 (DÖNEN SENET PROTESTO)",
+        "date": "2026-06-15",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 3000,
+        "currency": "USD",
+        "amount": 3000,
+        "invoiceNo": "",
+        "description": "Fatih Çetiner Senet - 15/06/2026 (DÖNEN SENET PROTESTO)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_29",
+        "type": "SHIPMENT",
+        "productName": "Hakan Turun Senet - 25/06/2026 (DÖNEN SENET)",
+        "date": "2026-06-25",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 500000,
+        "currency": "USD",
+        "amount": 500000,
+        "invoiceNo": "",
+        "description": "Hakan Turun Senet - 25/06/2026 (DÖNEN SENET)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_30",
+        "type": "SHIPMENT",
+        "productName": "Hakan Turun Senet - 25/06/2026 (DÖNEN SENET) SENET FARKI",
+        "date": "2026-06-25",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 15000,
+        "currency": "USD",
+        "amount": 15000,
+        "invoiceNo": "",
+        "description": "Hakan Turun Senet - 25/06/2026 (DÖNEN SENET) SENET FARKI"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_31",
+        "type": "SHIPMENT",
+        "productName": "Recep Çetiner Senet - 30/06/2026 (DÖNEN SENET)",
+        "date": "2026-06-30",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 100000,
+        "currency": "USD",
+        "amount": 100000,
+        "invoiceNo": "",
+        "description": "Recep Çetiner Senet - 30/06/2026 (DÖNEN SENET)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_32",
+        "type": "SHIPMENT",
+        "productName": "Recep Çetiner Senet - 30/06/2026 (DÖNEN SENET PROTESTO)",
+        "date": "2026-06-30",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 3000,
+        "currency": "USD",
+        "amount": 3000,
+        "invoiceNo": "",
+        "description": "Recep Çetiner Senet - 30/06/2026 (DÖNEN SENET PROTESTO)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_33",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-01",
+        "amount": 105600,
+        "currency": "USD",
+        "method": "Müşteri Senedi",
+        "ref": "Tahsilat (AHMET GÜLER 2.000 € SENET) (SENET RAMAZANDADIR)",
+        "description": "Tahsilat (AHMET GÜLER 2.000 € SENET) (SENET RAMAZANDADIR)",
+        "isCheck": false,
+        "checkNo": "Tahsilat",
+        "dueDate": "2026-07-01",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": true
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_34",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-10",
+        "amount": 114000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Hakan Turun Senetin Ödemesi (Varol TORUN)",
+        "description": "Hakan Turun Senetin Ödemesi (Varol TORUN)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_35",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-13",
+        "amount": 28400,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Ramazan Özyiğit Dönen Senete İstinaden (POS)",
+        "description": "Ramazan Özyiğit Dönen Senete İstinaden (POS)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_36",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-13",
+        "amount": 50000,
+        "currency": "USD",
+        "method": "Kredi Kartı / POS",
+        "ref": "Ramazan Özyiğit Dönen Senete İstinaden (POS)",
+        "description": "Ramazan Özyiğit Dönen Senete İstinaden (POS)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_37",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-07-16",
+        "quantity": 94,
+        "unit": "Adet",
+        "unitPrice": 270,
+        "currency": "USD",
+        "amount": 25380,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_38",
+        "type": "SHIPMENT",
+        "productName": "MEHMET ERASLANDAN 3'LÜ PAKET 4 KOLİ MAL ALDI",
+        "date": "2026-07-23",
+        "quantity": 288,
+        "unit": "Adet",
+        "unitPrice": 160,
+        "currency": "USD",
+        "amount": 46080,
+        "invoiceNo": "",
+        "description": "MEHMET ERASLANDAN 3'LÜ PAKET 4 KOLİ MAL ALDI"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_39",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-21",
+        "amount": 128000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Hakan Turun Senetin Ödemesi (Varol TORUN)",
+        "description": "Hakan Turun Senetin Ödemesi (Varol TORUN)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_40",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-29",
+        "amount": 70000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Hakan Turun Senetin Ödemesi (Varol TORUN)",
+        "description": "Hakan Turun Senetin Ödemesi (Varol TORUN)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_41",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-08",
+        "amount": 73000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Hakan Turun Senetin Ödemesi (Varol TORUN)",
+        "description": "Hakan Turun Senetin Ödemesi (Varol TORUN)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_42",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-08-11",
+        "quantity": 235,
+        "unit": "Adet",
+        "unitPrice": 270,
+        "currency": "USD",
+        "amount": 63450,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_43",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-13",
+        "amount": 75000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Hakan turun Senetin Ödemesi",
+        "description": "Hakan turun Senetin Ödemesi",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_44",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-20",
+        "amount": 30000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "varol torun senet ödemesi yazan eyup",
+        "description": "varol torun senet ödemesi yazan eyup",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_45",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-20",
+        "amount": 10000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "hakan torun senet ödemesi yazan eyüp",
+        "description": "hakan torun senet ödemesi yazan eyüp",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_46",
+        "type": "SHIPMENT",
+        "productName": "MUTABAKAT",
+        "date": "2026-08-25",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 61660,
+        "currency": "USD",
+        "amount": 61660,
+        "invoiceNo": "",
+        "description": "MUTABAKAT"
+      },
+      {
+        "id": "tx_cust_ex_ramazan__zy_g_t_47",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-30",
+        "amount": 92000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "30.08.2026 AHMET GÜLERDEN 80.000 TL SENET 12.000 TL'DE RAMAZAN ÖZYİĞİT ADINA ÖDEME ALINDI",
+        "description": "30.08.2026 AHMET GÜLERDEN 80.000 TL SENET 12.000 TL'DE RAMAZAN ÖZYİĞİT ADINA ÖDEME ALINDI",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex____demg_l__zy___t",
+    "name": "ÇİĞDEM GÜL ÖZYİĞİT",
+    "currency": "TL",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (ÇİĞDEMGÜL ÖZYİĞİT)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_3",
+        "type": "SHIPMENT",
+        "productName": "3'LÜ BOXER",
+        "date": "2026-01-19",
+        "quantity": 1512,
+        "unit": "Adet",
+        "unitPrice": 150,
+        "currency": "TL",
+        "amount": 226800,
+        "invoiceNo": "",
+        "description": "3'LÜ BOXER"
+      },
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_4",
+        "type": "SHIPMENT",
+        "productName": "10'LU DESENLİ BOXER",
+        "date": "2026-01-19",
+        "quantity": 5300,
+        "unit": "Adet",
+        "unitPrice": 32,
+        "currency": "TL",
+        "amount": 169600,
+        "invoiceNo": "",
+        "description": "10'LU DESENLİ BOXER"
+      },
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-01-19",
+        "amount": 385000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "ÖDEME",
+        "description": "ÖDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-26",
+        "amount": 4000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "ÖDEME",
+        "description": "ÖDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_7",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-26",
+        "amount": 4000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "ÖDEME",
+        "description": "ÖDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_8",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-03-31",
+        "quantity": 432,
+        "unit": "Adet",
+        "unitPrice": 150,
+        "currency": "TL",
+        "amount": 64800,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-31",
+        "amount": 49200,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "ÖDEME",
+        "description": "ÖDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-08",
+        "amount": 10000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "ÖDEME",
+        "description": "ÖDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex____demg_l__zy___t_11",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-09",
+        "amount": 9000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "HESAP SIFIRLANDI",
+        "description": "HESAP SIFIRLANDI",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_ede_tekst_l_levent_sem_z",
+    "name": "LEVENT SEMİZ (Ede Tekstil)",
+    "currency": "EUR",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (EDE TEKSTİL LEVENT SEMİZ)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2026-01-01",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 56161.55,
+        "currency": "EUR",
+        "amount": 56161.55,
+        "invoiceNo": "DEVIR-2025",
+        "description": "2025 DEVİR"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-01-16",
+        "amount": 80000,
+        "currency": "EUR",
+        "method": "Müşteri Çeki",
+        "ref": "Çek Alındı",
+        "description": "Çek Alındı",
+        "isCheck": true,
+        "checkNo": "Çek",
+        "dueDate": "2026-01-16",
+        "autoFx": true,
+        "entryRate": 52,
+        "fxApplied": false,
+        "fxAmount": 0,
+        "isCash": false,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_5",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer Battal",
+        "date": "2026-01-19",
+        "quantity": 2100,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 2940,
+        "invoiceNo": "",
+        "description": "Micro Boxer Battal"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_6",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-01-19",
+        "quantity": 3600,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 4860,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_7",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-04-14",
+        "quantity": 1600,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 2160,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_8",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-04-23",
+        "quantity": 2200,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 2970,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_9",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer Battal",
+        "date": "2026-04-23",
+        "quantity": 200,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 280,
+        "invoiceNo": "",
+        "description": "Micro Boxer Battal"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_10",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-04-23",
+        "quantity": 500,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 675,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_11",
+        "type": "SHIPMENT",
+        "productName": "Micro Slip",
+        "date": "2026-04-27",
+        "quantity": 1200,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 1620,
+        "invoiceNo": "",
+        "description": "Micro Slip"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_12",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-06-03",
+        "quantity": 800,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 1080,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_13",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-06-03",
+        "quantity": 4300,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 5805,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_14",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer Battal",
+        "date": "2026-06-03",
+        "quantity": 800,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 1120,
+        "invoiceNo": "",
+        "description": "Micro Boxer Battal"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_15",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-06-19",
+        "quantity": 1600,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 2160,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_16",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-06-29",
+        "quantity": 900,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 1215,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_17",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (M/L)",
+        "date": "2026-08-21",
+        "quantity": 600,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 810,
+        "invoiceNo": "",
+        "description": "Micro Boxer (M/L)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_18",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (S/M)",
+        "date": "2026-08-21",
+        "quantity": 200,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 270,
+        "invoiceNo": "",
+        "description": "Micro Boxer (S/M)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_19",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (XL/XXL)",
+        "date": "2026-08-21",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 140,
+        "invoiceNo": "",
+        "description": "Micro Boxer (XL/XXL)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_20",
+        "type": "SHIPMENT",
+        "productName": "Micro Slip",
+        "date": "2026-08-21",
+        "quantity": 300,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 405,
+        "invoiceNo": "",
+        "description": "Micro Slip"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_21",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (M/L - L/XL)",
+        "date": "2026-08-21",
+        "quantity": 900,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 1215,
+        "invoiceNo": "",
+        "description": "Micro Boxer (M/L - L/XL)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_22",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (XL/XXL)",
+        "date": "2026-08-21",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 140,
+        "invoiceNo": "",
+        "description": "Micro Boxer (XL/XXL)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_23",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (M/L - L/XL)",
+        "date": "2026-09-01",
+        "quantity": 1200,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 1620,
+        "invoiceNo": "",
+        "description": "Micro Boxer (M/L - L/XL)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_24",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (XL/XXL)",
+        "date": "2026-09-01",
+        "quantity": 600,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 840,
+        "invoiceNo": "",
+        "description": "Micro Boxer (XL/XXL)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_25",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (M/L - L/XL)",
+        "date": "2026-09-01",
+        "quantity": 1300,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 1755,
+        "invoiceNo": "",
+        "description": "Micro Boxer (M/L - L/XL)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_26",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (XL/XXL)",
+        "date": "2026-09-01",
+        "quantity": 500,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 700,
+        "invoiceNo": "",
+        "description": "Micro Boxer (XL/XXL)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_27",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (M/L - L/XL)",
+        "date": "2026-09-17",
+        "quantity": 1580,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "EUR",
+        "amount": 2133,
+        "invoiceNo": "",
+        "description": "Micro Boxer (M/L - L/XL)"
+      },
+      {
+        "id": "tx_cust_ex_ede_tekst_l_levent_sem_z_28",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (XL/XXL)",
+        "date": "2026-09-17",
+        "quantity": 420,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 588,
+        "invoiceNo": "",
+        "description": "Micro Boxer (XL/XXL)"
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_cuma_pazarci",
+    "name": "CUMA PAZARCI",
+    "currency": "EUR",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (CUMA PAZARCI)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_cuma_pazarci_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2026-01-01",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 2092,
+        "currency": "EUR",
+        "amount": 2092,
+        "invoiceNo": "DEVIR-2025",
+        "description": "2025 DEVİR"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-01-16",
+        "amount": 597.07,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "KUR : 50,2450 TL",
+        "description": "KUR : 50,2450 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_5",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-01-20",
+        "quantity": 500,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 700,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-01-20",
+        "amount": 595.83,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "KUR : 50,3500 TL",
+        "description": "KUR : 50,3500 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_7",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer Battal",
+        "date": "2026-02-06",
+        "quantity": 250,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 350,
+        "invoiceNo": "",
+        "description": "Micro Boxer Battal"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_8",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-02-06",
+        "quantity": 300,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 390,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_9",
+        "type": "SHIPMENT",
+        "productName": "Micro Slip",
+        "date": "2026-02-06",
+        "quantity": 180,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 234,
+        "invoiceNo": "",
+        "description": "Micro Slip"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_10",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-03-10",
+        "quantity": 200,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 260,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_11",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-10",
+        "amount": 584.68,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "KUR : 51,3097 TL",
+        "description": "KUR : 51,3097 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_12",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-04-10",
+        "quantity": 300,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 390,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_13",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-04-10",
+        "quantity": 180,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 252,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_14",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-10",
+        "amount": 750,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "",
+        "description": "",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_15",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-05-07",
+        "quantity": 550,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 770,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_16",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-08",
+        "amount": 563.57,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_17",
+        "type": "SHIPMENT",
+        "productName": "micro boxer",
+        "date": "2026-06-04",
+        "quantity": 420,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 588,
+        "invoiceNo": "",
+        "description": "micro boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_18",
+        "type": "SHIPMENT",
+        "productName": "micro",
+        "date": "2026-06-04",
+        "quantity": 180,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 234,
+        "invoiceNo": "",
+        "description": "micro"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_19",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-08",
+        "amount": 660,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "ödeme",
+        "description": "ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_20",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer Battal",
+        "date": "2026-07-06",
+        "quantity": 140,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 196,
+        "invoiceNo": "",
+        "description": "Micro Boxer Battal"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_21",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-07-06",
+        "quantity": 360,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 468,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_22",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-06",
+        "amount": 467.57,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Kur: 53,4677",
+        "description": "Kur: 53,4677",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_23",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-06",
+        "amount": 150,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_24",
+        "type": "SHIPMENT",
+        "productName": "Bayan",
+        "date": "2026-07-17",
+        "quantity": 234,
+        "unit": "Adet",
+        "unitPrice": 2.2286812707197714,
+        "currency": "EUR",
+        "amount": 521.51,
+        "invoiceNo": "",
+        "description": "Bayan"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_25",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-07-17",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 130,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_26",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-17",
+        "amount": 638.49,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_27",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-07-31",
+        "quantity": 330,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 429,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_28",
+        "type": "SHIPMENT",
+        "productName": "Micro Battal",
+        "date": "2026-07-31",
+        "quantity": 50,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 70,
+        "invoiceNo": "",
+        "description": "Micro Battal"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_29",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-31",
+        "amount": 916.05,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Kur : 54.5822 TL",
+        "description": "Kur : 54.5822 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_30",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (XL/XXL)",
+        "date": "2026-08-21",
+        "quantity": 50,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 70,
+        "invoiceNo": "",
+        "description": "Micro Boxer (XL/XXL)"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_31",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (M/L - L/XL)",
+        "date": "2026-08-21",
+        "quantity": 360,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 468,
+        "invoiceNo": "",
+        "description": "Micro Boxer (M/L - L/XL)"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_32",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-21",
+        "amount": 538,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_33",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (M/L - L/XL)",
+        "date": "2026-09-11",
+        "quantity": 400,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 520,
+        "invoiceNo": "",
+        "description": "Micro Boxer (M/L - L/XL)"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_34",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (XL/XXL)",
+        "date": "2026-09-11",
+        "quantity": 300,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 420,
+        "invoiceNo": "",
+        "description": "Micro Boxer (XL/XXL)"
+      },
+      {
+        "id": "tx_cust_ex_cuma_pazarci_35",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-11",
+        "amount": 940,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_pazarci_dursun_u_ur",
+    "name": "PAZARCI DURSUN & UĞUR",
+    "currency": "USD",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (PAZARCI DURSUN-UĞUR)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2026-01-01",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 10895.07,
+        "currency": "USD",
+        "amount": 10895.07,
+        "invoiceNo": "DEVIR-2025",
+        "description": "2025 DEVİR"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_5",
+        "type": "SHIPMENT",
+        "productName": "Poplin 12 Paket",
+        "date": "2026-03-13",
+        "quantity": 120,
+        "unit": "Adet",
+        "unitPrice": 1,
+        "currency": "USD",
+        "amount": 120,
+        "invoiceNo": "",
+        "description": "Poplin 12 Paket"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_6",
+        "type": "SHIPMENT",
+        "productName": "3'lü Kutu Boxer",
+        "date": "2026-03-13",
+        "quantity": 78,
+        "unit": "Adet",
+        "unitPrice": 3.8,
+        "currency": "USD",
+        "amount": 296.4,
+        "invoiceNo": "",
+        "description": "3'lü Kutu Boxer"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_7",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-13",
+        "amount": 226.76,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "KUR : 44,10 TL",
+        "description": "KUR : 44,10 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_8",
+        "type": "SHIPMENT",
+        "productName": "Bayan",
+        "date": "2026-07-03",
+        "quantity": 90,
+        "unit": "Adet",
+        "unitPrice": 2.5686141042600465,
+        "currency": "USD",
+        "amount": 231.18,
+        "invoiceNo": "",
+        "description": "Bayan"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_9",
+        "type": "SHIPMENT",
+        "productName": "Bayan",
+        "date": "2026-07-03",
+        "quantity": 71,
+        "unit": "Adet",
+        "unitPrice": 4.281023507100078,
+        "currency": "USD",
+        "amount": 303.95,
+        "invoiceNo": "",
+        "description": "Bayan"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_10",
+        "type": "SHIPMENT",
+        "productName": "Poplin",
+        "date": "2026-07-03",
+        "quantity": 180,
+        "unit": "Adet",
+        "unitPrice": 1,
+        "currency": "USD",
+        "amount": 180,
+        "invoiceNo": "",
+        "description": "Poplin"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_11",
+        "type": "SHIPMENT",
+        "productName": "Slip",
+        "date": "2026-07-03",
+        "quantity": 48,
+        "unit": "Adet",
+        "unitPrice": 4.281023507100078,
+        "currency": "USD",
+        "amount": 205.49,
+        "invoiceNo": "",
+        "description": "Slip"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_12",
+        "type": "SHIPMENT",
+        "productName": "",
+        "date": "2026-07-03",
+        "quantity": 52,
+        "unit": "Adet",
+        "unitPrice": 6.207484085295113,
+        "currency": "USD",
+        "amount": 322.79,
+        "invoiceNo": "",
+        "description": ""
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_13",
+        "type": "SHIPMENT",
+        "productName": "",
+        "date": "2026-07-03",
+        "quantity": 72,
+        "unit": "Adet",
+        "unitPrice": 3.5960597459640655,
+        "currency": "USD",
+        "amount": 258.92,
+        "invoiceNo": "",
+        "description": ""
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_14",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-03",
+        "amount": 1290.32,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_15",
+        "type": "SHIPMENT",
+        "productName": "Bayan",
+        "date": "2026-07-24",
+        "quantity": 130,
+        "unit": "Adet",
+        "unitPrice": 4.219409282700422,
+        "currency": "USD",
+        "amount": 548.52,
+        "invoiceNo": "",
+        "description": "Bayan"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_16",
+        "type": "SHIPMENT",
+        "productName": "Erkek 3'Lü",
+        "date": "2026-07-24",
+        "quantity": 163,
+        "unit": "Adet",
+        "unitPrice": 3.5910435149978874,
+        "currency": "USD",
+        "amount": 585.34,
+        "invoiceNo": "",
+        "description": "Erkek 3'Lü"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_17",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-24",
+        "amount": 211.24,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_18",
+        "type": "SHIPMENT",
+        "productName": "Tekli Boxer",
+        "date": "2026-07-27",
+        "quantity": 550,
+        "unit": "Adet",
+        "unitPrice": 1,
+        "currency": "USD",
+        "amount": 550,
+        "invoiceNo": "",
+        "description": "Tekli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_19",
+        "type": "SHIPMENT",
+        "productName": "10'Lu Boxer",
+        "date": "2026-08-11",
+        "quantity": 140,
+        "unit": "Adet",
+        "unitPrice": 1,
+        "currency": "USD",
+        "amount": 140,
+        "invoiceNo": "",
+        "description": "10'Lu Boxer"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_20",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-08-11",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 3.59,
+        "currency": "USD",
+        "amount": 359,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_21",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-11",
+        "amount": 41.88,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_22",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-11",
+        "amount": 209.42,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_23",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-11",
+        "amount": 253.82,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_24",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-11",
+        "amount": 300,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_pazarci_dursun_u_ur_25",
+        "type": "SHIPMENT",
+        "productName": "Euro Borcu Dolar Olarak Çevirildi",
+        "date": "2026-08-11",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 1878.0608,
+        "currency": "USD",
+        "amount": 1878.06,
+        "invoiceNo": "",
+        "description": "Euro Borcu Dolar Olarak Çevirildi"
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_g_nd_z",
+    "name": "GÜNDÜZ",
+    "currency": "EUR",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (GÜNDÜZ)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_g_nd_z_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2026-01-01",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 2862.14,
+        "currency": "EUR",
+        "amount": 2862.14,
+        "invoiceNo": "DEVIR-2025",
+        "description": "2025 DEVİR"
+      },
+      {
+        "id": "tx_cust_ex_g_nd_z_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-01-06",
+        "amount": 200,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "KUR : 50 TL",
+        "description": "KUR : 50 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_g_nd_z_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-02-16",
+        "amount": 288.46,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "KUR : 52 TL",
+        "description": "KUR : 52 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_g_nd_z_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-14",
+        "amount": 116,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_g_nd_z_7",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-05",
+        "amount": 373.75,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Kur : 53.5118 TL",
+        "description": "Kur : 53.5118 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_g_nd_z_8",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-19",
+        "amount": 188.31,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Kur: 53,1051 TL",
+        "description": "Kur: 53,1051 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_g_nd_z_9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-10",
+        "amount": 186.51,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Kur : 53,6159 TL",
+        "description": "Kur : 53,6159 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_g_nd_z_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-24",
+        "amount": 185.9,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Kur : 53,7918",
+        "description": "Kur : 53,7918",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex__orapci_haci_bayram",
+    "name": "ÇORAPCI HACI BAYRAM",
+    "currency": "TL",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (ÇORAPCI HACI BAYRAM)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex__orapci_haci_bayram_3",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-01-01",
+        "amount": 257000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "2024 DEVİR",
+        "description": "2024 DEVİR",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_ceyhun___balikes_r__zzet",
+    "name": "CEYHUN YEŞİLDİREK (Balıkesir İzzet)",
+    "currency": "EUR",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (CEYHUN - BALIKESİR İZZET)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_ceyhun___balikes_r__zzet_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2026-01-01",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 1332.64,
+        "currency": "EUR",
+        "amount": 1332.64,
+        "invoiceNo": "DEVIR-2025",
+        "description": "2025 DEVİR"
+      },
+      {
+        "id": "tx_cust_ex_ceyhun___balikes_r__zzet_4",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-06-18",
+        "quantity": 800,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 1040,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ceyhun___balikes_r__zzet_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-19",
+        "amount": 765,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ceyhun___balikes_r__zzet_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-17",
+        "amount": 739.18,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ceyhun___balikes_r__zzet_7",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-04",
+        "amount": 86.04,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "(100 DOLAR)",
+        "description": "(100 DOLAR)",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ceyhun___balikes_r__zzet_8",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-11",
+        "amount": 88.85,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ceyhun___balikes_r__zzet_9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-18",
+        "amount": 100,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ceyhun___balikes_r__zzet_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-25",
+        "amount": 100,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "ÖDEME",
+        "description": "ÖDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_ramazan_ye__ld_rek",
+    "name": "YEŞİLDİREK RAMAZAN",
+    "currency": "USD",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (RAMAZAN YEŞİLDİREK)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2026-01-01",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 30913,
+        "currency": "USD",
+        "amount": 30913,
+        "invoiceNo": "DEVIR-2025",
+        "description": "2025 DEVİR"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_4",
+        "type": "SHIPMENT",
+        "productName": "TEKLİ BOXER",
+        "date": "2026-01-20",
+        "quantity": 17790,
+        "unit": "Adet",
+        "unitPrice": 1.6,
+        "currency": "USD",
+        "amount": 28464,
+        "invoiceNo": "",
+        "description": "TEKLİ BOXER"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_5",
+        "type": "SHIPMENT",
+        "productName": "TEKLİ BATTAL BOXER",
+        "date": "2026-01-20",
+        "quantity": 1200,
+        "unit": "Adet",
+        "unitPrice": 1.25,
+        "currency": "USD",
+        "amount": 1500,
+        "invoiceNo": "",
+        "description": "TEKLİ BATTAL BOXER"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_6",
+        "type": "SHIPMENT",
+        "productName": "TEKLİ BOXER",
+        "date": "2026-01-28",
+        "quantity": 960,
+        "unit": "Adet",
+        "unitPrice": 1.1,
+        "currency": "USD",
+        "amount": 1056,
+        "invoiceNo": "",
+        "description": "TEKLİ BOXER"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_7",
+        "type": "SHIPMENT",
+        "productName": "BATTAL BOXER",
+        "date": "2026-01-28",
+        "quantity": 360,
+        "unit": "Adet",
+        "unitPrice": 1.25,
+        "currency": "USD",
+        "amount": 450,
+        "invoiceNo": "",
+        "description": "BATTAL BOXER"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_8",
+        "type": "SHIPMENT",
+        "productName": "Tekli Boxer",
+        "date": "2026-03-11",
+        "quantity": 960,
+        "unit": "Adet",
+        "unitPrice": 1.1,
+        "currency": "USD",
+        "amount": 1056,
+        "invoiceNo": "",
+        "description": "Tekli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_9",
+        "type": "SHIPMENT",
+        "productName": "Tekli Battal Boxer",
+        "date": "2026-03-11",
+        "quantity": 360,
+        "unit": "Adet",
+        "unitPrice": 1.25,
+        "currency": "USD",
+        "amount": 450,
+        "invoiceNo": "",
+        "description": "Tekli Battal Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-17",
+        "amount": 15000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_11",
+        "type": "SHIPMENT",
+        "productName": "Tekli Boxer",
+        "date": "2026-04-02",
+        "quantity": 960,
+        "unit": "Adet",
+        "unitPrice": 1.1,
+        "currency": "USD",
+        "amount": 1056,
+        "invoiceNo": "",
+        "description": "Tekli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_12",
+        "type": "SHIPMENT",
+        "productName": "Tekli Battal Boxer",
+        "date": "2026-04-02",
+        "quantity": 360,
+        "unit": "Adet",
+        "unitPrice": 1.25,
+        "currency": "USD",
+        "amount": 450,
+        "invoiceNo": "",
+        "description": "Tekli Battal Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_13",
+        "type": "SHIPMENT",
+        "productName": "TEKLİ BATTAL BOXER",
+        "date": "2026-05-07",
+        "quantity": 1500,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "USD",
+        "amount": 2100,
+        "invoiceNo": "",
+        "description": "TEKLİ BATTAL BOXER"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_14",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-21",
+        "amount": 7000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_15",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-08",
+        "amount": 1000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme DOLAr",
+        "description": "Ödeme DOLAr",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_16",
+        "type": "SHIPMENT",
+        "productName": "TEKLİ BATTAL BOXER",
+        "date": "2026-05-16",
+        "quantity": 540,
+        "unit": "Adet",
+        "unitPrice": 1.25,
+        "currency": "USD",
+        "amount": 675,
+        "invoiceNo": "",
+        "description": "TEKLİ BATTAL BOXER"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_17",
+        "type": "SHIPMENT",
+        "productName": "TEKLİ BOXER",
+        "date": "2026-05-16",
+        "quantity": 1140,
+        "unit": "Adet",
+        "unitPrice": 1.1,
+        "currency": "USD",
+        "amount": 1584,
+        "invoiceNo": "",
+        "description": "TEKLİ BOXER"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_18",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-08",
+        "amount": 6000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "ödeme",
+        "description": "ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_19",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-06-16",
+        "quantity": 576,
+        "unit": "Adet",
+        "unitPrice": 3.25,
+        "currency": "USD",
+        "amount": 1872,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_20",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-19",
+        "amount": 1000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_21",
+        "type": "SHIPMENT",
+        "productName": "Tekli Boxer",
+        "date": "2026-06-24",
+        "quantity": 1440,
+        "unit": "Adet",
+        "unitPrice": 1.1,
+        "currency": "USD",
+        "amount": 1584,
+        "invoiceNo": "",
+        "description": "Tekli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_22",
+        "type": "SHIPMENT",
+        "productName": "Tekli Battal Boxer",
+        "date": "2026-06-24",
+        "quantity": 540,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "USD",
+        "amount": 729,
+        "invoiceNo": "",
+        "description": "Tekli Battal Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_23",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-10",
+        "amount": 1000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_24",
+        "type": "SHIPMENT",
+        "productName": "Tekli Boxer",
+        "date": "2026-07-13",
+        "quantity": 6400,
+        "unit": "Adet",
+        "unitPrice": 1.1,
+        "currency": "USD",
+        "amount": 7040,
+        "invoiceNo": "",
+        "description": "Tekli Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_25",
+        "type": "SHIPMENT",
+        "productName": "TEKLİ BATTAL BOXER",
+        "date": "2026-07-13",
+        "quantity": 2700,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "USD",
+        "amount": 3645,
+        "invoiceNo": "",
+        "description": "TEKLİ BATTAL BOXER"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_26",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-24",
+        "amount": 1000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_27",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-27",
+        "amount": 10000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_28",
+        "type": "SHIPMENT",
+        "productName": "Ck Tekli Ahtapot (M-L-XL-XXL-)",
+        "date": "2026-08-19",
+        "quantity": 480,
+        "unit": "Adet",
+        "unitPrice": 1.15,
+        "currency": "USD",
+        "amount": 552,
+        "invoiceNo": "",
+        "description": "Ck Tekli Ahtapot (M-L-XL-XXL-)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_29",
+        "type": "SHIPMENT",
+        "productName": "Ck Tekli Battal Ahtapot (3XL-4XL-5XL)",
+        "date": "2026-08-19",
+        "quantity": 180,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "USD",
+        "amount": 243,
+        "invoiceNo": "",
+        "description": "Ck Tekli Battal Ahtapot (3XL-4XL-5XL)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_30",
+        "type": "SHIPMENT",
+        "productName": "Ck Tekli Ahtapot (M-L-XL-XXL-)",
+        "date": "2026-08-28",
+        "quantity": 480,
+        "unit": "Adet",
+        "unitPrice": 1.15,
+        "currency": "USD",
+        "amount": 552,
+        "invoiceNo": "",
+        "description": "Ck Tekli Ahtapot (M-L-XL-XXL-)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_31",
+        "type": "SHIPMENT",
+        "productName": "Ck Tekli Battal Ahtapot (3XL-4XL-5XL)",
+        "date": "2026-08-28",
+        "quantity": 180,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "USD",
+        "amount": 243,
+        "invoiceNo": "",
+        "description": "Ck Tekli Battal Ahtapot (3XL-4XL-5XL)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_32",
+        "type": "SHIPMENT",
+        "productName": "Ck Tekli Ahtapot (M-L-XL-XXL-)",
+        "date": "2026-08-28",
+        "quantity": 480,
+        "unit": "Adet",
+        "unitPrice": 1.15,
+        "currency": "USD",
+        "amount": 552,
+        "invoiceNo": "",
+        "description": "Ck Tekli Ahtapot (M-L-XL-XXL-)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_33",
+        "type": "SHIPMENT",
+        "productName": "Ck Tekli Battal Ahtapot (3XL-4XL-5XL)",
+        "date": "2026-08-28",
+        "quantity": 180,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "USD",
+        "amount": 243,
+        "invoiceNo": "",
+        "description": "Ck Tekli Battal Ahtapot (3XL-4XL-5XL)"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_34",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-11",
+        "amount": 5000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_35",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-18",
+        "amount": 1000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_36",
+        "type": "SHIPMENT",
+        "productName": "Boxer",
+        "date": "2026-09-18",
+        "quantity": 3600,
+        "unit": "Adet",
+        "unitPrice": 1.35,
+        "currency": "USD",
+        "amount": 4860,
+        "invoiceNo": "",
+        "description": "Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ramazan_ye__ld_rek_37",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-25",
+        "amount": 1000,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_ali__elik",
+    "name": "ALİ ÇELİK",
+    "currency": "EUR",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (Ali Çelik)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_ali__elik_3",
+        "type": "SHIPMENT",
+        "productName": "Micro Slip",
+        "date": "2026-05-04",
+        "quantity": 2540,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 3302,
+        "invoiceNo": "",
+        "description": "Micro Slip"
+      },
+      {
+        "id": "tx_cust_ex_ali__elik_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-06",
+        "amount": 1000,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex__erafett_n_burgazler",
+    "name": "ŞERAFETTİN BURGAZLER",
+    "currency": "TL",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (ŞERAFETTİN BURGAZLER)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex__erafett_n_burgazler_3",
+        "type": "SHIPMENT",
+        "productName": "Calvin Klein",
+        "date": "2026-08-27",
+        "quantity": 312,
+        "unit": "Adet",
+        "unitPrice": 160,
+        "currency": "TL",
+        "amount": 49920,
+        "invoiceNo": "",
+        "description": "Calvin Klein"
+      },
+      {
+        "id": "tx_cust_ex__erafett_n_burgazler_4",
+        "type": "SHIPMENT",
+        "productName": "Tommy",
+        "date": "2026-08-27",
+        "quantity": 216,
+        "unit": "Adet",
+        "unitPrice": 160,
+        "currency": "TL",
+        "amount": 34560,
+        "invoiceNo": "",
+        "description": "Tommy"
+      },
+      {
+        "id": "tx_cust_ex__erafett_n_burgazler_5",
+        "type": "SHIPMENT",
+        "productName": "Otobüs Kargo",
+        "date": "2026-08-27",
+        "quantity": 1,
+        "unit": "Adet",
+        "unitPrice": 4900,
+        "currency": "TL",
+        "amount": 4900,
+        "invoiceNo": "",
+        "description": "Otobüs Kargo"
+      },
+      {
+        "id": "tx_cust_ex__erafett_n_burgazler_6",
+        "type": "SHIPMENT",
+        "productName": "Calvin Klein",
+        "date": "2025-09-17",
+        "quantity": 954,
+        "unit": "Adet",
+        "unitPrice": 160,
+        "currency": "TL",
+        "amount": 152640,
+        "invoiceNo": "",
+        "description": "Calvin Klein"
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_ye_ildirek_kaz_m",
+    "name": "YEŞİLDİREK KAZIM",
+    "currency": "EUR",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (Yeşildirek Kazım)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_ye_ildirek_kaz_m_3",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-08-27",
+        "quantity": 990,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 1287,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_ye_ildirek_kaz_m_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-04",
+        "amount": 516.26,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Dolar Alındı Parite",
+        "description": "Dolar Alındı Parite",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ye_ildirek_kaz_m_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-11",
+        "amount": 431.07,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Dolar Alındı Parite",
+        "description": "Dolar Alındı Parite",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ye_ildirek_kaz_m_7",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (XL/XXL)",
+        "date": "2026-09-16",
+        "quantity": 400,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 520,
+        "invoiceNo": "",
+        "description": "Micro Boxer (XL/XXL)"
+      },
+      {
+        "id": "tx_cust_ex_ye_ildirek_kaz_m_8",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer (M/L - L/XL)",
+        "date": "2026-09-16",
+        "quantity": 850,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 1105,
+        "invoiceNo": "",
+        "description": "Micro Boxer (M/L - L/XL)"
+      },
+      {
+        "id": "tx_cust_ex_ye_ildirek_kaz_m_9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-18",
+        "amount": 600,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_ye_ildirek_kaz_m_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-25",
+        "amount": 600,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex__orapci_h_sey_n",
+    "name": "ÇORAPCI HÜSEYİN",
+    "currency": "EUR",
+    "phone": "0533 300 10 08",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (ÇORAPCI HÜSEYİN)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex__orapci_h_sey_n_3",
+        "type": "SHIPMENT",
+        "productName": "Micro",
+        "date": "2026-04-12",
+        "quantity": 400,
+        "unit": "Adet",
+        "unitPrice": 1.3,
+        "currency": "EUR",
+        "amount": 520,
+        "invoiceNo": "",
+        "description": "Micro"
+      },
+      {
+        "id": "tx_cust_ex__orapci_h_sey_n_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-20",
+        "amount": 520,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_mehmet_karaku__ed_rne_pazar",
+    "name": "MEHMET KARAKUŞ (Edirne Pazar)",
+    "currency": "USD",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (MEHMET KARAKUŞ EDİRNE PAZAR)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_3",
+        "type": "SHIPMENT",
+        "productName": "2025 Yılından Devreden Bakiye",
+        "date": "2026-01-01",
+        "quantity": 1,
+        "unit": "Devir",
+        "unitPrice": 4124.64,
+        "currency": "USD",
+        "amount": 4124.64,
+        "invoiceNo": "DEVIR-2025",
+        "description": "2025 DEVİR"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-01-06",
+        "amount": 139.64,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "KUR : 42,9663 TL",
+        "description": "KUR : 42,9663 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_5",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-02-27",
+        "quantity": 31,
+        "unit": "Adet",
+        "unitPrice": 3.6529680365296806,
+        "currency": "USD",
+        "amount": 113.24,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_6",
+        "type": "SHIPMENT",
+        "productName": "5 li boxer",
+        "date": "2026-03-26",
+        "quantity": 23,
+        "unit": "Adet",
+        "unitPrice": 6.311622853484692,
+        "currency": "USD",
+        "amount": 145.17,
+        "invoiceNo": "",
+        "description": "5 li boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_7",
+        "type": "SHIPMENT",
+        "productName": "3'lü yeni",
+        "date": "2026-03-26",
+        "quantity": 20,
+        "unit": "Adet",
+        "unitPrice": 4.0574718343830165,
+        "currency": "USD",
+        "amount": 81.15,
+        "invoiceNo": "",
+        "description": "3'lü yeni"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_8",
+        "type": "SHIPMENT",
+        "productName": "3'lü eski",
+        "date": "2026-03-26",
+        "quantity": 19,
+        "unit": "Adet",
+        "unitPrice": 3.606641630562681,
+        "currency": "USD",
+        "amount": 68.53,
+        "invoiceNo": "",
+        "description": "3'lü eski"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-27",
+        "amount": 450.77,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "KUR 44.3684 TL",
+        "description": "KUR 44.3684 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-15",
+        "amount": 268.17,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Kur : 44,7485",
+        "description": "Kur : 44,7485",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_11",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-04-15",
+        "quantity": 18,
+        "unit": "Adet",
+        "unitPrice": 6.257192978535594,
+        "currency": "USD",
+        "amount": 112.63,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_12",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-04-15",
+        "quantity": 32,
+        "unit": "Adet",
+        "unitPrice": 4.022481200487167,
+        "currency": "USD",
+        "amount": 128.72,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_13",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer Eski",
+        "date": "2026-04-15",
+        "quantity": 10,
+        "unit": "Adet",
+        "unitPrice": 3.575538844877482,
+        "currency": "USD",
+        "amount": 35.76,
+        "invoiceNo": "",
+        "description": "3'lü Boxer Eski"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_14",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-04-15",
+        "quantity": 73,
+        "unit": "Adet",
+        "unitPrice": 2.0112406002435836,
+        "currency": "USD",
+        "amount": 146.82,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_15",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-05-05",
+        "quantity": 24,
+        "unit": "Adet",
+        "unitPrice": 6.303176137280965,
+        "currency": "USD",
+        "amount": 151.28,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_16",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-05-05",
+        "quantity": 16,
+        "unit": "Adet",
+        "unitPrice": 4.091535387357819,
+        "currency": "USD",
+        "amount": 65.46,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_17",
+        "type": "SHIPMENT",
+        "productName": "3'lü boxer",
+        "date": "2026-05-05",
+        "quantity": 17,
+        "unit": "Adet",
+        "unitPrice": 3.538625199877033,
+        "currency": "USD",
+        "amount": 60.16,
+        "invoiceNo": "",
+        "description": "3'lü boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_18",
+        "type": "SHIPMENT",
+        "productName": "3'lü Slip",
+        "date": "2026-05-05",
+        "quantity": 12,
+        "unit": "Adet",
+        "unitPrice": 4.423281499846291,
+        "currency": "USD",
+        "amount": 53.08,
+        "invoiceNo": "",
+        "description": "3'lü Slip"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_19",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-05-07",
+        "quantity": 22,
+        "unit": "Adet",
+        "unitPrice": 6.300027189591028,
+        "currency": "USD",
+        "amount": 138.6,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_20",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-05-07",
+        "quantity": 17,
+        "unit": "Adet",
+        "unitPrice": 4.089491333594176,
+        "currency": "USD",
+        "amount": 69.52,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_21",
+        "type": "SHIPMENT",
+        "productName": "3'lü boxer",
+        "date": "2026-05-07",
+        "quantity": 4,
+        "unit": "Adet",
+        "unitPrice": 3.5368573695949634,
+        "currency": "USD",
+        "amount": 14.15,
+        "invoiceNo": "",
+        "description": "3'lü boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_22",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-05-07",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 1.64724,
+        "currency": "USD",
+        "amount": 164.72,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_23",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-04",
+        "amount": 442.62,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Kur: 45,1853 TL",
+        "description": "Kur: 45,1853 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_24",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-08",
+        "amount": 220.89,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Kur : 45,2714",
+        "description": "Kur : 45,2714",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_25",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-05-15",
+        "quantity": 36,
+        "unit": "Adet",
+        "unitPrice": 4.129464285714286,
+        "currency": "USD",
+        "amount": 17.05,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_26",
+        "type": "SHIPMENT",
+        "productName": "3'lü slip",
+        "date": "2026-05-15",
+        "quantity": 16,
+        "unit": "Adet",
+        "unitPrice": 4.464285714285714,
+        "currency": "USD",
+        "amount": 19.93,
+        "invoiceNo": "",
+        "description": "3'lü slip"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_27",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-05-15",
+        "quantity": 20,
+        "unit": "Adet",
+        "unitPrice": 1.6,
+        "currency": "USD",
+        "amount": 32,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_28",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-05-15",
+        "quantity": 22,
+        "unit": "Adet",
+        "unitPrice": 6.4,
+        "currency": "USD",
+        "amount": 140.8,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_29",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-15",
+        "amount": 197.93,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "45.4695",
+        "description": "45.4695",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_30",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-24",
+        "amount": 218.75,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Kur 45.7134",
+        "description": "Kur 45.7134",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_31",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-05-29",
+        "quantity": 14,
+        "unit": "Adet",
+        "unitPrice": 6.4,
+        "currency": "USD",
+        "amount": 89.6,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_32",
+        "type": "SHIPMENT",
+        "productName": "3'lü boxer",
+        "date": "2026-05-29",
+        "quantity": 33,
+        "unit": "Adet",
+        "unitPrice": 4,
+        "currency": "USD",
+        "amount": 132,
+        "invoiceNo": "",
+        "description": "3'lü boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_33",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-05-29",
+        "quantity": 10,
+        "unit": "Adet",
+        "unitPrice": 3.5000678138138928,
+        "currency": "USD",
+        "amount": 35,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_34",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-05-29",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 1.63,
+        "currency": "USD",
+        "amount": 163,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_35",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-12",
+        "amount": 433.19,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_36",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-06-23",
+        "quantity": 47,
+        "unit": "Adet",
+        "unitPrice": 6.4,
+        "currency": "USD",
+        "amount": 300.8,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_37",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-06-23",
+        "quantity": 38,
+        "unit": "Adet",
+        "unitPrice": 3.987713531281996,
+        "currency": "USD",
+        "amount": 151.53,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_38",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-06-23",
+        "quantity": 10,
+        "unit": "Adet",
+        "unitPrice": 1.5959999999999999,
+        "currency": "USD",
+        "amount": 15.96,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_39",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-08-06",
+        "quantity": 23,
+        "unit": "Adet",
+        "unitPrice": 6.4,
+        "currency": "USD",
+        "amount": 147.2,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_40",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-08-06",
+        "quantity": 26,
+        "unit": "Adet",
+        "unitPrice": 4,
+        "currency": "USD",
+        "amount": 104,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_41",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-08-06",
+        "quantity": 120,
+        "unit": "Adet",
+        "unitPrice": 1.6,
+        "currency": "USD",
+        "amount": 192,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_42",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-08-12",
+        "amount": 251.29,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "öDEME",
+        "description": "öDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_43",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-09-10",
+        "quantity": 35,
+        "unit": "Adet",
+        "unitPrice": 6.4,
+        "currency": "USD",
+        "amount": 224,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_44",
+        "type": "SHIPMENT",
+        "productName": "3'lü Ödeme",
+        "date": "2026-09-10",
+        "quantity": 37,
+        "unit": "Adet",
+        "unitPrice": 4,
+        "currency": "USD",
+        "amount": 148,
+        "invoiceNo": "",
+        "description": "3'lü Ödeme"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_45",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-14",
+        "amount": 401.91,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_46",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-09-17",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 1.73,
+        "currency": "USD",
+        "amount": 173,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_47",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-09-17",
+        "quantity": 38,
+        "unit": "Adet",
+        "unitPrice": 4,
+        "currency": "USD",
+        "amount": 152,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_48",
+        "type": "SHIPMENT",
+        "productName": "5'li Erkek Boxer",
+        "date": "2026-09-17",
+        "quantity": 48,
+        "unit": "Adet",
+        "unitPrice": 6.4,
+        "currency": "USD",
+        "amount": 307.2,
+        "invoiceNo": "",
+        "description": "5'li Erkek Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_49",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-09-27",
+        "amount": 408.26,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_50",
+        "type": "SHIPMENT",
+        "productName": "Ucuz Boxer",
+        "date": "2026-09-30",
+        "quantity": 100,
+        "unit": "Adet",
+        "unitPrice": 3,
+        "currency": "USD",
+        "amount": 300,
+        "invoiceNo": "",
+        "description": "Ucuz Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_51",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-09-30",
+        "quantity": 50,
+        "unit": "Adet",
+        "unitPrice": 4,
+        "currency": "USD",
+        "amount": 200,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_52",
+        "type": "SHIPMENT",
+        "productName": "5'li Boxer",
+        "date": "2026-09-30",
+        "quantity": 9,
+        "unit": "Adet",
+        "unitPrice": 6.4,
+        "currency": "USD",
+        "amount": 57.6,
+        "invoiceNo": "",
+        "description": "5'li Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_karaku__ed_rne_pazar_53",
+        "type": "SHIPMENT",
+        "productName": "Slip Penye",
+        "date": "2026-10-01",
+        "quantity": 78,
+        "unit": "Adet",
+        "unitPrice": 4,
+        "currency": "USD",
+        "amount": 312,
+        "invoiceNo": "",
+        "description": "Slip Penye"
+      }
+    ]
+  },
+  {
+    "id": "cust_ex__engelk_y_akin",
+    "name": "ÇENGELKÖY AKIN (Sancaktepe)",
+    "currency": "TL",
+    "phone": "0537 356 7896",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (ÇENGELKÖY AKIN)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex__engelk_y_akin_3",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer",
+        "date": "2026-02-16",
+        "quantity": 2462,
+        "unit": "Adet",
+        "unitPrice": 66,
+        "currency": "TL",
+        "amount": 162492,
+        "invoiceNo": "",
+        "description": "Micro Boxer"
+      },
+      {
+        "id": "tx_cust_ex__engelk_y_akin_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-26",
+        "amount": 55000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex__engelk_y_akin_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-10",
+        "amount": 30000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex__engelk_y_akin_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-24",
+        "amount": 19000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex__engelk_y_akin_7",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-08",
+        "amount": 20000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex__engelk_y_akin_8",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-26",
+        "amount": 20000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex__engelk_y_akin_9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-06-16",
+        "amount": 18500,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_mehmet_boz",
+    "name": "MEHMET BOZ",
+    "currency": "TL",
+    "phone": "0544 521 46 58",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (MEHMET BOZ)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_mehmet_boz_3",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-03-24",
+        "quantity": 144,
+        "unit": "Adet",
+        "unitPrice": 165,
+        "currency": "TL",
+        "amount": 23760,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_boz_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-03-24",
+        "amount": 12000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "ÖDEME",
+        "description": "ÖDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_boz_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-15",
+        "amount": 12000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "ödeme",
+        "description": "ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_boz_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-04-15",
+        "amount": 15000,
+        "currency": "TL",
+        "method": "Kredi Kartı / POS",
+        "ref": "ödeme POS",
+        "description": "ödeme POS",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mehmet_boz_7",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-04-15",
+        "quantity": 144,
+        "unit": "Adet",
+        "unitPrice": 180,
+        "currency": "TL",
+        "amount": 25920,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_mehmet_boz_8",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-05-08",
+        "amount": 10500,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_merter_hakan",
+    "name": "Merter HAKAN",
+    "currency": "TL",
+    "phone": "0506 973 07 37",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (Merter HAKAN)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_merter_hakan_3",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-07-02",
+        "quantity": 172,
+        "unit": "Adet",
+        "unitPrice": 150,
+        "currency": "TL",
+        "amount": 25800,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_merter_hakan_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-02",
+        "amount": 25800,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_merter_hakan_5",
+        "type": "SHIPMENT",
+        "productName": "3'lü Boxer",
+        "date": "2026-07-10",
+        "quantity": 288,
+        "unit": "Adet",
+        "unitPrice": 150,
+        "currency": "TL",
+        "amount": 43200,
+        "invoiceNo": "",
+        "description": "3'lü Boxer"
+      },
+      {
+        "id": "tx_cust_ex_merter_hakan_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2026-07-28",
+        "amount": 43200,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_hakan_da_delen",
+    "name": "Hakan DAĞDELEN",
+    "currency": "EUR",
+    "phone": "0536 286 60 20",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (Hakan DAĞDELEN)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_hakan_da_delen_3",
+        "type": "SHIPMENT",
+        "productName": "Micro",
+        "date": "2024-06-10",
+        "quantity": 1300,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 1820,
+        "invoiceNo": "",
+        "description": "Micro"
+      },
+      {
+        "id": "tx_cust_ex_hakan_da_delen_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2024-06-12",
+        "amount": 577,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme KUR: 34,70",
+        "description": "Ödeme KUR: 34,70",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_hakan_da_delen_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2024-08-02",
+        "amount": 280,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "ödme kor 35.70",
+        "description": "ödme kor 35.70",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_hakan_da_delen_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2024-09-09",
+        "amount": 266,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "ödeme",
+        "description": "ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_hakan_da_delen_7",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2024-10-24",
+        "amount": 270,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_lalel__musa",
+    "name": "LALELİ MUSA",
+    "currency": "EUR",
+    "phone": "0533 230 30 72",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (LALELİ MUSA)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_lalel__musa_5",
+        "type": "SHIPMENT",
+        "productName": "Micro Boxer Battal",
+        "date": "2026-09-28",
+        "quantity": 220,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 308,
+        "invoiceNo": "",
+        "description": "Micro Boxer Battal"
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_beyazit_g_khan",
+    "name": "BEYAZIT GÖKHAN",
+    "currency": "EUR",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (BEYAZIT GÖKHAN)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_beyazit_g_khan_3",
+        "type": "SHIPMENT",
+        "productName": "micro",
+        "date": "2024-04-29",
+        "quantity": 1680,
+        "unit": "Adet",
+        "unitPrice": 1.4,
+        "currency": "EUR",
+        "amount": 2352,
+        "invoiceNo": "",
+        "description": "micro"
+      },
+      {
+        "id": "tx_cust_ex_beyazit_g_khan_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2024-06-14",
+        "amount": 291,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "ödeme",
+        "description": "ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_beyazit_g_khan_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2024-07-31",
+        "amount": 281,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "ödeme",
+        "description": "ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_beyazit_g_khan_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2024-10-05",
+        "amount": 265.11,
+        "currency": "EUR",
+        "method": "Elden Nakit",
+        "ref": "ödeme",
+        "description": "ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_adem_kaya",
+    "name": "ADEM KAYA",
+    "currency": "EUR",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (ADEM KAYA)",
+    "transactions": []
+  },
+  {
+    "id": "cust_ex__akir_tekst_l_samsun",
+    "name": "ÇAKIR TEKSTİL SAMSUN",
+    "currency": "USD",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (ÇAKIR TEKSTİL SAMSUN)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex__akir_tekst_l_samsun_4",
+        "type": "SHIPMENT",
+        "productName": "5.000 € PARİTE : 1,1365",
+        "date": "2023-05-05",
+        "quantity": 1,
+        "unit": "Parti",
+        "unitPrice": 5682.5,
+        "currency": "USD",
+        "amount": 5682.5,
+        "invoiceNo": "",
+        "description": "5.000 € PARİTE : 1,1365"
+      },
+      {
+        "id": "tx_cust_ex__akir_tekst_l_samsun_5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2023-05-05",
+        "amount": 2330,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "mal dikimi kur 19400    45204 tl atlet dikildi 11301 adet 4 tl",
+        "description": "mal dikimi kur 19400    45204 tl atlet dikildi 11301 adet 4 tl",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex__akir_tekst_l_samsun_6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2023-05-10",
+        "amount": 992,
+        "currency": "USD",
+        "method": "Elden Nakit",
+        "ref": "boxer kur 19400    19250 boxer dikldi 3850 adet 5 tl",
+        "description": "boxer kur 19400    19250 boxer dikldi 3850 adet 5 tl",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_baran_atolyec_",
+    "name": "BARAN ATÖLYECİ",
+    "currency": "TL",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (BARAN ATOLYECİ)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_baran_atolyec__3",
+        "type": "SHIPMENT",
+        "productName": "",
+        "date": "2025-07-27",
+        "quantity": 158900,
+        "unit": "Adet",
+        "unitPrice": 2.5,
+        "currency": "TL",
+        "amount": 397250,
+        "invoiceNo": "",
+        "description": ""
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2025-07-27",
+        "amount": 50000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "EYÜP TERCAN ÖDEME",
+        "description": "EYÜP TERCAN ÖDEME",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__5",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2025-06-14",
+        "amount": 50000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "",
+        "description": "",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__6",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2025-06-20",
+        "amount": 50000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "",
+        "description": "",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__7",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2025-06-19",
+        "amount": 50000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "",
+        "description": "",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__8",
+        "type": "SHIPMENT",
+        "productName": "Baskı",
+        "date": "2025-09-05",
+        "quantity": 24600,
+        "unit": "Adet",
+        "unitPrice": 1.25,
+        "currency": "TL",
+        "amount": 30750,
+        "invoiceNo": "",
+        "description": "Baskı"
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__9",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2025-09-05",
+        "amount": 100000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__10",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2025-09-27",
+        "amount": 100000,
+        "currency": "TL",
+        "method": "Banka Havalesi / EFT",
+        "ref": "Barana Havale",
+        "description": "Barana Havale",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__11",
+        "type": "SHIPMENT",
+        "productName": "",
+        "date": "2025-10-18",
+        "quantity": 9750,
+        "unit": "Adet",
+        "unitPrice": 2.5,
+        "currency": "TL",
+        "amount": 24375,
+        "invoiceNo": "",
+        "description": ""
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__12",
+        "type": "SHIPMENT",
+        "productName": "",
+        "date": "2025-10-25",
+        "quantity": 11850,
+        "unit": "Adet",
+        "unitPrice": 2.5,
+        "currency": "TL",
+        "amount": 29625,
+        "invoiceNo": "",
+        "description": ""
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__13",
+        "type": "SHIPMENT",
+        "productName": "",
+        "date": "2025-10-30",
+        "quantity": 8000,
+        "unit": "Adet",
+        "unitPrice": 2.5,
+        "currency": "TL",
+        "amount": 20000,
+        "invoiceNo": "",
+        "description": ""
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__14",
+        "type": "SHIPMENT",
+        "productName": "",
+        "date": "2025-11-13",
+        "quantity": 6270,
+        "unit": "Adet",
+        "unitPrice": 2.5,
+        "currency": "TL",
+        "amount": 15675,
+        "invoiceNo": "",
+        "description": ""
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__15",
+        "type": "SHIPMENT",
+        "productName": "",
+        "date": "2025-11-13",
+        "quantity": 6250,
+        "unit": "Adet",
+        "unitPrice": 2.5,
+        "currency": "TL",
+        "amount": 15625,
+        "invoiceNo": "",
+        "description": ""
+      },
+      {
+        "id": "tx_cust_ex_baran_atolyec__16",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2025-12-05",
+        "amount": 80000,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "Ödeme",
+        "description": "Ödeme",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      }
+    ]
+  },
+  {
+    "id": "cust_ex_mahmut_ernur_tekst_l",
+    "name": "BARAN ATÖLYECİ",
+    "currency": "TL",
+    "phone": "",
+    "contactPerson": "",
+    "address": "İstanbul / Türkiye",
+    "notes": "Excel 2026 Aktarımı (MAHMUT ERNUR TEKSTİL)",
+    "transactions": [
+      {
+        "id": "tx_cust_ex_mahmut_ernur_tekst_l_3",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2023-11-03",
+        "amount": 3521.25,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "100.000 TL Borç Verildi Kur : 28,3990 TL",
+        "description": "100.000 TL Borç Verildi Kur : 28,3990 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
+      },
+      {
+        "id": "tx_cust_ex_mahmut_ernur_tekst_l_4",
+        "type": "PAYMENT",
+        "productName": "",
+        "date": "2023-11-20",
+        "amount": 3101.28,
+        "currency": "TL",
+        "method": "Elden Nakit",
+        "ref": "89.183 TL Borç Verildi Kur : 28,7568 TL",
+        "description": "89.183 TL Borç Verildi Kur : 28,7568 TL",
+        "isCheck": false,
+        "isCash": true,
+        "isSenet": false
       }
     ]
   }
@@ -454,36 +5323,64 @@ function calculateCustomerTotals(customer, filterYear = appState.selectedYear) {
 // =========================================================
 
 function loadData() {
-  const saved = localStorage.getItem(STORAGE_KEY_TEXTILE);
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      appState.customers = parsed.customers || [];
-      if (parsed.settings) {
-        appState.settings = Object.assign({}, appState.settings, parsed.settings);
+  const legacyKeys = [
+    STORAGE_KEY_TEXTILE,
+    'TEKSTIL_CARI_V3_DATA',
+    'TEKSTIL_CARI_DATA',
+    'TEKSTIL_CARI_V2_DATA',
+    'MUTEAHHIT_CARI_V2_DATA',
+    'MUTEAHHIT_CARI_DATA'
+  ];
+
+  let localFound = false;
+  for (const k of legacyKeys) {
+    const saved = localStorage.getItem(k);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed && Array.isArray(parsed.customers) && parsed.customers.length > 0) {
+          appState.customers = parsed.customers;
+          if (parsed.settings) {
+            appState.settings = Object.assign({}, appState.settings, parsed.settings);
+          }
+          localFound = true;
+          // Güncel anahtara taşı
+          if (k !== STORAGE_KEY_TEXTILE) {
+            localStorage.setItem(STORAGE_KEY_TEXTILE, saved);
+          }
+          break;
+        }
+      } catch (e) {
+        console.error('Yedek verisi okunamadı:', e);
       }
-    } catch (e) {
-      console.error('Yedek verisi okunamadı:', e);
     }
   }
 
-  // Güvenlik Kilidi: Eğer liste boşsa zengin örnek tekstil portföyünü yükle
-  if (!appState.customers || appState.customers.length === 0) {
+  // Yalnızca sistemde kesinlikle hiçbir veri yoksa ve kullanıcı daha önce hiç giriş yapmadıysa
+  const setupDone = localStorage.getItem('TEKSTIL_SETUP_DONE');
+  if (!localFound && !setupDone) {
     appState.customers = JSON.parse(JSON.stringify(INITIAL_TEXTILE_CUSTOMERS));
+    localStorage.setItem('TEKSTIL_SETUP_DONE', 'true');
+    saveData(false); // Sunucuyu hemen zorla ezme
+  } else {
+    localStorage.setItem('TEKSTIL_SETUP_DONE', 'true');
   }
-  saveData();
 
   applySettings();
+  renderDashboard();
   initServerSync();
 }
 
-function saveData() {
+function saveData(syncToServer = true) {
+  const now = Date.now();
+  appState.lastModified = now;
   localStorage.setItem(STORAGE_KEY_TEXTILE, JSON.stringify({
     customers: appState.customers,
-    settings: appState.settings
+    settings: appState.settings,
+    lastModified: now
   }));
 
-  if (appState.isServerOnline) {
+  if (syncToServer && appState.isServerOnline) {
     pushDataToServer();
   }
 }
@@ -546,6 +5443,7 @@ async function initServerSync() {
     if (dataRes.ok) {
       const serverData = await dataRes.json();
       if (serverData && Array.isArray(serverData.customers) && serverData.customers.length > 0) {
+        // Sunucu verisi birincil kaynaktır - müşterileri ve işlemleri güncelle
         appState.customers = serverData.customers;
         if (serverData.settings && Object.keys(serverData.settings).length > 0) {
           appState.settings = Object.assign({}, appState.settings, serverData.settings);
@@ -554,9 +5452,11 @@ async function initServerSync() {
         applySettings();
         localStorage.setItem(STORAGE_KEY_TEXTILE, JSON.stringify({
           customers: appState.customers,
-          settings: appState.settings
+          settings: appState.settings,
+          lastModified: appState.lastModified
         }));
-      } else {
+      } else if (appState.customers && appState.customers.length > 0) {
+        // Sunucu boş ama yerelde veri varsa sunucuya gönder
         await pushDataToServer();
       }
 
@@ -1369,7 +6269,7 @@ function renderTransactionsList(customer) {
   // Filter by transaction type
   if (appState.txnFilterType !== 'ALL') {
     if (appState.txnFilterType === 'CHECK') {
-      filteredTxns = txns.filter(t => t.isCheck || t.method === 'Müşteri Çeki');
+      filteredTxns = txns.filter(t => isCheckOrSenet(t));
     } else if (appState.txnFilterType === 'KUR_FARKI') {
       filteredTxns = txns.filter(t => t.type === 'KUR_FARKI');
     } else {
@@ -1420,14 +6320,17 @@ function renderTransactionsList(customer) {
     const itemCurr = t.currency || customer.currency || 'TL';
     const isShipment = t.type === 'SHIPMENT';
     const isFx = t.type === 'KUR_FARKI';
-    const isCheck = t.isCheck || t.method === 'Müşteri Çeki';
+    const isDoc = isCheckOrSenet(t);
+    const isSenetDoc = isDoc && (t.method === 'Müşteri Senedi' || (t.checkNo || '').toUpperCase().includes('SENET'));
 
     let typeBadge = `<span class="badge-type-payment"><i class="fa-solid fa-hand-holding-dollar"></i> Tahsilat</span>`;
     if (isShipment) {
       typeBadge = `<span class="badge-type-shipment"><i class="fa-solid fa-truck-fast"></i> Mal Satışı</span>`;
     } else if (isFx) {
       typeBadge = `<span class="badge-type-kur-farki"><i class="fa-solid fa-scale-balanced"></i> Kur Farkı</span>`;
-    } else if (isCheck) {
+    } else if (isSenetDoc) {
+      typeBadge = `<span class="badge-type-payment"><i class="fa-solid fa-file-invoice text-gold"></i> Müşteri Senedi</span>`;
+    } else if (isDoc) {
       typeBadge = `<span class="badge-type-payment"><i class="fa-solid fa-money-check-dollar text-gold"></i> Müşteri Çeki</span>`;
     }
 
@@ -1507,7 +6410,8 @@ function renderMobileTransactionsList(customer, displayTxns, balanceMap) {
     const amt = Number(t.amount || 0);
     const itemCurr = t.currency || customer.currency || 'TL';
     const isShipment = t.type === 'SHIPMENT';
-    const isCheck = t.isCheck || t.method === 'Müşteri Çeki';
+    const isDoc = isCheckOrSenet(t);
+    const isSenetDoc = isDoc && (t.method === 'Müşteri Senedi' || (t.checkNo || '').toUpperCase().includes('SENET'));
     const isFx = t.type === 'KUR_FARKI';
 
     let badge = `<span class="badge-type-payment"><i class="fa-solid fa-hand-holding-dollar"></i> Tahsilat</span>`;
@@ -1515,7 +6419,9 @@ function renderMobileTransactionsList(customer, displayTxns, balanceMap) {
       badge = `<span class="badge-type-shipment"><i class="fa-solid fa-truck-fast"></i> Mal Satışı</span>`;
     } else if (isFx) {
       badge = `<span class="badge-type-kur-farki"><i class="fa-solid fa-scale-balanced"></i> Kur Farkı</span>`;
-    } else if (isCheck) {
+    } else if (isSenetDoc) {
+      badge = `<span class="badge-type-payment"><i class="fa-solid fa-file-invoice text-gold"></i> Senet</span>`;
+    } else if (isDoc) {
       badge = `<span class="badge-type-payment"><i class="fa-solid fa-money-check-dollar text-gold"></i> Çek</span>`;
     }
 
@@ -1523,8 +6429,8 @@ function renderMobileTransactionsList(customer, displayTxns, balanceMap) {
     let sub = '';
     if (isShipment && t.quantity) {
       sub = `${Number(t.quantity).toLocaleString('tr-TR')} ${t.unit || 'Adet'} × ${formatCurrency(t.unitPrice, itemCurr)}`;
-    } else if (isCheck) {
-      sub = `Vade: ${formatDate(t.dueDate)} | Banka: ${t.checkBank || '-'}`;
+    } else if (isDoc) {
+      sub = `Vade: ${formatDate(t.dueDate)} | Evrak: ${t.checkBank || (isSenetDoc ? 'Senet' : 'Çek')} (#${t.checkNo || '-'})`;
     } else if (isFx) {
       sub = `Giriş: ${t.entryRate ? t.entryRate.toFixed(2) + ' ₺' : '-'} ➔ Vade: ${t.exitRate ? Number(t.exitRate).toFixed(2) + ' ₺' : '-'}`;
     } else if (t.method) {
@@ -1709,7 +6615,7 @@ function openPaymentModal(customerId = null, editTxnId = null) {
       document.getElementById('payRef').value = txn.ref || '';
       document.getElementById('payDescription').value = txn.description || '';
 
-      if (txn.method === 'Müşteri Çeki' || txn.isCheck) {
+      if (txn.method === 'Müşteri Çeki' || txn.method === 'Müşteri Senedi' || isCheckOrSenet(txn)) {
         if (checkDetailsBox) checkDetailsBox.style.display = 'block';
         document.getElementById('payCheckNo').value = txn.checkNo || '';
         document.getElementById('payCheckBank').value = txn.checkBank || '';
@@ -1773,6 +6679,9 @@ function deleteTransaction(customerId, txnId) {
 function openModal(modalId) {
   const m = document.getElementById(modalId);
   if (m) m.classList.add('active');
+  if (modalId === 'modalBackup') {
+    loadBackupList();
+  }
 }
 
 function closeModal(modalId) {
@@ -1869,7 +6778,7 @@ function openStatementPreviewModal() {
   }
   if (appState.txnFilterType !== 'ALL') {
     if (appState.txnFilterType === 'CHECK') {
-      txns = txns.filter(t => t.isCheck || t.method === 'Müşteri Çeki');
+      txns = txns.filter(t => isCheckOrSenet(t));
     } else if (appState.txnFilterType === 'KUR_FARKI') {
       txns = txns.filter(t => t.type === 'KUR_FARKI');
     } else {
@@ -1908,7 +6817,7 @@ function openStatementPreviewModal() {
         runningBalance -= amt;
       }
 
-      let typeName = isShipment ? 'Mal Satışı' : (isFx ? 'Kur Farkı' : 'Tahsilat');
+      let typeName = isShipment ? 'Mal Satışı' : (isFx ? 'Kur Farkı' : (isCheckOrSenet(t) ? ((t.method === 'Müşteri Senedi' || (t.checkNo || '').toUpperCase().includes('SENET')) ? 'Müşteri Senedi' : 'Müşteri Çeki') : 'Tahsilat'));
       let itemDesc = isShipment 
         ? `${escapeHtml(t.productName || 'Ürün Satışı')}` 
         : `${escapeHtml(t.description || 'Ödeme')} ${t.ref ? `(${escapeHtml(t.ref)})` : ''}`;
@@ -1997,6 +6906,59 @@ function printStatementDirectly() {
 // VADELİ ÇEK VE OTOMATİK KUR FARKI MOTORU (CHECK & FX ENGINE)
 // =========================================================
 
+// =========================================================
+// VADELİ ÇEK VE SENET KONTROL MOTORU (NAKİT / HAVALE KESİNLİKLE HARİÇTİR)
+// =========================================================
+
+function isCheckOrSenet(t) {
+  if (!t || t.type !== 'PAYMENT') return false;
+
+  // 1. Nakit, Havale, EFT, POS kesinlikle Çek/Senet DEĞİLDİR
+  if (t.isCash === true) return false;
+  const method = (t.method || '').trim();
+  if (
+    method === 'Elden Nakit' || 
+    method === 'Banka Havalesi / EFT' || 
+    method === 'Banka Havalesi (Swift)' || 
+    method === 'Kredi Kartı / POS' || 
+    method === 'Kredi Kartı / Mail Order' || 
+    method === 'Banka Havalesi / Nakit'
+  ) {
+    return false;
+  }
+
+  // 2. Açıklamada nakit/havale/pos kelimeleri varsa kesinlikle hariç tut
+  const desc = ((t.description || '') + ' ' + (t.ref || '')).toUpperCase();
+  if (
+    desc.includes('NAKİT') || 
+    desc.includes('NAKIT') || 
+    desc.includes('POS') || 
+    desc.includes('HAVALE') || 
+    desc.includes('EFT') || 
+    desc.includes('KASA') ||
+    desc.includes('SENET ÖDEMES') ||
+    desc.includes('SENETİN ÖDEMESİ') ||
+    desc.includes('SENET ODEMESI') ||
+    desc.includes('ÖDEME ALINDI') ||
+    desc.includes('ODEME ALINDI')
+  ) {
+    return false;
+  }
+
+  // 3. SADECE açıkça Çek veya Senet olan ve geçerli bir vade tarihi bulunan işlemler
+  const isExplicit = (
+    t.isCheck === true || 
+    t.isSenet === true || 
+    method === 'Müşteri Çeki' || 
+    method === 'Müşteri Senedi' || 
+    desc.includes('ÇEK') || 
+    desc.includes('CEK') || 
+    desc.includes('SENET')
+  );
+
+  return isExplicit && !!(t.dueDate && t.dueDate.length >= 8);
+}
+
 function processMaturedChecks(notifyUser = false) {
   const today = getTodayDateStr();
   let processedCount = 0;
@@ -2008,12 +6970,14 @@ function processMaturedChecks(notifyUser = false) {
     if (!Array.isArray(customer.transactions)) return;
 
     customer.transactions.forEach(t => {
-      const isCheck = t.isCheck || t.method === 'Müşteri Çeki' || !!t.dueDate;
-      if (!isCheck) return;
+      // SADECE VE SADECE ÇEK VEYA SENET İŞLEMLERİNE UYGULANIR
+      if (!isCheckOrSenet(t)) return;
 
-      // Condition: Due date has arrived/passed, autoFx is enabled, and FX not yet applied
-      if (t.dueDate && t.dueDate <= today && t.autoFx && !t.fxApplied) {
+      // Condition: Due date has arrived/passed, autoFx not explicitly disabled, and FX not yet applied
+      if (t.dueDate && t.dueDate <= today && t.autoFx !== false && !t.fxApplied) {
         const checkCurr = (t.currency || customer.currency || 'TL').toUpperCase();
+        if (checkCurr === 'TL') return; // TL çeklerde kur farkı oluşmaz
+
         let currentRate = 0;
 
         // Güncel TCMB kuru belirleme
@@ -2025,16 +6989,23 @@ function processMaturedChecks(notifyUser = false) {
           currentRate = latestTcmbRates?.USD?.forexSelling || 49.0348;
         }
 
-        const entryRate = Number(t.entryRate || 0);
+        let entryRate = Number(t.entryRate || 0);
+        if (entryRate <= 0) {
+          entryRate = checkCurr === 'EUR' ? 52.0000 : 46.5000;
+          t.entryRate = entryRate;
+        }
 
         if (entryRate > 0 && currentRate > 0) {
           const rateDiff = currentRate - entryRate;
 
           // Kur farkı mevcut ise
-          if (Math.abs(rateDiff) >= 0.001) {
+          if (Math.abs(rateDiff) >= 0.0001) {
             const checkAmount = Number(t.amount || 0);
             const fxDifferenceTL = Number((rateDiff * checkAmount).toFixed(2));
             const fxAmount = Math.abs(fxDifferenceTL);
+
+            const isSenet = (t.method === 'Müşteri Senedi' || (t.checkNo || '').toUpperCase().includes('SENET'));
+            const docType = isSenet ? 'Senet' : 'Çek';
 
             const fxTxn = {
               id: 'tx_fx_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
@@ -2043,13 +7014,13 @@ function processMaturedChecks(notifyUser = false) {
               isCredit: fxDifferenceTL >= 0,
               date: today,
               amount: fxAmount,
-              currency: customer.currency || 'TL',
+              currency: 'TL',
               checkId: t.id,
-              checkNo: t.checkNo || t.ref || 'Çek',
+              checkNo: t.checkNo || t.ref || docType,
               entryRate: entryRate,
               exitRate: currentRate,
               rateDiff: rateDiff,
-              description: `Vade Sonu TCMB Kur Farkı (#${t.checkNo || 'Çek'} Vadesi: ${formatDate(t.dueDate)}). Alındığı Gün Kuru: ${entryRate.toFixed(4)} ₺ ➔ Vade Kuru: ${currentRate.toFixed(4)} ₺ (Fark: ${rateDiff >= 0 ? '+' : ''}${rateDiff.toFixed(4)} ₺)`
+              description: `Vade Sonu TCMB Kur Farkı (#${t.checkNo || docType} Vadesi: ${formatDate(t.dueDate)}). Alındığı Gün: ${entryRate.toFixed(4)} ₺ ➔ Vade Kuru: ${currentRate.toFixed(4)} ₺ (Fark: ${rateDiff >= 0 ? '+' : ''}${rateDiff.toFixed(4)} ₺)`
             };
 
             customer.transactions.push(fxTxn);
@@ -2077,16 +7048,270 @@ function processMaturedChecks(notifyUser = false) {
     renderDashboard();
     if (appState.activeDetailCustomerId) renderLedgerDetail();
     if (notifyUser) {
-      showToast(`${processedCount} adet vadeli çekin güncel TCMB kur farkı hesaplanarak müşteri carilerine eklendi!`, 'success');
+      showToast(`${processedCount} adet vadeli çek/senedin güncel TCMB kur farkı hesaplanarak müşteri carilerine eklendi!`, 'success');
     }
   } else if (notifyUser) {
-    showToast("Vadesi gelmiş ve kur farkı hesaplanmamış çek bulunmuyor.", "info");
+    showToast("Vadesi gelmiş ve kur farkı hesaplanmamış çek/senet bulunmuyor.", "info");
   }
 }
 
-function processAllMaturedChecks(notifyUser = true) {
-  processMaturedChecks(notifyUser);
+// =========================================================
+// AKILLI ÇEK VE SENET KUR FARKI MODAL FONKSİYONLARI
+// =========================================================
+
+function openApplyFxModal(custId, txnId) {
+  const customer = (appState.customers || []).find(c => c.id === custId);
+  if (!customer) {
+    showToast("Müşteri bulunamadı!", "danger");
+    return;
+  }
+  const txn = (customer.transactions || []).find(t => t.id === txnId);
+  if (!txn) {
+    showToast("Evrak kaydı bulunamadı!", "danger");
+    return;
+  }
+
+  // KESİN KONTROL: SADECE ÇEK VEYA SENET
+  if (!isCheckOrSenet(txn)) {
+    showToast("Bu işlem bir vadeli çek veya senet değildir. Yalnızca vadeli çek ve senetlere kur farkı hesaplanabilir!", "warning");
+    return;
+  }
+
+  const curr = (txn.currency || customer.currency || 'TL').toUpperCase();
+  const today = getTodayDateStr();
+  const isMatured = txn.dueDate ? txn.dueDate <= today : false;
+  const isSenet = (txn.method === 'Müşteri Senedi' || (txn.checkNo || '').toUpperCase().includes('SENET'));
+  const docType = isSenet ? 'Senet' : 'Çek';
+
+  // Güncel TCMB kuru
+  let defaultCurrentRate = 0;
+  if (curr === 'USD') {
+    defaultCurrentRate = latestTcmbRates?.USD?.forexSelling || latestTcmbRates?.USD?.banknoteSelling || 49.0348;
+  } else if (curr === 'EUR') {
+    defaultCurrentRate = latestTcmbRates?.EUR?.forexSelling || latestTcmbRates?.EUR?.banknoteSelling || 55.3963;
+  } else {
+    defaultCurrentRate = 1.0;
+  }
+
+  // Giriş kuru
+  let entryRate = Number(txn.entryRate || 0);
+  if (entryRate <= 0) {
+    if (curr === 'USD') entryRate = 46.5000;
+    else if (curr === 'EUR') entryRate = 52.0000;
+    else entryRate = 1.0;
+  }
+
+  const currentRate = txn.maturedRate ? Number(txn.maturedRate) : defaultCurrentRate;
+
+  // Modal alanlarını doldur
+  const elCustId = document.getElementById('fxCustId');
+  const elTxnId = document.getElementById('fxTxnId');
+  const elCustName = document.getElementById('fxCustName');
+  const elCheckInfo = document.getElementById('fxCheckInfo');
+  const elDueDate = document.getElementById('fxDueDateDisplay');
+  const elAmount = document.getElementById('fxCheckAmountDisplay');
+  const elEntryRate = document.getElementById('fxEntryRate');
+  const elCurrentRate = document.getElementById('fxCurrentRate');
+  const elDesc = document.getElementById('fxCustomDesc');
+
+  if (elCustId) elCustId.value = custId;
+  if (elTxnId) elTxnId.value = txnId;
+  if (elCustName) elCustName.textContent = customer.name;
+  if (elCheckInfo) elCheckInfo.textContent = `[${docType}] ${txn.checkBank ? txn.checkBank + ' - ' : ''}No: ${txn.checkNo || txn.ref || 'Belirtilmedi'}`;
+  if (elDueDate) elDueDate.textContent = formatDate(txn.dueDate);
+  if (elAmount) elAmount.textContent = formatCurrency(txn.amount, curr);
+
+  const statusBadge = document.getElementById('fxStatusBadge');
+  if (statusBadge) {
+    if (txn.fxApplied) {
+      statusBadge.textContent = 'Kur Farkı Zaten İşlendi';
+      statusBadge.style.background = 'rgba(16, 185, 129, 0.15)';
+      statusBadge.style.color = '#10b981';
+      statusBadge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+    } else if (isMatured) {
+      statusBadge.textContent = 'Vadesi Geldi';
+      statusBadge.style.background = 'rgba(239, 68, 68, 0.15)';
+      statusBadge.style.color = '#ef4444';
+      statusBadge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+    } else {
+      statusBadge.textContent = 'Vadesi Henüz Gelmedi';
+      statusBadge.style.background = 'rgba(234, 179, 8, 0.15)';
+      statusBadge.style.color = '#facc15';
+      statusBadge.style.borderColor = 'rgba(234, 179, 8, 0.3)';
+    }
+  }
+
+  const priorStatus = document.getElementById('fxPriorStatusDisplay');
+  if (priorStatus) {
+    if (txn.fxApplied) {
+      priorStatus.innerHTML = `<span style="color:#10b981; font-weight:700;"><i class="fa-solid fa-check"></i> İşlendi (${(Number(txn.fxAmount || 0)).toLocaleString('tr-TR', {minimumFractionDigits:2})} ₺)</span>`;
+    } else {
+      priorStatus.innerHTML = `<span style="color:#94a3b8;">Henüz İşlenmedi</span>`;
+    }
+  }
+
+  if (elEntryRate) elEntryRate.value = entryRate.toFixed(4);
+  if (elCurrentRate) elCurrentRate.value = currentRate.toFixed(4);
+
+  if (elDesc) {
+    elDesc.value = `Vade Kur Farkı (#${txn.checkNo || docType} Vade: ${formatDate(txn.dueDate)} - ${docType})`;
+  }
+
+  recalculateFxModal();
+  openModal('modalApplyFx');
+}
+
+function recalculateFxModal() {
+  const custId = document.getElementById('fxCustId')?.value;
+  const txnId = document.getElementById('fxTxnId')?.value;
+  const customer = (appState.customers || []).find(c => c.id === custId);
+  if (!customer) return;
+  const txn = (customer.transactions || []).find(t => t.id === txnId);
+  if (!txn) return;
+
+  const curr = (txn.currency || customer.currency || 'TL').toUpperCase();
+  const entryRate = parseFloat(document.getElementById('fxEntryRate')?.value) || 0;
+  const currentRate = parseFloat(document.getElementById('fxCurrentRate')?.value) || 0;
+  const checkAmount = parseFloat(txn.amount) || 0;
+
+  const displayEl = document.getElementById('fxResultDisplay');
+  const dirTextEl = document.getElementById('fxDirectionText');
+  const boxEl = document.getElementById('fxCalculationResultBox');
+
+  if (curr === 'TL') {
+    if (displayEl) displayEl.textContent = '0,00 ₺';
+    if (dirTextEl) dirTextEl.textContent = 'TL cinsinden çek ve senetlerde kur farkı hesaplanmaz.';
+    return;
+  }
+
+  if (entryRate <= 0 || currentRate <= 0) {
+    if (displayEl) displayEl.textContent = '0,00 ₺';
+    if (dirTextEl) dirTextEl.textContent = 'Lütfen geçerli giriş ve hedef kurları giriniz.';
+    return;
+  }
+
+  const rateDiff = currentRate - entryRate;
+  const fxDifferenceTL = Number((rateDiff * checkAmount).toFixed(2));
+  const sign = fxDifferenceTL >= 0 ? '+' : '';
+  const formattedVal = `${sign}${fxDifferenceTL.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺`;
+
+  if (displayEl) {
+    displayEl.textContent = formattedVal;
+    displayEl.style.color = fxDifferenceTL >= 0 ? '#10b981' : '#ef4444';
+  }
+
+  if (boxEl) {
+    if (fxDifferenceTL >= 0) {
+      boxEl.style.background = 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.05) 100%)';
+      boxEl.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+    } else {
+      boxEl.style.background = 'linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(185, 28, 28, 0.05) 100%)';
+      boxEl.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+    }
+  }
+
+  if (dirTextEl) {
+    if (fxDifferenceTL > 0) {
+      dirTextEl.innerHTML = `Döviz kuru <strong>${rateDiff.toFixed(4)} ₺</strong> yükseldi. Müşterinin tahsilatına <strong>+${formattedVal}</strong> kur farkı eklenerek borcu hafifletilecek.`;
+    } else if (fxDifferenceTL < 0) {
+      dirTextEl.innerHTML = `Döviz kuru <strong>${Math.abs(rateDiff).toFixed(4)} ₺</strong> geriledi. Müşteri carisine <strong>${formattedVal}</strong> kur azalış farkı kaydedilecek.`;
+    } else {
+      dirTextEl.innerHTML = `Giriş kuru ile vade kuru eşit. Kur farkı 0,00 ₺.`;
+    }
+  }
+}
+
+function commitFxToCustomer() {
+  const custId = document.getElementById('fxCustId')?.value;
+  const txnId = document.getElementById('fxTxnId')?.value;
+  const customer = (appState.customers || []).find(c => c.id === custId);
+  if (!customer) {
+    showToast("Müşteri bulunamadı!", "danger");
+    return;
+  }
+  const txn = (customer.transactions || []).find(t => t.id === txnId);
+  if (!txn) {
+    showToast("Evrak kaydı bulunamadı!", "danger");
+    return;
+  }
+
+  // KESİN KONTROL: SADECE ÇEK VEYA SENET
+  if (!isCheckOrSenet(txn)) {
+    showToast("Sadece vadeli çek ve senet işlemlerine kur farkı işletilebilir! Nakit ödemelere kur farkı uygulanamaz.", "danger");
+    return;
+  }
+
+  const curr = (txn.currency || customer.currency || 'TL').toUpperCase();
+  if (curr === 'TL') {
+    showToast("TL cinsinden işlemlerde kur farkı işletilemez!", "info");
+    return;
+  }
+
+  const entryRate = parseFloat(document.getElementById('fxEntryRate')?.value) || 0;
+  const currentRate = parseFloat(document.getElementById('fxCurrentRate')?.value) || 0;
+  const checkAmount = parseFloat(txn.amount) || 0;
+
+  if (entryRate <= 0 || currentRate <= 0) {
+    showToast("Lütfen geçerli giriş ve vade kurlarını giriniz!", "danger");
+    return;
+  }
+
+  const rateDiff = currentRate - entryRate;
+  const fxDifferenceTL = Number((rateDiff * checkAmount).toFixed(2));
+  const today = getTodayDateStr();
+  const isSenet = (txn.method === 'Müşteri Senedi' || (txn.checkNo || '').toUpperCase().includes('SENET'));
+  const docType = isSenet ? 'Senet' : 'Çek';
+  const desc = document.getElementById('fxCustomDesc')?.value?.trim() || 
+    `Vade Kur Farkı (#${txn.checkNo || docType} Vade: ${formatDate(txn.dueDate)}) - Giriş: ${entryRate.toFixed(4)} ₺ / Vade: ${currentRate.toFixed(4)} ₺`;
+
+  // Mükerrer olmaması için eski kur farkı kaydını temizle
+  if (txn.fxTxId) {
+    customer.transactions = (customer.transactions || []).filter(t => t.id !== txn.fxTxId);
+  }
+
+  // Yeni kur farkı fişi oluştur
+  const newFxTxId = 'tx_fx_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+  const fxTxn = {
+    id: newFxTxId,
+    type: 'KUR_FARKI',
+    direction: fxDifferenceTL >= 0 ? 'ALACAK' : 'BORC',
+    isCredit: fxDifferenceTL >= 0,
+    date: today,
+    amount: Math.abs(fxDifferenceTL),
+    currency: 'TL',
+    checkId: txn.id,
+    checkNo: txn.checkNo || txn.ref || docType,
+    entryRate: entryRate,
+    exitRate: currentRate,
+    rateDiff: rateDiff,
+    description: `${desc} (Kur Farkı: ${fxDifferenceTL >= 0 ? '+' : ''}${fxDifferenceTL.toLocaleString('tr-TR', {minimumFractionDigits: 2})} ₺)`
+  };
+
+  customer.transactions.push(fxTxn);
+
+  txn.entryRate = entryRate;
+  txn.maturedRate = currentRate;
+  txn.fxApplied = true;
+  txn.fxTxId = newFxTxId;
+  txn.fxAmount = fxDifferenceTL;
+  txn.fxAppliedDate = today;
+
+  saveData();
+  renderDashboard();
   renderCheckPortfolio();
+  if (appState.activeDetailCustomerId === custId) {
+    renderLedgerDetail();
+  }
+
+  closeModal('modalApplyFx');
+  showToast(`✅ ${customer.name} carisine ${Math.abs(fxDifferenceTL).toLocaleString('tr-TR', {minimumFractionDigits:2})} ₺ kur farkı başarıyla işlendi!`, "success");
+}
+
+function processAllMaturedChecks(notifyUser = true) {
+  if (confirm("SADECE vadesi dolmuş ÇEK ve SENET'lerin kur farkı hesaplanacaktır (Nakit veya havale ödemeleri kesinlikle dahil edilmez). Onaylıyor musunuz?")) {
+    processMaturedChecks(notifyUser);
+    renderCheckPortfolio();
+  }
 }
 
 function openCheckPortfolioModal() {
@@ -2116,19 +7341,19 @@ function renderCheckPortfolio() {
 
   (appState.customers || []).forEach(cust => {
     (cust.transactions || []).forEach(t => {
-      const isCheck = t.isCheck || t.method === 'Müşteri Çeki' || !!t.dueDate;
-      if (isCheck) {
-        totalPortfolioCount++;
-        const isMatured = t.dueDate ? t.dueDate <= today : false;
-        if (isMatured) totalMaturedCount++; else totalPendingCount++;
-        if (t.fxAmount) totalFxDiffSum += Math.abs(Number(t.fxAmount));
+      // KESİN VE TAVİZSİZ FİLTRE: SADECE VADELİ ÇEK VE SENETLER LİSTELENİR
+      if (!isCheckOrSenet(t)) return;
 
-        allChecks.push({
-          customer: cust,
-          txn: t,
-          isMatured
-        });
-      }
+      totalPortfolioCount++;
+      const isMatured = t.dueDate ? t.dueDate <= today : false;
+      if (isMatured) totalMaturedCount++; else totalPendingCount++;
+      if (t.fxAmount) totalFxDiffSum += Math.abs(Number(t.fxAmount));
+
+      allChecks.push({
+        customer: cust,
+        txn: t,
+        isMatured
+      });
     });
   });
 
@@ -2152,26 +7377,34 @@ function renderCheckPortfolio() {
   }
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9" class="text-center" style="padding: 2rem;">Bu filtrede vadeli çek kaydı bulunamadı.</td></tr>`;
-    if (mobList) mobList.innerHTML = `<div class="empty-state" style="padding: 1.5rem;"><p style="color:var(--text-muted); margin:0;">Kayıtlı çek bulunamadı.</p></div>`;
+    tbody.innerHTML = `<tr><td colspan="9" class="text-center" style="padding: 2rem;">Bu filtrede vadeli çek veya senet kaydı bulunamadı.</td></tr>`;
+    if (mobList) mobList.innerHTML = `<div class="empty-state" style="padding: 1.5rem;"><p style="color:var(--text-muted); margin:0;">Kayıtlı vadeli çek veya senet bulunamadı.</p></div>`;
     return;
   }
 
   filtered.sort((a, b) => (a.txn.dueDate || '').localeCompare(b.txn.dueDate || ''));
 
+  // Masaüstü Tablo Satırları
   tbody.innerHTML = filtered.map(item => {
     const cust = item.customer;
     const t = item.txn;
     const curr = t.currency || cust.currency || 'TL';
     const isMatured = item.isMatured;
     const fxApplied = t.fxApplied;
+    const isSenet = (t.method === 'Müşteri Senedi' || (t.checkNo || '').toUpperCase().includes('SENET'));
+    const docBadge = isSenet 
+      ? '<span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; padding: 2px 6px; font-size: 0.72rem; border-radius: 4px; margin-right: 4px; font-weight: 700;">SENET</span>'
+      : '<span class="badge" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; padding: 2px 6px; font-size: 0.72rem; border-radius: 4px; margin-right: 4px; font-weight: 700;">ÇEK</span>';
 
     let liveRate = 0;
     if (curr === 'USD') liveRate = latestTcmbRates?.USD?.forexSelling || 49.0348;
     else if (curr === 'EUR') liveRate = latestTcmbRates?.EUR?.forexSelling || 55.3963;
     else liveRate = 1.0000;
 
-    const entryRate = Number(t.entryRate || 0);
+    let entryRate = Number(t.entryRate || 0);
+    if (entryRate <= 0 && curr !== 'TL') {
+      entryRate = curr === 'EUR' ? 52.0000 : 46.5000;
+    }
     const rateDiff = entryRate > 0 && liveRate > 0 ? (liveRate - entryRate) : 0;
     const estFxTL = entryRate > 0 ? Number((rateDiff * Number(t.amount || 0)).toFixed(2)) : 0;
 
@@ -2186,8 +7419,11 @@ function renderCheckPortfolio() {
       <tr>
         <td><strong>${escapeHtml(cust.name)}</strong></td>
         <td>
-          <strong>${escapeHtml(t.checkNo || t.ref || 'Çek')}</strong>
-          <div style="font-size: 0.75rem; color: var(--text-muted);">${escapeHtml(t.checkBank || '-')}</div>
+          <div style="display: flex; align-items: center;">
+            ${docBadge}
+            <strong>${escapeHtml(t.checkNo || t.ref || 'Evrak')}</strong>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">${escapeHtml(t.checkBank || '-')}</div>
         </td>
         <td><strong>${formatDate(t.dueDate)}</strong></td>
         <td>${statusBadge}</td>
@@ -2198,19 +7434,91 @@ function renderCheckPortfolio() {
           ${estFxTL !== 0 ? `<strong class="${estFxTL >= 0 ? 'text-green' : 'text-red'}">${estFxTL >= 0 ? '+' : ''}${estFxTL.toLocaleString('tr-TR', { minimumFractionDigits: 2 })} ₺</strong>` : '<span class="text-muted">0,00 ₺</span>'}
         </td>
         <td class="text-right">
-          ${!fxApplied && isMatured ? `
-            <button class="btn btn-sm btn-success" onclick="processMaturedChecks(true); renderCheckPortfolio();" title="Kur farkını hesaplayıp cariye ekle">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> Farkı İşle
+          <div style="display: flex; gap: 0.35rem; justify-content: flex-end;">
+            ${!fxApplied && isMatured ? `
+              <button class="btn btn-sm btn-success" onclick="openApplyFxModal('${cust.id}', '${t.id}')" title="Kur farkını hesaplayıp cariye ekle">
+                <i class="fa-solid fa-calculator"></i> Farkı İşle
+              </button>
+            ` : (fxApplied ? `
+              <button class="btn btn-sm btn-outline text-green" onclick="openApplyFxModal('${cust.id}', '${t.id}')" title="Kur farkını düzenle / yeniden hesapla">
+                <i class="fa-solid fa-check"></i> Fark İşlendi
+              </button>
+            ` : `
+              <button class="btn btn-sm btn-outline" onclick="openApplyFxModal('${cust.id}', '${t.id}')" title="Kur farkını hesapla">
+                <i class="fa-solid fa-calculator"></i> Hesapla
+              </button>
+            `)}
+            <button class="btn btn-sm btn-outline" onclick="closeModal('modalCheckPortfolio'); showLedgerDetailView('${cust.id}');" title="Müşteri cari ekstresini aç">
+              <i class="fa-solid fa-book-open"></i> Cari
             </button>
-          ` : `
-            <button class="btn btn-sm btn-outline" onclick="closeModal('modalCheckPortfolio'); showLedgerDetailView('${cust.id}');" title="Müşteri ekstresini aç">
-              <i class="fa-solid fa-arrow-right"></i> Carisi
-            </button>
-          `}
+          </div>
         </td>
       </tr>
     `;
   }).join('');
+
+  // Mobil Dokunmatik Çek Kartları
+  if (mobList) {
+    mobList.innerHTML = filtered.map(item => {
+      const cust = item.customer;
+      const t = item.txn;
+      const curr = t.currency || cust.currency || 'TL';
+      const isMatured = item.isMatured;
+      const fxApplied = t.fxApplied;
+      const isSenet = (t.method === 'Müşteri Senedi' || (t.checkNo || '').toUpperCase().includes('SENET'));
+      const docBadge = isSenet 
+        ? '<span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; padding: 2px 6px; font-size: 0.72rem; border-radius: 4px; margin-right: 4px; font-weight: 700;">SENET</span>'
+        : '<span class="badge" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; padding: 2px 6px; font-size: 0.72rem; border-radius: 4px; margin-right: 4px; font-weight: 700;">ÇEK</span>';
+
+      let liveRate = 0;
+      if (curr === 'USD') liveRate = latestTcmbRates?.USD?.forexSelling || 49.0348;
+      else if (curr === 'EUR') liveRate = latestTcmbRates?.EUR?.forexSelling || 55.3963;
+      else liveRate = 1.0000;
+
+      let entryRate = Number(t.entryRate || 0);
+      if (entryRate <= 0 && curr !== 'TL') {
+        entryRate = curr === 'EUR' ? 52.0000 : 46.5000;
+      }
+      const rateDiff = entryRate > 0 && liveRate > 0 ? (liveRate - entryRate) : 0;
+      const estFxTL = entryRate > 0 ? Number((rateDiff * Number(t.amount || 0)).toFixed(2)) : 0;
+
+      return `
+        <div class="mobile-check-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 0.9rem; margin-bottom: 0.75rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem;">
+            <div>
+              <div style="display:flex; align-items:center; gap: 0.25rem;">
+                ${docBadge}
+                <strong style="color: #38bdf8; font-size: 0.95rem;">${escapeHtml(cust.name)}</strong>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top:2px;">${escapeHtml(t.checkBank || '-')} - #${escapeHtml(t.checkNo || t.ref || 'Evrak')}</div>
+            </div>
+            <div>
+              ${fxApplied ? '<span class="badge" style="background:rgba(16,185,129,0.2); color:#10b981; font-size:0.72rem; padding:2px 6px; border-radius:4px;"><i class="fa-solid fa-check"></i> Fark İşlendi</span>' : (isMatured ? '<span class="badge" style="background:rgba(239,68,68,0.2); color:#ef4444; font-size:0.72rem; padding:2px 6px; border-radius:4px;"><i class="fa-solid fa-triangle-exclamation"></i> Vadesi Geldi</span>' : '<span class="badge" style="background:rgba(234,179,8,0.2); color:#facc15; font-size:0.72rem; padding:2px 6px; border-radius:4px;">Vadesi Bekleniyor</span>')}
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; margin-bottom: 0.5rem; background: rgba(0,0,0,0.2); padding: 0.4rem 0.6rem; border-radius: 6px;">
+            <span>Tutar: <strong class="text-gold">${formatCurrency(t.amount, curr)}</strong></span>
+            <span>Vade: <strong>${formatDate(t.dueDate)}</strong></span>
+          </div>
+          ${curr !== 'TL' ? `
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+              <span>Giriş Kuru: ${entryRate > 0 ? entryRate.toFixed(4) + ' ₺' : '-'}</span>
+              <span>TCMB: ${liveRate.toFixed(4)} ₺</span>
+              <span>Fark: <strong class="${estFxTL >= 0 ? 'text-green' : 'text-red'}">${estFxTL >= 0 ? '+' : ''}${estFxTL.toLocaleString('tr-TR', {minimumFractionDigits:2})} ₺</strong></span>
+            </div>
+          ` : ''}
+          <div style="display: flex; gap: 0.5rem;">
+            <button type="button" class="btn btn-sm ${!fxApplied && isMatured ? 'btn-success' : 'btn-outline'}" style="flex: 1;" onclick="openApplyFxModal('${cust.id}', '${t.id}')">
+              <i class="fa-solid fa-calculator"></i> ${fxApplied ? 'Farkı Düzenle' : 'Kur Farkı İşle'}
+            </button>
+            <button type="button" class="btn btn-sm btn-outline" onclick="closeModal('modalCheckPortfolio'); showLedgerDetailView('${cust.id}');">
+              <i class="fa-solid fa-book-open"></i> Cari
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
 }
 
 // Mobil Menü Aç/Kapat
@@ -2267,6 +7575,192 @@ function restoreFromJSONFile(e) {
     }
   };
   reader.readAsText(file);
+}
+
+// Buluttan (Render) Verileri Çek & Eşitle
+async function pullDataFromCloud() {
+  const btn = document.getElementById('btnPullCloudData');
+  const originalText = btn ? btn.innerHTML : '';
+  const urlInput = document.getElementById('cloudSyncServerUrl');
+  let targetUrl = urlInput ? urlInput.value.trim() : '';
+  if (!targetUrl) targetUrl = localStorage.getItem('CLOUD_SERVER_URL') || 'https://ere-tekstil.onrender.com';
+  if (urlInput) localStorage.setItem('CLOUD_SERVER_URL', targetUrl);
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Buluttan Çekiliyor...';
+  }
+
+  try {
+    const res = await fetch('/api/sync/cloud-pull', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${appState.authToken || ''}`
+      },
+      body: JSON.stringify({
+        cloudUrl: targetUrl,
+        username: 'admin',
+        password: 'tekstil2026'
+      })
+    });
+
+    if (res.ok) {
+      const result = await res.json();
+      if (result.data && Array.isArray(result.data.customers)) {
+        appState.customers = result.data.customers;
+        if (result.data.settings) {
+          appState.settings = Object.assign({}, appState.settings, result.data.settings);
+        }
+        appState.lastModified = result.lastModified || Date.now();
+        saveData(false);
+        applySettings();
+        renderDashboard();
+        closeModal('modalBackup');
+        showToast(result.message || "Buluttan verileriniz başarıyla çekildi ve eşitlendi!", "success");
+      }
+    } else {
+      const err = await res.json();
+      alert("Bulut bağlantı hatası: " + (err.error || "Sunucuya erişilemedi."));
+    }
+  } catch (e) {
+    alert("Buluttan çekme sırasında bir hata oluştu: " + e.message);
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+  }
+}
+
+// Yerel Verileri Buluta (Render) Gönder & Eşitle
+async function pushDataToCloud() {
+  const btn = document.getElementById('btnPushCloudData');
+  const originalText = btn ? btn.innerHTML : '';
+  const urlInput = document.getElementById('cloudSyncServerUrl');
+  let targetUrl = urlInput ? urlInput.value.trim() : '';
+  if (!targetUrl) targetUrl = localStorage.getItem('CLOUD_SERVER_URL') || 'https://ere-tekstil.onrender.com';
+  if (urlInput) localStorage.setItem('CLOUD_SERVER_URL', targetUrl);
+
+  if (!confirm(`Bu bilgisayardaki güncel veriler canlı bulut sunucunuza (${targetUrl}) gönderilecek ve eşitlenecektir. Onaylıyor musunuz?`)) {
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gönderiliyor...';
+  }
+
+  try {
+    const res = await fetch('/api/sync/cloud-push', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${appState.authToken || ''}`
+      },
+      body: JSON.stringify({
+        cloudUrl: targetUrl,
+        username: 'admin',
+        password: 'tekstil2026'
+      })
+    });
+
+    if (res.ok) {
+      const result = await res.json();
+      closeModal('modalBackup');
+      showToast(result.message || "Verileriniz başarıyla canlı bulut sitesine aktarıldı!", "success");
+    } else {
+      const err = await res.json();
+      alert("Bulut yükleme hatası: " + (err.error || "Buluta aktarılamadı."));
+    }
+  } catch (e) {
+    alert("Buluta gönderme hatası: " + e.message);
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+  }
+}
+
+// Otomatik Yedek Noktalarını Yükle
+async function loadBackupList() {
+  const container = document.getElementById('backupListContainer');
+  if (!container) return;
+
+  container.innerHTML = '<div style="padding: 0.5rem; text-align: center; color: var(--text-muted);"><i class="fa-solid fa-spinner fa-spin"></i> Yedekler taranıyor...</div>';
+
+  try {
+    const res = await fetch('/api/backups', {
+      headers: { 'Authorization': `Bearer ${appState.authToken || ''}` }
+    });
+    if (res.ok) {
+      const result = await res.json();
+      const list = result.backups || [];
+      if (list.length === 0) {
+        container.innerHTML = '<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center; padding: 0.5rem;">Henüz otomatik kayıt noktası bulunmuyor.</div>';
+        return;
+      }
+      let html = '<div style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 180px; overflow-y: auto;">';
+      list.forEach(b => {
+        const d = new Date(b.createdAt);
+        const timeStr = d.toLocaleDateString('tr-TR') + ' ' + d.toLocaleTimeString('tr-TR');
+        html += `
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); padding: 0.4rem 0.6rem; border-radius: 6px; font-size: 0.78rem;">
+            <div>
+              <strong>${escapeHtml(b.name || 'Otomatik Yedek')}</strong>
+              <div style="color: var(--text-muted); font-size: 0.72rem;">${timeStr}</div>
+            </div>
+            <button class="btn btn-sm btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.72rem;" onclick="restoreBackupById(${b.id})">
+              <i class="fa-solid fa-rotate-left"></i> Geri Dön
+            </button>
+          </div>
+        `;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+    } else {
+      container.innerHTML = '<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">Yedek listesi alınamadı.</div>';
+    }
+  } catch (e) {
+    container.innerHTML = '<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">Yedek listesi yüklenemedi.</div>';
+  }
+}
+
+// Belirli bir otomatik yedek noktasına geri dön
+async function restoreBackupById(backupId) {
+  if (!confirm("Bu otomatik kayıt noktasına geri dönmek istediğinize emin misiniz? Mevcut verileriniz bu noktadaki haliyle güncellenecektir.")) {
+    return;
+  }
+  try {
+    const res = await fetch('/api/backups/restore', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${appState.authToken || ''}`
+      },
+      body: JSON.stringify({ backupId })
+    });
+    if (res.ok) {
+      const result = await res.json();
+      if (result.data && Array.isArray(result.data.customers)) {
+        appState.customers = result.data.customers;
+        if (result.data.settings) {
+          appState.settings = Object.assign({}, appState.settings, result.data.settings);
+        }
+        appState.lastModified = result.lastModified || Date.now();
+        saveData(false);
+        applySettings();
+        renderDashboard();
+        closeModal('modalBackup');
+        showToast(result.message || "Yedek başarıyla geri yüklendi!", "success");
+      }
+    } else {
+      alert("Geri yükleme başarısız oldu.");
+    }
+  } catch (e) {
+    alert("Geri yükleme hatası: " + e.message);
+  }
 }
 
 // =========================================================
@@ -2360,13 +7854,14 @@ function initEventListeners() {
     btnMobileToggle.addEventListener('click', toggleMobileDrawer);
   }
 
-  // Tahsilat Modalında Ödeme Şekli Seçildiğinde Çek Alanlarını Aç/Kapat
+  // Tahsilat Modalında Ödeme Şekli Seçildiğinde Çek / Senet Alanlarını Aç/Kapat
   const payMethodSelect = document.getElementById('payMethod');
   if (payMethodSelect) {
     payMethodSelect.addEventListener('change', (e) => {
       const box = document.getElementById('checkDetailsBox');
       if (!box) return;
-      if (e.target.value === 'Müşteri Çeki') {
+      const isDoc = (e.target.value === 'Müşteri Çeki' || e.target.value === 'Müşteri Senedi');
+      if (isDoc) {
         box.style.display = 'block';
         const curr = document.getElementById('payCurrency')?.value || 'TL';
         const rateInput = document.getElementById('payCheckEntryRate');
@@ -2384,8 +7879,9 @@ function initEventListeners() {
   const payCurrencySelect = document.getElementById('payCurrency');
   if (payCurrencySelect) {
     payCurrencySelect.addEventListener('change', (e) => {
-      const isCheck = document.getElementById('payMethod')?.value === 'Müşteri Çeki';
-      if (isCheck) {
+      const methodVal = document.getElementById('payMethod')?.value;
+      const isDoc = (methodVal === 'Müşteri Çeki' || methodVal === 'Müşteri Senedi');
+      if (isDoc) {
         const curr = e.target.value;
         const rateInput = document.getElementById('payCheckEntryRate');
         if (rateInput) {
@@ -2671,16 +8167,19 @@ function initEventListeners() {
     let ref = document.getElementById('payRef').value.trim();
     const description = document.getElementById('payDescription').value.trim();
 
-    // Check specific fields
+    // Çek ve Senet alanları (SADECE vadeli evraklar için geçerlidir)
     const isCheck = (method === 'Müşteri Çeki');
+    const isSenet = (method === 'Müşteri Senedi');
+    const isForwardDoc = (isCheck || isSenet);
     const checkNo = document.getElementById('payCheckNo')?.value.trim() || '';
     const checkBank = document.getElementById('payCheckBank')?.value.trim() || '';
     const dueDate = document.getElementById('payCheckDueDate')?.value || '';
     const entryRate = parseFloat(document.getElementById('payCheckEntryRate')?.value) || 0;
     const autoFx = document.getElementById('payCheckAutoFx')?.checked ?? true;
 
-    if (isCheck && checkNo && !ref) {
-      ref = `#${checkNo} (${checkBank || 'Çek'}) - Vade: ${formatDate(dueDate)}`;
+    if (isForwardDoc && checkNo && !ref) {
+      const docLabel = isSenet ? 'Senet' : 'Çek';
+      ref = `#${checkNo} (${checkBank || docLabel}) - Vade: ${formatDate(dueDate)}`;
     }
 
     const customer = appState.customers.find(c => c.id === customerId);
@@ -2697,13 +8196,30 @@ function initEventListeners() {
         txn.method = method;
         txn.ref = ref;
         txn.description = description;
-        if (isCheck) {
-          txn.isCheck = true;
+        if (isForwardDoc) {
+          txn.isCheck = isCheck;
+          txn.isSenet = isSenet;
+          txn.isCash = false;
           txn.checkNo = checkNo;
           txn.checkBank = checkBank;
           txn.dueDate = dueDate;
           txn.entryRate = entryRate;
           txn.autoFx = autoFx;
+        } else {
+          // Nakit, Havale, POS ödemeleri kesinlikle çek/senet DEĞİLDİR
+          txn.isCheck = false;
+          txn.isSenet = false;
+          txn.isCash = true;
+          delete txn.checkNo;
+          delete txn.checkBank;
+          delete txn.dueDate;
+          delete txn.entryRate;
+          delete txn.autoFx;
+          delete txn.fxApplied;
+          delete txn.fxAmount;
+          delete txn.fxTxId;
+          delete txn.maturedRate;
+          delete txn.fxAppliedDate;
         }
         showToast("Tahsilat kaydı güncellendi!", 'success');
       }
@@ -2718,25 +8234,27 @@ function initEventListeners() {
         method,
         ref,
         description,
-        isCheck,
-        checkNo: isCheck ? checkNo : undefined,
-        checkBank: isCheck ? checkBank : undefined,
-        dueDate: isCheck ? dueDate : undefined,
-        entryRate: isCheck ? entryRate : undefined,
-        autoFx: isCheck ? autoFx : false,
-        fxApplied: false
+        isCheck: isCheck,
+        isSenet: isSenet,
+        isCash: !isForwardDoc
       };
+
+      if (isForwardDoc) {
+        newTxn.checkNo = checkNo;
+        newTxn.checkBank = checkBank;
+        newTxn.dueDate = dueDate;
+        newTxn.entryRate = entryRate;
+        newTxn.autoFx = autoFx;
+        newTxn.fxApplied = false;
+        newTxn.fxAmount = 0;
+      }
+
       customer.transactions.push(newTxn);
       showToast(`${formatCurrency(amount, currency)} tutarındaki tahsilat kaydedildi!`, 'success');
     }
 
     saveData();
     closeModal('modalPayment');
-
-    // Eğer vadesi bugün veya geçmiş vadeli çek girildiyse kur farkını anında hesapla
-    if (isCheck && dueDate && autoFx) {
-      processMaturedChecks(true);
-    }
 
     if (appState.activeDetailCustomerId === customerId) {
       renderLedgerDetail();
@@ -3267,6 +8785,9 @@ window.openCheckPortfolioModal = openCheckPortfolioModal;
 window.filterCheckPortfolio = filterCheckPortfolio;
 window.processMaturedChecks = processMaturedChecks;
 window.processAllMaturedChecks = processAllMaturedChecks;
+window.openApplyFxModal = openApplyFxModal;
+window.recalculateFxModal = recalculateFxModal;
+window.commitFxToCustomer = commitFxToCustomer;
 window.setDashboardYearFilter = setDashboardYearFilter;
 window.toggleMobileDrawer = toggleMobileDrawer;
 window.closeMobileDrawer = closeMobileDrawer;
@@ -3287,19 +8808,28 @@ window.handleChangePasswordSubmit = handleChangePasswordSubmit;
 window.togglePasswordVisibility = togglePasswordVisibility;
 window.showLoginScreen = showLoginScreen;
 window.hideLoginScreen = hideLoginScreen;
+window.pullDataFromCloud = pullDataFromCloud;
+window.pushDataToCloud = pushDataToCloud;
+window.loadBackupList = loadBackupList;
+window.restoreBackupById = restoreBackupById;
 
 // Initial Boot
 document.addEventListener('DOMContentLoaded', async () => {
   initEventListeners();
   checkAuthAndInit();
-  
-  // TCMB canlı kurlarını al ve vadesi gelen çeklerin kur farkını otomatik tara
-  await fetchTCMBRates(false);
-  processMaturedChecks(false);
 
-  // 5 dakikada bir kurları otomatik kontrol et ve vadesi gelen çekleri tara
+  // Kayıtlı bulut URL'si varsa input alanına doldur
+  const savedCloudUrl = localStorage.getItem('CLOUD_SERVER_URL');
+  if (savedCloudUrl) {
+    const inp = document.getElementById('cloudSyncServerUrl');
+    if (inp) inp.value = savedCloudUrl;
+  }
+  
+  // TCMB canlı kurlarını al
+  await fetchTCMBRates(false);
+
+  // 5 dakikada bir kurları otomatik güncelle (kur farkı arka planda sessizce işlenmez, kullanıcı onaylıdır)
   setInterval(async () => {
     await fetchTCMBRates(false);
-    processMaturedChecks(false);
   }, 300000);
 });
